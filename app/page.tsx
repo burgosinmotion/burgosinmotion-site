@@ -194,6 +194,81 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* Featured Projects */}
+      <section className="relative z-10 mx-auto max-w-7xl px-6 py-32">
+        <div className="mb-20 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p className="mb-4 text-sm uppercase tracking-[0.3em] text-zinc-500">
+              FEATURED WORK
+            </p>
+
+            <h2 className="max-w-3xl text-5xl font-bold leading-tight">
+              Selected projects blending motion, interaction & storytelling
+            </h2>
+          </div>
+
+          <button className="rounded-full border border-white/15 px-6 py-3 transition hover:border-white">
+            View All Projects
+          </button>
+        </div>
+
+        <div className="grid gap-8">
+          {[
+            {
+              title: "Interactive Learning Experience",
+              category: "Storyline • Gamification • UX",
+              description:
+                "Immersive digital learning experiences with interaction-driven storytelling.",
+            },
+            {
+              title: "Motion Graphics System",
+              category: "Motion Design • Visual Identity",
+              description:
+                "Cinematic animation systems for modern digital brands and experiences.",
+            },
+            {
+              title: "ScriptUI Creative Toolkit",
+              category: "After Effects • Creative Development",
+              description:
+                "Workflow-enhancing tools and interfaces for motion designers.",
+            },
+          ].map((project) => (
+            <motion.div
+              key={project.title}
+              whileHover={{ scale: 1.015 }}
+              transition={{ duration: 0.3 }}
+              className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-10 backdrop-blur-sm"
+            >
+              {/* Glow */}
+              <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+                <div className="absolute -left-10 top-0 h-40 w-40 rounded-full bg-fuchsia-500/10 blur-3xl" />
+                <div className="absolute bottom-0 right-0 h-40 w-40 rounded-full bg-cyan-500/10 blur-3xl" />
+              </div>
+
+              <div className="relative z-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+                <div className="max-w-2xl">
+                  <p className="mb-4 text-sm uppercase tracking-[0.2em] text-zinc-500">
+                    {project.category}
+                  </p>
+
+                  <h3 className="mb-6 text-4xl font-bold">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-lg leading-8 text-zinc-400">
+                    {project.description}
+                  </p>
+                </div>
+
+                <button className="rounded-full border border-white/15 px-6 py-3 transition hover:border-white">
+                  View Project
+                </button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="border-t border-white/10 px-6 py-10 text-center text-sm text-zinc-500">
         © 2026 Burgos In Motion — Designing immersive digital experiences.
