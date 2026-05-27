@@ -219,44 +219,47 @@ export default function Home() {
               category: "Storyline • Gamification • UX",
               description:
                 "Immersive digital learning experiences with interaction-driven storytelling.",
-              gradient:
-                "from-fuchsia-500/30 via-violet-500/20 to-cyan-500/20",
+              image:
+                "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop",
             },
             {
               title: "Motion Graphics System",
               category: "Motion Design • Visual Identity",
               description:
                 "Cinematic animation systems for modern digital brands and experiences.",
-              gradient:
-                "from-cyan-500/30 via-blue-500/20 to-fuchsia-500/20",
+               image:
+                "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1600&auto=format&fit=crop",
             },
             {
               title: "ScriptUI Creative Toolkit",
               category: "After Effects • Creative Development",
               description:
                 "Workflow-enhancing tools and interfaces for motion designers.",
-              gradient:
-                "from-violet-500/30 via-fuchsia-500/20 to-indigo-500/20",
+              image:
+                "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?q=80&w=1600&auto=format&fit=crop",
             },
           ].map((project) => (
             <motion.div
               key={project.title}
               whileHover={{ scale: 1.015 }}
               transition={{ duration: 0.3 }}
-              className="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.03] p-10 backdrop-blur-sm transition duration-500 hover:border-white/20"
+              className="group relative min-h-[420px] overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.03] p-10 backdrop-blur-sm transition duration-500 hover:border-white/20"
             >
-              {/* Background Visual */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-60 transition duration-700 group-hover:scale-110 group-hover:opacity-80`}
-                />
+              {/* Background Image */}
+              <div
+                className="absolute inset-0 scale-100 bg-cover bg-center transition duration-700 group-hover:scale-110"
+                style={{
+                  backgroundImage: `url(${project.image})`,
+                }}
+              />
 
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+              {/* Dark Overlay */}
+              <div className="absolute inset-0 bg-black/60" />
 
-                {/* Ambient Glow */}
-                <div className="absolute -left-20 top-0 h-60 w-60 rounded-full bg-white/10 blur-3xl opacity-0 transition duration-700 group-hover:opacity-100" />
-
-              <div className="relative z-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/20 to-fuchsia-500/10" />
+            
+              <div className="relative z-10 flex h-full flex-col justify-between gap-8 md:flex-row md:items-end md:justify-between">
                 <div className="max-w-2xl">
                   <p className="mb-4 text-sm uppercase tracking-[0.2em] text-zinc-500">
                     {project.category}
