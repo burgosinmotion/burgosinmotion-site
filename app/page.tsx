@@ -219,31 +219,42 @@ export default function Home() {
               category: "Storyline • Gamification • UX",
               description:
                 "Immersive digital learning experiences with interaction-driven storytelling.",
+              gradient:
+                "from-fuchsia-500/30 via-violet-500/20 to-cyan-500/20",
             },
             {
               title: "Motion Graphics System",
               category: "Motion Design • Visual Identity",
               description:
                 "Cinematic animation systems for modern digital brands and experiences.",
+              gradient:
+                "from-cyan-500/30 via-blue-500/20 to-fuchsia-500/20",
             },
             {
               title: "ScriptUI Creative Toolkit",
               category: "After Effects • Creative Development",
               description:
                 "Workflow-enhancing tools and interfaces for motion designers.",
+              gradient:
+                "from-violet-500/30 via-fuchsia-500/20 to-indigo-500/20",
             },
           ].map((project) => (
             <motion.div
               key={project.title}
               whileHover={{ scale: 1.015 }}
               transition={{ duration: 0.3 }}
-              className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-10 backdrop-blur-sm"
+              className="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.03] p-10 backdrop-blur-sm transition duration-500 hover:border-white/20"
             >
-              {/* Glow */}
-              <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
-                <div className="absolute -left-10 top-0 h-40 w-40 rounded-full bg-fuchsia-500/10 blur-3xl" />
-                <div className="absolute bottom-0 right-0 h-40 w-40 rounded-full bg-cyan-500/10 blur-3xl" />
-              </div>
+              {/* Background Visual */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-60 transition duration-700 group-hover:scale-110 group-hover:opacity-80`}
+                />
+
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+
+                {/* Ambient Glow */}
+                <div className="absolute -left-20 top-0 h-60 w-60 rounded-full bg-white/10 blur-3xl opacity-0 transition duration-700 group-hover:opacity-100" />
 
               <div className="relative z-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
                 <div className="max-w-2xl">
@@ -251,7 +262,7 @@ export default function Home() {
                     {project.category}
                   </p>
 
-                  <h3 className="mb-6 text-4xl font-bold">
+                  <h3 className="mb-6 text-4xl font-bold transition duration-500 group-hover:translate-x-2">
                     {project.title}
                   </h3>
 
@@ -260,7 +271,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <button className="rounded-full border border-white/15 px-6 py-3 transition hover:border-white">
+                <button className="rounded-full border border-white/15 bg-white/5 px-6 py-3 backdrop-blur-sm transition duration-300 hover:border-white hover:bg-white/10">
                   View Project
                 </button>
               </div>
