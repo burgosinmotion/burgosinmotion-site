@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, Variants, useMotionValue, useSpring } from "framer-motion";
+import MagneticButton from "./magnetic-button";
 
 export default function Home() {
     const mouseX = useMotionValue(0);
@@ -148,6 +149,7 @@ export default function Home() {
 
           {/* Botones Call to Action */}
           <motion.div variants={itemVariants} className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <MagneticButton>
             <button className="group relative px-8 py-4 bg-white text-black text-sm font-semibold uppercase tracking-wider rounded-full overflow-hidden transition-transform duration-300 hover:scale-105 active:scale-95">
               <span className="relative z-10 flex items-center gap-3">
                 Explore Projects
@@ -156,6 +158,7 @@ export default function Home() {
                 </svg>
               </span>
             </button>
+            </MagneticButton>
 
             <button className="rounded-full border border-white/20 px-8 py-4 text-white transition duration-300 hover:border-white hover:bg-white/5 text-sm font-semibold uppercase tracking-wider">
               Let’s Work Together
