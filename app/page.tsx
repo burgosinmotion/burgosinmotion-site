@@ -114,6 +114,39 @@ export default function Home() {
 
       {/* Hero Section Reemplazado */}
       <section className="relative flex min-h-screen items-center justify-center px-6 pt-20">
+        
+      {/* Floating Glass Panels */}
+
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 1 }}
+        className="absolute right-[8%] top-[22%] hidden rounded-3xl border border-white/10 bg-white/5 px-6 py-4 backdrop-blur-xl lg:block"
+      >
+        <p className="text-xs uppercase tracking-[0.3em] text-zinc-400">
+          CURRENT FOCUS
+        </p>
+
+        <p className="mt-2 text-lg font-semibold">
+          Interactive Experiences
+        </p>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.2, duration: 1 }}
+        className="absolute bottom-[18%] left-[8%] hidden rounded-3xl border border-white/10 bg-white/5 px-6 py-4 backdrop-blur-xl lg:block"
+      >
+        <p className="text-xs uppercase tracking-[0.3em] text-zinc-400">
+          TOOLS
+        </p>
+
+        <p className="mt-2 text-lg font-semibold">
+          Storyline • AE • Motion
+        </p>
+      </motion.div>
+
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -225,7 +258,7 @@ export default function Home() {
               Selected projects blending motion, interaction & storytelling
             </h2>
           </div>
-          <button className="rounded-full border border-white/15 px-6 py-3 transition hover:border-white">
+          <button className="rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-medium backdrop-blur-md transition duration-300 hover:border-white hover:bg-white/20">
             View All Projects
           </button>
         </div>
@@ -255,13 +288,23 @@ export default function Home() {
               key={project.title}
               whileHover={{ scale: 1.015 }}
               transition={{ duration: 0.3 }}
-              className="group relative min-h-[420px] overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.03] p-10 backdrop-blur-sm transition duration-500 hover:border-white/20"
+              className="group relative min-h-[420px] overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.04] p-10 backdrop-blur-xl transition duration-700 hover:-translate-y-2 hover:border-white/20 hover:bg-white/[0.06]"
             >
               <div
                 className="absolute inset-0 scale-100 bg-cover bg-center transition duration-700 group-hover:scale-110"
                 style={{ backgroundImage: `url(${project.image})` }}
               />
-              <div className="absolute inset-0 bg-black/60" />
+              <div className="absolute inset-0 bg-black/50" />
+              
+              {/* Cinematic Light Layer */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                {/* Glass Reflection */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-50" />
+
+                {/* Ambient Glow */}
+                <div className="absolute -top-20 right-0 h-60 w-60 rounded-full bg-fuchsia-500/10 blur-3xl opacity-0 transition duration-700 group-hover:opacity-100" />
+              
               <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/20 to-fuchsia-500/10" />
             
               <div className="relative z-10 flex h-full flex-col justify-between gap-8 md:flex-row md:items-end md:justify-between">
@@ -269,7 +312,7 @@ export default function Home() {
                   <p className="mb-4 text-sm uppercase tracking-[0.2em] text-zinc-500">
                     {project.category}
                   </p>
-                  <h3 className="mb-6 text-4xl font-bold transition duration-500 group-hover:translate-x-2">
+                  <h3 className="mb-6 text-4xl font-bold tracking-tight transition duration-500 group-hover:translate-x-2 drop-shadow-[0_0_20px_rgba(255,255,255,0.15)]">
                     {project.title}
                   </h3>
                   <p className="text-lg leading-8 text-zinc-400">
