@@ -1,8 +1,25 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, useMotionValue, useSpring } from "framer-motion";
 
 export default function Home() {
+    const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const smoothX = useSpring(mouseX, {
+    damping: 50,
+    stiffness: 200,
+  });
+
+  const smoothY = useSpring(mouseY, {
+    damping: 50,
+    stiffness: 200,
+  });
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    mouseX.set(e.clientX - 250);
+    mouseY.set(e.clientY - 250);
+  };
   // Variantes de Framer Motion para animar los elementos del Hero en cascada
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -25,8 +42,18 @@ export default function Home() {
   };
 
   return (
-    <main className="relative overflow-hidden bg-black text-white">
+    <main
+      onMouseMove={handleMouseMove}
+      className="relative overflow-hidden bg-black text-white"
+    >
       {/* Background Glow */}
+      <motion.div
+        style={{
+          x: smoothX,
+          y: smoothY,
+        }}
+        className="pointer-events-none fixed left-0 top-0 z-0 h-[500px] w-[500px] rounded-full bg-fuchsia-500/10 blur-[120px]"
+      />
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           animate={{
@@ -70,7 +97,7 @@ export default function Home() {
       <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/30 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <h1 className="text-lg font-semibold tracking-[0.2em]">
-            BURGOSX IN MOTION
+            BURGOS IN MOTION
           </h1>
 
           <nav className="hidden gap-8 text-sm text-zinc-300 md:flex">
@@ -114,7 +141,7 @@ export default function Home() {
             variants={itemVariants} 
             className="text-base md:text-lg lg:text-xl text-zinc-400 mb-12 max-w-2xl mx-auto font-light leading-relaxed"
           >
-            Burgosx in Motion creates cinematic digital experiences combining
+            Burgos in Motion creates cinematic digital experiences combining
             motion, interaction, and learning to build memorable products and
             immersive storytelling.
           </motion.p>
@@ -259,7 +286,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-white/10 px-6 py-10 text-center text-sm text-zinc-500">
-        © 2026 Burgosx in Motion — Designing immersive digital experiences.
+        © 2026 Burgos in Motion — Designing immersive digital experiences.
       </footer>
     </main>
   );
