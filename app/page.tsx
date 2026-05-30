@@ -1,9 +1,23 @@
 "use client";
-
-import { motion, Variants, useMotionValue, useSpring } from "framer-motion";
+import Image from "next/image";
+import {
+  motion,
+  Variants,
+  useMotionValue,
+  useSpring,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import MagneticButton from "./magnetic-button";
 
 export default function Home() {
+  const { scrollY } = useScroll();
+
+const parallaxY = useTransform(
+  scrollY,
+  [0, 2000],
+  [0, -120]
+);
     const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -102,19 +116,21 @@ export default function Home() {
           </h1>
 
           <nav className="hidden gap-8 text-sm text-zinc-300 md:flex">
-            <a href="#" className="transition duration-300 hover:text-white">Home</a>
-            <a href="#" className="transition duration-300 hover:text-white">Work</a>
-            <a href="#" className="transition duration-300 hover:text-white">Services</a>
-            <a href="#" className="transition duration-300 hover:text-white">Products</a>
-            <a href="#" className="transition duration-300 hover:text-white">About</a>
-            <a href="#" className="transition duration-300 hover:text-white">Contact</a>
+            <a href="#inicio" className="transition duration-300 hover:text-white">Inicio </a>
+            <a href="#proyectos" className="transition duration-300 hover:text-white">Proyectos</a>
+            <a href="#servicios" className="transition duration-300 hover:text-white">Servicios</a>
+            <a href="#productos" className="transition duration-300 hover:text-white">Productos</a>
+            <a href="#sobre-mi" className="transition duration-300 hover:text-white">Sobre mí</a>
+            <a href="#contacto" className="transition duration-300 hover:text-white">Contacto</a>
           </nav>
         </div>
       </header>
 
       {/* Hero Section Reemplazado */}
-      <section className="relative flex min-h-screen items-center justify-center px-6 pt-20">
-        
+      <section
+        id="inicio"
+        className="relative flex min-h-screen items-center justify-center px-6 pt-20"
+      >        
       {/* Floating Glass Panels */}
 
       <motion.div
@@ -124,11 +140,11 @@ export default function Home() {
         className="absolute right-[8%] top-[22%] hidden rounded-3xl border border-white/10 bg-white/5 px-6 py-4 backdrop-blur-xl lg:block"
       >
         <p className="text-xs uppercase tracking-[0.3em] text-zinc-400">
-          CURRENT FOCUS
+          ENFOQUE ACTUAL
         </p>
 
         <p className="mt-2 text-lg font-semibold">
-          Interactive Experiences
+          Experiencias interactivas
         </p>
       </motion.div>
 
@@ -139,11 +155,11 @@ export default function Home() {
         className="absolute bottom-[18%] left-[8%] hidden rounded-3xl border border-white/10 bg-white/5 px-6 py-4 backdrop-blur-xl lg:block"
       >
         <p className="text-xs uppercase tracking-[0.3em] text-zinc-400">
-          TOOLS
+          HERRAMIENTAS
         </p>
 
         <p className="mt-2 text-lg font-semibold">
-          Storyline • AE • Motion
+          Storyline • After Effects • Motion Design
         </p>
       </motion.div>
 
@@ -158,7 +174,7 @@ export default function Home() {
             variants={itemVariants} 
             className="text-xs md:text-sm font-mono uppercase tracking-[0.2em] text-zinc-400 mb-6"
           >
-            Motion Design • Interactive Learning • Creative Development
+            Motion Graphics • Aprendizaje Interactivo • Desarrollo Creativo
           </motion.p>
 
           {/* Título principal con toque editorial */}
@@ -166,8 +182,8 @@ export default function Home() {
             variants={itemVariants} 
             className="text-6xl md:text-8xl lg:text-[9rem] font-bold tracking-tighter leading-[1.05] mb-8"
           >
-            Cinematic Digital <br />
-            <span className="text-zinc-500 italic font-serif font-light">Experiences.</span>
+            Motion<br />
+            <span className="text-zinc-500 italic font-serif font-light">Interacción<br />que conecta.</span>
           </motion.h1>
 
           {/* Párrafo descriptivo */}
@@ -175,16 +191,16 @@ export default function Home() {
             variants={itemVariants} 
             className="text-base md:text-lg lg:text-xl text-zinc-400 mb-12 max-w-2xl mx-auto font-light leading-relaxed"
           >
-            Burgos in Motion creates cinematic digital experiences combining
-            motion, interaction, and learning to build memorable products and
-            immersive storytelling.
+            Diseño experiencias digitales que combinan motion graphics,
+            e-learning interactivo y desarrollo creativo para crear
+            productos memorables.
           </motion.p>
 
           {/* Botones Call to Action */}
           <motion.div variants={itemVariants} className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <button className="group relative px-8 py-4 bg-white text-black text-sm font-semibold uppercase tracking-wider rounded-full overflow-hidden transition-transform duration-300 hover:scale-105 active:scale-95">
               <span className="relative z-10 flex items-center gap-3">
-                Explore Projects
+                Ver Proyectos
                 <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
@@ -192,20 +208,29 @@ export default function Home() {
             </button>
 
             <button className="rounded-full border border-white/20 px-8 py-4 text-white transition duration-300 hover:border-white hover:bg-white/5 text-sm font-semibold uppercase tracking-wider">
-              Let’s Work Together
+              Trabajemos Juntos
             </button>
           </motion.div>
         </motion.div>
       </section>
 
-      {/* Services */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 py-32">
+      
+
+      {/* SERVICES */}
+      <motion.section
+        id="servicios"
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, amount: 0.2 }}
+        className="relative z-10 mx-auto max-w-7xl px-6 py-32"
+      >
         <div className="mb-20 text-center">
           <p className="mb-4 text-sm uppercase tracking-[0.3em] text-zinc-500">
-            SERVICES
+            SERVICIOS
           </p>
           <h2 className="text-5xl font-bold">
-            Creative solutions with motion & interaction
+            Soluciones creativas a través<br /> del motion y la interacción
           </h2>
         </div>
 
@@ -219,19 +244,19 @@ export default function Home() {
           {[
             {
               title: "Motion Graphics",
-              text: "Visual storytelling, animation systems and branded motion experiences.",
+              text: "Narrativa visual, sistemas de animación y experiencias de marca impulsadas por motion graphics.",
             },
             {
-              title: "Interactive Learning",
-              text: "Immersive e-learning experiences using Storyline and gamification.",
+              title: "Aprendizaje Interactivo",
+              text: "Experiencias e-learning inmersivas desarrolladas con Storyline, interacción y gamificación.",
             },
             {
-              title: "Creative Development",
-              text: "Interactive interfaces, web experiences and experimental UI systems.",
+              title: "Desarrollo Creativo",
+              text: "Interfaces interactivas, experiencias web y soluciones digitales desarrolladas a medida.",
             },
             {
-              title: "Digital Products",
-              text: "Custom ScriptUI extensions like MotionDeck and CornerFlex, along with workflow tools for creators.",
+              title: "Productos Digitales",
+              text: "Herramientas y extensiones personalizadas para optimizar flujos de trabajo creativos y productivos.",
             },
           ].map((service) => (
             <div
@@ -245,42 +270,49 @@ export default function Home() {
             </div>
           ))}
         </motion.div>
-      </section>
+      </motion.section>
 
       {/* Featured Projects */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 py-32">
+      <motion.section
+        id="proyectos"
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, amount: 0.2 }}
+        className="relative z-10 mx-auto max-w-7xl px-6 py-32"
+      >
         <div className="mb-20 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
             <p className="mb-4 text-sm uppercase tracking-[0.3em] text-zinc-500">
-              FEATURED WORK
+              PROYECTOS DESTACADOS
             </p>
             <h2 className="max-w-3xl text-5xl font-bold leading-tight">
-              Selected projects blending motion, interaction & storytelling
+              Proyectos que combinan motion, interacción y narrativa digital
             </h2>
           </div>
           <button className="rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-medium backdrop-blur-md transition duration-300 hover:border-white hover:bg-white/20">
-            View All Projects
+            Ver Todos los Proyectos
           </button>
         </div>
 
         <div className="grid gap-8">
           {[
             {
-              title: "Interactive Learning Experience",
-              category: "Storyline • Gamification • UX",
-              description: "Immersive digital learning experiences with interaction-driven storytelling.",
+              title: "Experiencia de Aprendizaje Interactivo",
+              category: "Storyline • Gamificación • UX",
+              description: "Experiencias de aprendizaje inmersivas donde la interacción impulsa la narrativa y el compromiso del usuario.",
               image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop",
             },
             {
-              title: "Motion Graphics System",
-              category: "Motion Design • Visual Identity",
-              description: "Cinematic animation systems for modern digital brands and experiences.",
+              title: "Sistema de Motion Graphics",
+              category: "Motion Design • Identidad Visual",
+              description: "Sistemas de animación diseñados para potenciar marcas y experiencias digitales modernas.",
               image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1600&auto=format&fit=crop",
             },
             {
-              title: "ScriptUI Creative Toolkit",
-              category: "After Effects • Creative Development",
-              description: "Workflow-enhancing tools including custom Graph Editor panels and automated workflow utilities.",
+              title: "Toolkit Creativo - ScriptUI",
+              category: "After Effects • Desarrollo Creativo",
+              description: "Herramientas diseñadas para optimizar flujos de trabajo creativos mediante automatización y personalización.",
               image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?q=80&w=1600&auto=format&fit=crop",
             },
           ].map((project) => (
@@ -290,10 +322,15 @@ export default function Home() {
               transition={{ duration: 0.3 }}
               className="group relative min-h-[420px] overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.04] p-10 backdrop-blur-xl transition duration-700 hover:-translate-y-2 hover:border-white/20 hover:bg-white/[0.06]"
             >
-              <div
+              <motion.div
+                style={{ y: parallaxY }}
                 className="absolute inset-0 scale-100 bg-cover bg-center transition duration-700 group-hover:scale-110"
-                style={{ backgroundImage: `url(${project.image})` }}
-              />
+              >
+                <div
+                  className="h-[120%] w-full bg-cover bg-center"
+                  style={{ backgroundImage: `url(${project.image})` }}
+                />
+              </motion.div>
               <div className="absolute inset-0 bg-black/50" />
               
               {/* Cinematic Light Layer */}
@@ -320,17 +357,144 @@ export default function Home() {
                   </p>
                 </div>
                 <button className="rounded-full border border-white/15 bg-white/5 px-6 py-3 backdrop-blur-sm transition duration-300 hover:border-white hover:bg-white/10">
-                  View Project
+                  Ver Proyecto
                 </button>
               </div>
             </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
+
+        {/* About */}
+        <motion.section
+          id="sobre-mi"
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, amount: 0.2 }}
+          className="relative z-10 mx-auto max-w-7xl px-6 py-32"
+        >
+          <div className="grid items-center gap-20 lg:grid-cols-2">
+
+            {/* LEFT COLUMN */}
+            <div>
+
+              <p className="mb-4 text-sm uppercase tracking-[0.3em] text-zinc-500">
+                SOBRE MÍ
+              </p>
+
+              <h2 className="mb-8 text-5xl font-bold leading-tight">
+                Motion, interacción y narrativa con propósito.
+              </h2>
+
+              <p className="mb-6 text-lg leading-8 text-zinc-400">
+                Soy Diego Burgos, creador de Burgos in Motion.
+              </p>
+
+              <p className="mb-6 text-lg leading-8 text-zinc-400">
+                Diseño experiencias digitales que combinan motion graphics,
+                aprendizaje interactivo y desarrollo creativo.
+              </p>
+
+              <p className="text-lg leading-8 text-zinc-400">
+                Desde proyectos e-learning desarrollados en Storyline hasta
+                herramientas personalizadas para After Effects y experiencias
+                web interactivas, mi objetivo es crear productos que conecten
+                con las personas, faciliten el aprendizaje y generen impacto.
+              </p>
+
+              {/* Stats */}
+              <div className="mt-12 grid grid-cols-2 gap-6">
+
+                <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+                  <h3 className="text-4xl font-bold">8+</h3>
+                  <p className="mt-2 text-zinc-400">
+                    Años de Experiencia
+                  </p>
+                </div>
+
+                <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+                  <h3 className="text-4xl font-bold">100+</h3>
+                  <p className="mt-2 text-zinc-400">
+                    Proyectos Formativos
+                  </p>
+                </div>
+
+                <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+                  <h3 className="text-4xl font-bold">50+</h3>
+                  <p className="mt-2 text-zinc-400">
+                    Proyectos Creativos
+                  </p>
+                </div>
+
+                <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+                  <h3 className="text-4xl font-bold">5+</h3>
+                  <p className="mt-2 text-zinc-400">
+                    Herramientas Digitales
+                  </p>
+                </div>
+
+              </div>
+
+            </div>
+
+            {/* RIGHT COLUMN */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+              className="relative flex flex-col items-center"
+            >
+
+              {/* Glow Background */}
+              <div className="absolute h-[500px] w-[500px] rounded-full bg-fuchsia-500/15 blur-[120px]" />
+
+              <div className="absolute h-[350px] w-[350px] rounded-full bg-cyan-500/10 blur-[100px]" />
+
+              {/* Image Container */}
+              <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-2 backdrop-blur-sm">
+
+                <Image
+                  src="/diego.jpg"
+                  alt="Diego Burgos"
+                  width={380}
+                  height={500}
+                  className="h-[500px] w-[380px] rounded-[1.5rem] object-cover"
+              />
+
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+
+              </div>
+
+              {/* Name & Titles */}
+              <div className="mt-8 text-center">
+
+                <h3 className="text-3xl font-bold">
+                  Diego Burgos
+                </h3>
+
+                <div className="mt-4 flex flex-col gap-1 text-zinc-400">
+
+                  <span>Diseñador Motion</span>
+
+                  <span>Desarrollador Creativo</span>
+
+                  <span>Especialista en E-Learning</span>
+
+                </div>
+
+              </div>
+
+            </motion.div>
+
+          </div>
+        </motion.section>
 
       {/* Footer */}
       <footer className="border-t border-white/10 px-6 py-10 text-center text-sm text-zinc-500">
-        © 2026 Burgos in Motion — Designing immersive digital experiences.
+        © 2026 Burgos in Motion — Diseñando experiencias digitales inmersivas.
       </footer>
     </main>
   );
