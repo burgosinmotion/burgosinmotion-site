@@ -111,9 +111,13 @@ const parallaxY = useTransform(
       {/* Navbar */}
       <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/30 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <h1 className="text-lg font-semibold tracking-[0.2em]">
-            BURGOS IN MOTION
-          </h1>
+          <Image
+            src="/logo-burgosinmotion.svg"
+            alt="Burgos in Motion"
+            width={120}
+            height={46}
+            priority
+          />
 
           <nav className="hidden gap-8 text-sm text-zinc-300 md:flex">
             <a href="#inicio" className="transition duration-300 hover:text-white">Inicio </a>
@@ -488,6 +492,78 @@ const parallaxY = useTransform(
               </div>
 
             </motion.div>
+
+          </div>
+        </motion.section>
+
+      {/* Contacto */}
+        <motion.section
+          id="contacto"
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2 }}
+          viewport={{ once: true }}
+          className="relative mx-auto max-w-7xl px-6 py-32"
+        >
+          <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-white/[0.04] p-16 backdrop-blur-xl">
+
+            {/* Glow Background */}
+            <div className="absolute -left-20 top-0 h-72 w-72 rounded-full bg-fuchsia-500/20 blur-[120px]" />
+
+            <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-cyan-500/20 blur-[120px]" />
+
+            {/* Content */}
+            <div className="relative z-10 text-center">
+
+              <p className="mb-4 text-sm uppercase tracking-[0.3em] text-zinc-500">
+                CONTACTO
+              </p>
+
+              <h2 className="mx-auto mb-8 max-w-4xl text-5xl md:text-7xl font-bold tracking-tight">
+                ¿Tienes una idea, proyecto o desafío?
+              </h2>
+
+              <p className="mx-auto mb-12 max-w-2xl text-lg leading-8 text-zinc-400">
+                Convirtámoslo en una experiencia digital que combine
+                motion graphics, aprendizaje interactivo y desarrollo creativo.
+              </p>
+
+              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+
+                <a
+                  href="mailto:hola@burgosinmotion.com"
+                  className="rounded-full bg-white
+                  hover:scale-110
+                  hover:shadow-[0_0_40px_rgba(255,255,255,0.25)]
+                  px-8 py-4 font-semibold text-black transition hover:scale-105"
+                >
+                  Hablemos
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/dgoburgos/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-white/15 px-8 py-4 transition hover:border-white"
+                >
+                  LinkedIn
+                </a>
+
+              </div>
+                <p className="mt-8 text-sm text-zinc-500">
+                  hola@burgosinmotion.com
+                </p>
+
+              <div className="mt-12 flex flex-col items-center">
+                <div className="h-px w-24 bg-gradient-to-r from-transparent via-fuchsia-500/50 to-transparent" />
+
+                <p className="mt-6 text-xs uppercase tracking-[0.4em]">
+                  <span className="font-semibold text-white">BURGOS</span>
+                  <span className="text-zinc-500"> IN MOTION</span>
+                </p>
+              </div>
+
+            </div>
 
           </div>
         </motion.section>
