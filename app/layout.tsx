@@ -15,7 +15,16 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Burgos in Motion",
-  description: "Cinematic digital experiences blending motion design, interactive storytelling, creative development, and immersive learning.",
+  description:
+    "Motion Graphics, E-Learning Interactivo y Desarrollo Creativo por Diego Burgos.",
+
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({

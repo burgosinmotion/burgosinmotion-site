@@ -8,9 +8,12 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
+import CountUp from "react-countup";
 import MagneticButton from "./magnetic-button";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+  
   const { scrollY } = useScroll();
 
 const parallaxY = useTransform(
@@ -22,7 +25,7 @@ const parallaxY = useTransform(
   const mouseY = useMotionValue(0);
 
   const smoothX = useSpring(mouseX, {
-    damping: 50,
+    damping: 50, 
     stiffness: 200,
   });
 
@@ -55,6 +58,20 @@ const parallaxY = useTransform(
       transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
     },
   };
+
+  const [scrolled, setScrolled] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => {
+    setScrolled(window.scrollY > 50);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, []);
 
   return (
     <main
@@ -109,14 +126,21 @@ const parallaxY = useTransform(
       </div>
 
       {/* Navbar */}
-      <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/30 backdrop-blur-xl">
+<header
+  className={`fixed top-0 z-50 w-full transition-all duration-500 ${
+    scrolled
+      ? "border-b border-cyan-400 bg-black/95 backdrop-blur-3xl py-1"
+      : "bg-transparent py-6"
+  }`}
+>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <Image
-            src="/logo-burgosinmotion.svg"
+            src="/logo_burgosinmotion.svg"
             alt="Burgos in Motion"
-            width={120}
-            height={46}
+            width={180}
+            height={70}
             priority
+            className="w-48 h-auto"
           />
 
           <nav className="hidden gap-8 text-sm text-zinc-300 md:flex">
@@ -411,28 +435,28 @@ const parallaxY = useTransform(
               <div className="mt-12 grid grid-cols-2 gap-6">
 
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
-                  <h3 className="text-4xl font-bold">8+</h3>
+                  <h3 className="text-4xl font-bold"><CountUp end={8} duration={2} />+</h3>
                   <p className="mt-2 text-zinc-400">
                     Años de Experiencia
                   </p>
                 </div>
 
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
-                  <h3 className="text-4xl font-bold">100+</h3>
+                  <h3 className="text-4xl font-bold"><CountUp end={100} duration={2} />+</h3>
                   <p className="mt-2 text-zinc-400">
                     Proyectos Formativos
                   </p>
                 </div>
 
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
-                  <h3 className="text-4xl font-bold">50+</h3>
+                  <h3 className="text-4xl font-bold"><CountUp end={50} duration={2} />+</h3>
                   <p className="mt-2 text-zinc-400">
                     Proyectos Creativos
                   </p>
                 </div>
 
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
-                  <h3 className="text-4xl font-bold">5+</h3>
+                  <h3 className="text-4xl font-bold"><CountUp end={5} duration={2} />+</h3>
                   <p className="mt-2 text-zinc-400">
                     Herramientas Digitales
                   </p>
@@ -550,17 +574,9 @@ const parallaxY = useTransform(
                 </a>
 
               </div>
-                <p className="mt-8 text-sm text-zinc-500">
-                  hola@burgosinmotion.com
-                </p>
-
+                
               <div className="mt-12 flex flex-col items-center">
                 <div className="h-px w-24 bg-gradient-to-r from-transparent via-fuchsia-500/50 to-transparent" />
-
-                <p className="mt-6 text-xs uppercase tracking-[0.4em]">
-                  <span className="font-semibold text-white">BURGOS</span>
-                  <span className="text-zinc-500"> IN MOTION</span>
-                </p>
               </div>
 
             </div>
