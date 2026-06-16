@@ -401,39 +401,14 @@ useEffect(() => {
             {/* Glow central */}
             <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-500/10 blur-[150px]" />
 
-            {/* Botón Play */}
-            <div className="relative z-10 flex h-full items-center justify-center">
-
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              animate={{
-                boxShadow: [
-                  "0 0 30px rgba(217,70,239,0.3)",
-                  "0 0 60px rgba(6,182,212,0.4)",
-                  "0 0 30px rgba(217,70,239,0.3)",
-                ],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-              }}
-              className="
-                flex
-                h-24
-                w-24
-                items-center
-                justify-center
-                rounded-full
-                bg-gradient-to-br
-                from-fuchsia-500
-                to-cyan-500
-                text-3xl
-              "
-            >
-              ▶
-            </motion.button>
-
+            {/* Video Showreel */}
+            <div className="relative z-10 h-full w-full">
+              <iframe
+                src="https://player.vimeo.com/video/575675039?h=647682d12b"
+                className="h-full w-full rounded-[1.5rem]"
+                allow="autoplay; fullscreen"
+                allowFullScreen
+              />
             </div>
 
             {/* Etiqueta inferior */}
