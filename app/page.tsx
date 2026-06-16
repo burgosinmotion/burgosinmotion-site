@@ -84,9 +84,13 @@ useEffect(() => {
           x: smoothX,
           y: smoothY,
         }}
-        className="pointer-events-none fixed left-0 top-0 z-0 h-[500px] w-[500px] rounded-full bg-fuchsia-500/10 blur-[120px]"
+        className="pointer-events-none fixed left-0 top-0 z-0 h-[500px] w-[500px] rounded-full bg-fuchsia-500/25 blur-[220px]"
       />
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="
+      absolute inset-0
+      bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.02),transparent_50%)]
+      " />
         <motion.div
           animate={{
             x: [0, 40, 0],
@@ -97,7 +101,7 @@ useEffect(() => {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute left-[-10%] top-[-10%] h-[500px] w-[500px] rounded-full bg-fuchsia-500/20 blur-3xl"
+          className="absolute left-[-10%] top-[-10%] h-[500px] w-[500px] rounded-full bg-fuchsia-500/35 blur-[220px]"
         />
         <motion.div
           animate={{
@@ -109,7 +113,7 @@ useEffect(() => {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute right-[-10%] top-[20%] h-[400px] w-[400px] rounded-full bg-cyan-500/20 blur-3xl"
+          className="absolute right-[-10%] top-[20%] h-[400px] w-[400px] rounded-full bg-cyan-500/30 blur-[220px]"
         />
         <motion.div
           animate={{
@@ -121,7 +125,28 @@ useEffect(() => {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute bottom-[-10%] left-[30%] h-[500px] w-[500px] rounded-full bg-violet-500/20 blur-3xl"
+          className="absolute bottom-[-10%] left-[30%] h-[500px] w-[500px] rounded-full bg-violet-500/30 blur-[220px]"
+        />
+                <motion.div
+          animate={{
+            x: [0, 60, 0],
+            y: [0, -40, 0],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="
+            absolute
+            left-[35%]
+            top-[55%]
+            h-[700px]
+            w-[700px]
+            rounded-full
+            bg-cyan-500/20
+            blur-[260px]
+          "
         />
       </div>
 
@@ -145,8 +170,9 @@ useEffect(() => {
 
           <nav className="hidden gap-8 text-sm text-zinc-300 md:flex">
             <a href="#inicio" className="transition duration-300 hover:text-white">Inicio </a>
-            <a href="#proyectos" className="transition duration-300 hover:text-white">Proyectos</a>
             <a href="#servicios" className="transition duration-300 hover:text-white">Servicios</a>
+            <a href="#showreel" className="transition duration-300 hover:text-white">Showreel</a>
+            <a href="#proyectos" className="transition duration-300 hover:text-white">Proyectos</a>
             <a href="#productos" className="transition duration-300 hover:text-white">Productos</a>
             <a href="#sobre-mi" className="transition duration-300 hover:text-white">Sobre mí</a>
             <a href="#contacto" className="transition duration-300 hover:text-white">Contacto</a>
@@ -300,6 +326,140 @@ useEffect(() => {
         </motion.div>
       </motion.section>
 
+      {/* Showreel */}
+      <motion.section
+        id="showreel"
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+        className="relative z-10 mx-auto max-w-7xl px-6 py-32"
+      >
+        {/* Título */}
+        <div className="mb-14 text-center">
+          <p className="mb-4 text-sm uppercase tracking-[0.3em] text-zinc-500">
+            SHOWREEL
+          </p>
+
+          <h2 className="text-5xl font-bold">
+            Una recopilación de mis mejores trabajos
+          </h2>
+
+          <p className="mt-6 text-zinc-400">
+            Motion graphics, e-learning y desarrollo creativo.
+          </p>
+        </div>
+
+        {/* Contenedor */}
+        <div
+          className="
+          relative
+          overflow-hidden
+          rounded-[2rem]
+          border border-white/10
+          shadow-[0_0_80px_rgba(217,70,239,0.05)]
+        "
+        >
+
+          {/* Glow izquierdo */}
+          <div className="absolute left-0 top-0 h-80 w-80 rounded-full bg-fuchsia-500/10 blur-[180px]" />
+
+          {/* Glow derecho */}
+          <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-cyan-500/10 blur-[180px]" />
+
+          {/* Área del video */}
+          <div
+            className="
+              relative
+              aspect-video
+              overflow-hidden
+              rounded-[1.5rem]
+              border border-white/10
+              bg-gradient-to-br
+              from-fuchsia-500/5
+              via-transparent
+              to-cyan-500/5
+            "
+          >
+
+            {/* Grid suave */}
+            <div
+              className="
+                absolute
+                inset-0
+                opacity-30
+              "
+              style={{
+                backgroundImage: `
+                  linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)
+                `,
+                backgroundSize: "60px 60px",
+              }}
+            />
+
+            {/* Glow central */}
+            <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-500/10 blur-[150px]" />
+
+            {/* Botón Play */}
+            <div className="relative z-10 flex h-full items-center justify-center">
+
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              animate={{
+                boxShadow: [
+                  "0 0 30px rgba(217,70,239,0.3)",
+                  "0 0 60px rgba(6,182,212,0.4)",
+                  "0 0 30px rgba(217,70,239,0.3)",
+                ],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+              }}
+              className="
+                flex
+                h-24
+                w-24
+                items-center
+                justify-center
+                rounded-full
+                bg-gradient-to-br
+                from-fuchsia-500
+                to-cyan-500
+                text-3xl
+              "
+            >
+              ▶
+            </motion.button>
+
+            </div>
+
+            {/* Etiqueta inferior */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-full border border-white/10 bg-black/50 px-6 py-3 text-sm text-zinc-300 backdrop-blur-xl">
+              🎬 Showreel video will be embedded here
+            </div>
+
+          </div>
+        </div>
+
+        {/* Información */}
+        <div className="mt-10 text-center text-zinc-500">
+
+          <p>
+            Más de 8 años creando experiencias digitales inmersivas.
+          </p>
+
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-6 text-sm">
+            <span>🎬 Motion Graphics</span>
+            <span>📚 E-Learning</span>
+            <span>💻 Desarrollo Creativo</span>
+          </div>
+
+        </div>
+      </motion.section>
+
       {/* Featured Projects */}
       <motion.section
         id="proyectos"
@@ -323,73 +483,120 @@ useEffect(() => {
           </button>
         </div>
 
-        <div className="grid gap-8">
-          {[
-            {
-              title: "Experiencia de Aprendizaje Interactivo",
-              category: "Storyline • Gamificación • UX",
-              description: "Experiencias de aprendizaje inmersivas donde la interacción impulsa la narrativa y el compromiso del usuario.",
-              image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop",
-            },
-            {
-              title: "Sistema de Motion Graphics",
-              category: "Motion Design • Identidad Visual",
-              description: "Sistemas de animación diseñados para potenciar marcas y experiencias digitales modernas.",
-              image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1600&auto=format&fit=crop",
-            },
-            {
-              title: "Toolkit Creativo - ScriptUI",
-              category: "After Effects • Desarrollo Creativo",
-              description: "Herramientas diseñadas para optimizar flujos de trabajo creativos mediante automatización y personalización.",
-              image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?q=80&w=1600&auto=format&fit=crop",
-            },
-          ].map((project) => (
-            <motion.div
-              key={project.title}
-              whileHover={{ scale: 1.015 }}
-              transition={{ duration: 0.3 }}
-              className="group relative min-h-[420px] overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.04] p-10 backdrop-blur-xl transition duration-700 hover:-translate-y-2 hover:border-white/20 hover:bg-white/[0.06]"
-            >
-              <motion.div
-                style={{ y: parallaxY }}
-                className="absolute inset-0 scale-100 bg-cover bg-center transition duration-700 group-hover:scale-110"
-              >
-                <div
-                  className="h-[120%] w-full bg-cover bg-center"
-                  style={{ backgroundImage: `url(${project.image})` }}
-                />
-              </motion.div>
-              <div className="absolute inset-0 bg-black/50" />
-              
-              {/* Cinematic Light Layer */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        <div className="grid grid-cols-12 gap-6">
 
-                {/* Glass Reflection */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-50" />
+          {/* Motion Graphics */}
+          <div className="group relative col-span-12 md:col-span-6 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] min-h-[500px]">
 
-                {/* Ambient Glow */}
-                <div className="absolute -top-20 right-0 h-60 w-60 rounded-full bg-fuchsia-500/10 blur-3xl opacity-0 transition duration-700 group-hover:opacity-100" />
+            <Image
+              src="/projects/motion-graphics-project.png"
+              alt="Motion Graphics"
+              fill
+              className="object-cover transition duration-700 group-hover:scale-105"
+            />
+            {/* Overlay oscuro */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+
+              {/* Glow hover*/}
+              <div
+                className="
+                  absolute
+                  -top-20
+                  right-0
+                  h-60
+                  w-60
+                  rounded-full
+                  bg-cyan-500/20
+                  blur-3xl
+                  opacity-0
+                  transition
+                  duration-700
+                  group-hover:opacity-100
+                "
+              />
+
+            {/* Texto */}
+            <div className="absolute bottom-8 left-8 z-10">
+              <p className="text-sm uppercase tracking-[0.2em] text-zinc-400">
+                Motion Graphics
+              </p>
+
+              <h3 className="mt-2 text-3xl font-bold">
+                Sistemas visuales y animación
+              </h3>
               
-              <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/20 to-fuchsia-500/10" />
+            </div>
+
+          </div>
+
+          {/* E-learning */}
+          <div className="group relative col-span-12 md:col-span-6 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] min-h-[500px]">
+
+            <Image
+              src="/projects/storyline-project.png"
+              alt="E-Learning"
+              fill
+              className="object-cover transition duration-700 group-hover:scale-105"
+            />
+            {/* Overlay oscuro */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
             
-              <div className="relative z-10 flex h-full flex-col justify-between gap-8 md:flex-row md:items-end md:justify-between">
-                <div className="max-w-2xl">
-                  <p className="mb-4 text-sm uppercase tracking-[0.2em] text-zinc-500">
-                    {project.category}
-                  </p>
-                  <h3 className="mb-6 text-4xl font-bold tracking-tight transition duration-500 group-hover:translate-x-2 drop-shadow-[0_0_20px_rgba(255,255,255,0.15)]">
-                    {project.title}
-                  </h3>
-                  <p className="text-lg leading-8 text-zinc-400">
-                    {project.description}
-                  </p>
-                </div>
-                <button className="rounded-full border border-white/15 bg-white/5 px-6 py-3 backdrop-blur-sm transition duration-300 hover:border-white hover:bg-white/10">
-                  Ver Proyecto
-                </button>
-              </div>
-            </motion.div>
-          ))}
+              {/* Glow hover*/}
+              <div
+                className="
+                  absolute
+                  -top-20
+                  right-0
+                  h-60
+                  w-60
+                  rounded-full
+                  bg-fuchsia-500/20
+                  blur-3xl
+                  opacity-0
+                  transition
+                  duration-700
+                  group-hover:opacity-100
+                "
+              />
+
+            {/* Texto */}
+            <div className="absolute bottom-8 left-8 z-10">
+              <p className="text-sm uppercase tracking-[0.2em] text-zinc-400">
+                E-Learning
+              </p>
+
+              <h3 className="mt-2 text-3xl font-bold">
+                Experiencias inmersivas
+              </h3>
+            </div>
+
+          </div>
+
+          {/* MotionDeck */}
+          <div className="group relative col-span-12 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] min-h-[550px]">
+
+            <Image
+              src="/projects/motiondeck-project.png"
+              alt="MotionDeck"
+              fill
+              className="object-cover transition duration-700 group-hover:scale-105"
+            />
+            {/* Overlay oscuro */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+            
+            {/* Texto */}
+            <div className="absolute bottom-8 left-8 z-10">
+              <p className="text-sm uppercase tracking-[0.2em] text-zinc-400">
+                Herramientas Creativas
+              </p>
+
+              <h3 className="mt-2 text-4xl font-bold">
+                MotionDeck & ScriptUI
+              </h3>
+            </div>
+
+          </div>
+
         </div>
       </motion.section>
 
@@ -476,9 +683,9 @@ useEffect(() => {
             >
 
               {/* Glow Background */}
-              <div className="absolute h-[500px] w-[500px] rounded-full bg-fuchsia-500/15 blur-[120px]" />
+              <div className="absolute h-[500px] w-[500px] rounded-full bg-fuchsia-500/30 blur-[220px]" />
 
-              <div className="absolute h-[350px] w-[350px] rounded-full bg-cyan-500/10 blur-[100px]" />
+              <div className="absolute h-[350px] w-[350px] rounded-full bg-cyan-500/30 blur-[220px]" />
 
               {/* Image Container */}
               <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-2 backdrop-blur-sm">
@@ -532,9 +739,9 @@ useEffect(() => {
           <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-white/[0.04] p-16 backdrop-blur-xl">
 
             {/* Glow Background */}
-            <div className="absolute -left-20 top-0 h-72 w-72 rounded-full bg-fuchsia-500/20 blur-[120px]" />
+            <div className="absolute -left-20 top-0 h-72 w-72 rounded-full bg-fuchsia-500/30 blur-[220px]" />
 
-            <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-cyan-500/20 blur-[120px]" />
+            <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-cyan-500/30 blur-[220px]" />
 
             {/* Content */}
             <div className="relative z-10 text-center">
