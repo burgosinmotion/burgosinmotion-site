@@ -76,7 +76,15 @@ useEffect(() => {
   return (
     <main
       onMouseMove={handleMouseMove}
-      className="relative overflow-hidden bg-black text-white"
+      className="
+        relative
+        overflow-hidden
+        bg-gradient-to-b
+        from-[#050505]
+        via-[#09090F]
+        to-[#06070A]
+        text-white
+      "
     >
       {/* Background Glow */}
       <motion.div
@@ -84,7 +92,7 @@ useEffect(() => {
           x: smoothX,
           y: smoothY,
         }}
-        className="pointer-events-none fixed left-0 top-0 z-0 h-[500px] w-[500px] rounded-full bg-fuchsia-500/25 blur-[220px]"
+        className="pointer-events-none fixed left-0 top-0 z-0 h-[700px] w-[700px] rounded-full bg-fuchsia-500/25 blur-[320px]"
       />
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
       <div className="
