@@ -9,7 +9,7 @@ const projects = [
     title: "Sistemas visuales y animación",
     src: "/projects/motion-graphics-project.png",
     alt: "Motion Graphics",
-    wrapperClassName: "group relative col-span-12 md:col-span-6 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] min-h-[500px]",
+    wrapperClassName: "group relative col-span-12 md:col-span-6 overflow-hidden rounded-[2rem] border border-white/[0.07] bg-[rgba(8,10,18,0.28)] shadow-[0_30px_90px_rgba(0,0,0,0.28)] min-h-[500px]",
     titleClassName: "mt-2 text-3xl font-bold",
     glowClassName: `
                   absolute
@@ -18,21 +18,21 @@ const projects = [
                   h-60
                   w-60
                   rounded-full
-                  bg-cyan-500/20
+                  bg-cyan-500/[0.12]
                   blur-3xl
                   opacity-0
                   transition
                   duration-700
                   group-hover:opacity-100
                 `,
-    overlayClassName: "absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent",
+    overlayClassName: "absolute inset-0 bg-gradient-to-t from-black/90 via-black/38 to-transparent",
   },
   {
     category: "E-Learning",
     title: "Experiencias inmersivas",
     src: "/projects/storyline-project.png",
     alt: "E-Learning",
-    wrapperClassName: "group relative col-span-12 md:col-span-6 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] min-h-[500px]",
+    wrapperClassName: "group relative col-span-12 md:col-span-6 overflow-hidden rounded-[2rem] border border-white/[0.07] bg-[rgba(8,10,18,0.28)] shadow-[0_30px_90px_rgba(0,0,0,0.28)] min-h-[500px]",
     titleClassName: "mt-2 text-3xl font-bold",
     glowClassName: `
                   absolute
@@ -41,23 +41,23 @@ const projects = [
                   h-60
                   w-60
                   rounded-full
-                  bg-fuchsia-500/20
+                  bg-fuchsia-500/[0.12]
                   blur-3xl
                   opacity-0
                   transition
                   duration-700
                   group-hover:opacity-100
                 `,
-    overlayClassName: "absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent",
+    overlayClassName: "absolute inset-0 bg-gradient-to-t from-black/90 via-black/38 to-transparent",
   },
   {
     category: "Herramientas Creativas",
     title: "MotionDeck & ScriptUI",
     src: "/projects/motiondeck-project.png",
     alt: "MotionDeck",
-    wrapperClassName: "group relative col-span-12 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] min-h-[550px]",
+    wrapperClassName: "group relative col-span-12 overflow-hidden rounded-[2rem] border border-white/[0.07] bg-[rgba(8,10,18,0.28)] shadow-[0_30px_90px_rgba(0,0,0,0.28)] min-h-[550px]",
     titleClassName: "mt-2 text-4xl font-bold",
-    overlayClassName: "absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent",
+    overlayClassName: "absolute inset-0 bg-gradient-to-t from-black/88 via-black/30 to-transparent",
   },
 ];
 
@@ -71,16 +71,17 @@ export default function ProjectsSection() {
       viewport={{ once: true, amount: 0.2 }}
       className="relative z-10 mx-auto max-w-7xl px-6 py-32"
     >
+      <div className="pointer-events-none absolute left-[-12%] top-[32%] h-[30rem] w-[30rem] rounded-full bg-violet-500/[0.035] blur-[150px]" />
       <div className="mb-20 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
         <div>
-          <p className="mb-4 text-sm uppercase tracking-[0.3em] text-zinc-500">
+          <p className="mb-4 text-sm uppercase tracking-[0.3em] text-zinc-300">
             PROYECTOS DESTACADOS
           </p>
           <h2 className="max-w-3xl text-5xl font-bold leading-tight">
             Proyectos que combinan motion, interacción y narrativa digital
           </h2>
         </div>
-        <button className="rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-medium backdrop-blur-md transition duration-300 hover:border-white hover:bg-white/20">
+        <button className="rounded-full border border-white/[0.1] bg-[rgba(8,10,18,0.42)] px-6 py-3 text-sm font-medium text-zinc-100 shadow-[0_16px_45px_rgba(0,0,0,0.22)] backdrop-blur-md transition duration-300 hover:border-white/[0.18] hover:bg-white/[0.07]">
           Ver Todos los Proyectos
         </button>
       </div>
@@ -104,7 +105,7 @@ export default function ProjectsSection() {
 
             {/* Texto */}
             <div className="absolute bottom-8 left-8 z-10">
-              <p className="text-sm uppercase tracking-[0.2em] text-zinc-400">
+              <p className="text-sm uppercase tracking-[0.2em] text-zinc-300">
                 {project.category}
               </p>
 

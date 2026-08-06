@@ -34,13 +34,13 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 1 }}
-        className="absolute right-[8%] top-[22%] hidden rounded-3xl border border-white/10 bg-white/5 px-6 py-4 backdrop-blur-xl lg:block"
+        className="group absolute right-[8%] top-[22%] hidden overflow-hidden rounded-3xl border border-white/[0.06] bg-[#120d2b]/70 px-6 py-4 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl backdrop-saturate-[1.15] transition duration-300 ease-out hover:-translate-y-0.5 hover:border-white/[0.10] lg:block motion-reduce:hover:translate-y-0"
       >
-        <p className="text-xs uppercase tracking-[0.3em] text-zinc-400">
+        <p className="relative z-10 border-b border-white/[0.06] pb-2 text-xs uppercase tracking-[0.3em] text-zinc-300">
           ENFOQUE ACTUAL
         </p>
 
-        <p className="mt-2 text-lg font-semibold">
+        <p className="relative z-10 mt-3 text-lg font-semibold text-zinc-50">
           Experiencias interactivas
         </p>
       </motion.div>
@@ -49,13 +49,13 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.2, duration: 1 }}
-        className="absolute bottom-[18%] left-[8%] hidden rounded-3xl border border-white/10 bg-white/5 px-6 py-4 backdrop-blur-xl lg:block"
+        className="group absolute bottom-[18%] left-[8%] hidden overflow-hidden rounded-3xl border border-white/[0.06] bg-[#120d2b]/70 px-6 py-4 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl backdrop-saturate-[1.15] transition duration-300 ease-out hover:-translate-y-0.5 hover:border-white/[0.10] lg:block motion-reduce:hover:translate-y-0"
       >
-        <p className="text-xs uppercase tracking-[0.3em] text-zinc-400">
+        <p className="relative z-10 border-b border-white/[0.06] pb-2 text-xs uppercase tracking-[0.3em] text-zinc-300">
           HERRAMIENTAS
         </p>
 
-        <p className="mt-2 text-lg font-semibold">
+        <p className="relative z-10 mt-3 text-lg font-semibold text-zinc-50">
           Storyline • After Effects • Motion Design
         </p>
       </motion.div>
@@ -69,7 +69,7 @@ export default function HeroSection() {
         {/* Etiqueta superior */}
         <motion.p
           variants={itemVariants}
-          className="text-xs md:text-sm font-mono uppercase tracking-[0.2em] text-zinc-400 mb-6"
+          className="text-xs md:text-sm font-mono uppercase tracking-[0.2em] text-zinc-300 mb-6"
         >
           Motion Graphics • Aprendizaje Interactivo • Desarrollo Creativo
         </motion.p>
@@ -77,16 +77,16 @@ export default function HeroSection() {
         {/* Título principal con toque editorial */}
         <motion.h1
           variants={itemVariants}
-          className="text-6xl md:text-8xl lg:text-[9rem] font-bold tracking-tighter leading-[1.05] mb-8"
+          className="text-6xl md:text-8xl lg:text-[9rem] font-bold tracking-tighter leading-[1.05] mb-8 text-zinc-50"
         >
           Motion<br />
-          <span className="text-zinc-500 italic font-serif font-light">Interacción<br />que conecta.</span>
+          <span className="text-zinc-300 italic font-serif font-light">Interacción<br />que conecta.</span>
         </motion.h1>
 
         {/* Párrafo descriptivo */}
         <motion.p
           variants={itemVariants}
-          className="text-base md:text-lg lg:text-xl text-zinc-400 mb-12 max-w-2xl mx-auto font-light leading-relaxed"
+          className="text-base md:text-lg lg:text-xl text-zinc-300 mb-12 max-w-2xl mx-auto font-light leading-relaxed"
         >
           Diseño experiencias digitales que combinan motion graphics,
           e-learning interactivo y desarrollo creativo para crear
@@ -95,16 +95,16 @@ export default function HeroSection() {
 
         {/* Botones Call to Action */}
         <motion.div variants={itemVariants} className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <button className="group relative px-8 py-4 bg-white text-black text-sm font-semibold uppercase tracking-wider rounded-full overflow-hidden transition-transform duration-300 hover:scale-105 active:scale-95">
+          <button className="group relative overflow-hidden rounded-full bg-zinc-100 px-8 py-4 text-sm font-semibold uppercase tracking-wider text-black shadow-[0_16px_50px_rgba(0,0,0,0.28),0_1px_0_rgba(255,255,255,0.35)_inset] transition duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-white active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/70 motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100">
             <span className="relative z-10 flex items-center gap-3">
               Ver Proyectos
-              <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </span>
           </button>
 
-          <button className="rounded-full border border-white/20 px-8 py-4 text-white transition duration-300 hover:border-white hover:bg-white/5 text-sm font-semibold uppercase tracking-wider">
+          <button className="rounded-full border border-white/[0.1] bg-[rgba(8,10,18,0.42)] px-8 py-4 text-sm font-semibold uppercase tracking-wider text-white shadow-[0_16px_45px_rgba(0,0,0,0.24)] backdrop-blur-md transition duration-300 ease-out hover:-translate-y-0.5 hover:border-white/[0.18] hover:bg-white/[0.06] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/60 motion-reduce:hover:translate-y-0">
             Trabajemos Juntos
           </button>
         </motion.div>

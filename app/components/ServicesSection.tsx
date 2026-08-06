@@ -31,8 +31,9 @@ export default function ServicesSection() {
       viewport={{ once: true, amount: 0.2 }}
       className="relative z-10 mx-auto max-w-7xl px-6 py-32"
     >
+      <div className="pointer-events-none absolute left-[-8%] top-[18%] h-96 w-96 rounded-full bg-cyan-500/[0.035] blur-[120px]" />
       <div className="mb-20 text-center">
-        <p className="mb-4 text-sm uppercase tracking-[0.3em] text-zinc-500">
+        <p className="mb-4 text-sm uppercase tracking-[0.3em] text-zinc-300">
           SERVICIOS
         </p>
         <h2 className="text-5xl font-bold">
@@ -50,12 +51,12 @@ export default function ServicesSection() {
         {services.map((service) => (
           <div
             key={service.title}
-            className="group rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition hover:-translate-y-2 hover:border-white/20 hover:bg-white/10"
+            className="group rounded-3xl border border-white/[0.07] bg-[rgba(8,10,18,0.36)] p-8 shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-md transition hover:-translate-y-2 hover:border-white/[0.12] hover:bg-[rgba(12,15,28,0.5)]"
           >
-            <h3 className="mb-4 text-2xl font-semibold">
+            <h3 className="mb-4 text-2xl font-semibold text-zinc-50">
               {service.title}
             </h3>
-            <p className="leading-7 text-zinc-400">{service.text}</p>
+            <p className="leading-7 text-zinc-300">{service.text}</p>
           </div>
         ))}
       </motion.div>
