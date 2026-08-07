@@ -9,15 +9,17 @@ export default function BackgroundAtmosphere() {
         style={{
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center top",
-          backgroundSize: "cover",
+          backgroundSize: "100% 100%",
         }}
       />
       <div
-        className="absolute inset-0 bg-[url('/backgrounds/grid.svg')] opacity-[0.05]"
+        className="absolute inset-0 opacity-50"
         style={{
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center top",
-          backgroundSize: "cover",
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px)
+          `,
+          backgroundSize: "96px 96px",
         }}
       />
     </div>
