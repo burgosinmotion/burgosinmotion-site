@@ -46,7 +46,7 @@ export default function ProjectsSection() {
             Proyectos que combinan motion, interacción y narrativa digital
           </h2>
         </div>
-        <button className="rounded-full border border-white/[0.1] bg-[rgba(8,10,18,0.42)] px-6 py-3 text-sm font-medium text-zinc-100 shadow-[0_16px_45px_rgba(0,0,0,0.22)] backdrop-blur-md transition duration-300 hover:border-white/[0.18] hover:bg-white/[0.07]">
+        <button className="rounded-full border border-white/[0.1] bg-[rgba(8,10,18,0.42)] px-6 py-3 text-sm font-medium text-zinc-100 shadow-[0_16px_45px_rgba(0,0,0,0.22)] backdrop-blur-md transition duration-300 hover:border-white/[0.18] hover:bg-white/[0.07] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/60">
           Ver Todos los Proyectos
         </button>
       </div>
@@ -71,6 +71,7 @@ export default function ProjectsSection() {
               src={project.src}
               alt={project.alt}
               fill
+              sizes={project.featured ? "100vw" : "(min-width: 768px) 50vw, 100vw"}
               className={`object-cover transition duration-700 ease-out ${
                 project.featured
                   ? "group-hover:scale-[1.03] group-focus-visible:scale-[1.03]"

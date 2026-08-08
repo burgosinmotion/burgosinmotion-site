@@ -63,6 +63,7 @@ export default function ShowreelSection() {
           {/* Video Showreel */}
           <div className="relative z-10 h-full w-full">
             <iframe
+              title="Burgos in Motion showreel"
               src="https://player.vimeo.com/video/575675039?h=647682d12b"
               className="h-full w-full rounded-[1rem] md:rounded-[1.5rem]"
               allow="autoplay; fullscreen"
