@@ -9,55 +9,19 @@ const projects = [
     title: "Sistemas visuales y animación",
     src: "/projects/motion-graphics-project.png",
     alt: "Motion Graphics",
-    wrapperClassName: "group relative col-span-12 md:col-span-6 overflow-hidden rounded-[2rem] border border-white/[0.07] bg-[rgba(8,10,18,0.28)] shadow-[0_30px_90px_rgba(0,0,0,0.28)] min-h-[500px]",
-    titleClassName: "mt-2 text-3xl font-bold",
-    glowClassName: `
-                  absolute
-                  -top-20
-                  right-0
-                  h-60
-                  w-60
-                  rounded-full
-                  bg-cyan-500/[0.12]
-                  blur-3xl
-                  opacity-0
-                  transition
-                  duration-700
-                  group-hover:opacity-100
-                `,
-    overlayClassName: "absolute inset-0 bg-gradient-to-t from-black/90 via-black/38 to-transparent",
+    featured: true,
   },
   {
     category: "E-Learning",
     title: "Experiencias inmersivas",
     src: "/projects/storyline-project.png",
     alt: "E-Learning",
-    wrapperClassName: "group relative col-span-12 md:col-span-6 overflow-hidden rounded-[2rem] border border-white/[0.07] bg-[rgba(8,10,18,0.28)] shadow-[0_30px_90px_rgba(0,0,0,0.28)] min-h-[500px]",
-    titleClassName: "mt-2 text-3xl font-bold",
-    glowClassName: `
-                  absolute
-                  -top-20
-                  right-0
-                  h-60
-                  w-60
-                  rounded-full
-                  bg-fuchsia-500/[0.12]
-                  blur-3xl
-                  opacity-0
-                  transition
-                  duration-700
-                  group-hover:opacity-100
-                `,
-    overlayClassName: "absolute inset-0 bg-gradient-to-t from-black/90 via-black/38 to-transparent",
   },
   {
     category: "Herramientas Creativas",
     title: "MotionDeck & ScriptUI",
     src: "/projects/motiondeck-project.png",
     alt: "MotionDeck",
-    wrapperClassName: "group relative col-span-12 overflow-hidden rounded-[2rem] border border-white/[0.07] bg-[rgba(8,10,18,0.28)] shadow-[0_30px_90px_rgba(0,0,0,0.28)] min-h-[550px]",
-    titleClassName: "mt-2 text-4xl font-bold",
-    overlayClassName: "absolute inset-0 bg-gradient-to-t from-black/88 via-black/30 to-transparent",
   },
 ];
 
@@ -72,12 +36,12 @@ export default function ProjectsSection() {
       className="relative z-10 mx-auto max-w-7xl px-6 py-32"
     >
       <div className="pointer-events-none absolute left-[-12%] top-[32%] h-[30rem] w-[30rem] rounded-full bg-violet-500/[0.035] blur-[150px]" />
-      <div className="mb-20 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+      <div className="mb-16 flex flex-col items-start justify-between gap-6 md:mb-20 md:flex-row md:items-end">
         <div>
           <p className="mb-4 text-sm uppercase tracking-[0.3em] text-zinc-300">
             PROYECTOS DESTACADOS
           </p>
-          <h2 className="max-w-3xl text-5xl font-bold leading-tight">
+          <h2 className="max-w-3xl text-4xl font-bold leading-tight text-zinc-50 md:text-5xl">
             Proyectos que combinan motion, interacción y narrativa digital
           </h2>
         </div>
@@ -87,33 +51,46 @@ export default function ProjectsSection() {
       </div>
 
       <div className="grid grid-cols-12 gap-6">
-        {projects.map((project) => (
-          <div key={project.title} className={project.wrapperClassName}>
+        {projects.map((project, index) => (
+          <motion.div
+            key={project.title}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true, amount: 0.2 }}
+            className={`group relative col-span-12 overflow-hidden rounded-[2rem] border border-white/[0.06] bg-[rgba(8,10,18,0.24)] shadow-[0_30px_90px_rgba(0,0,0,0.26)] transition duration-700 ease-out hover:border-white/[0.10] ${
+              project.featured
+                ? "min-h-[420px] md:min-h-[560px]"
+                : "min-h-[360px] md:col-span-6 md:min-h-[430px]"
+            }`}
+          >
             <Image
               src={project.src}
               alt={project.alt}
               fill
-              className="object-cover transition duration-700 group-hover:scale-105"
+              className="object-cover transition duration-700 ease-out group-hover:scale-[1.03]"
             />
             {/* Overlay oscuro */}
-            <div className={project.overlayClassName} />
-
-            {project.glowClassName ? (
-              /* Glow hover*/
-              <div className={project.glowClassName} />
-            ) : null}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/28 to-transparent transition duration-700 group-hover:from-black/82 group-hover:via-black/22" />
 
             {/* Texto */}
-            <div className="absolute bottom-8 left-8 z-10">
-              <p className="text-sm uppercase tracking-[0.2em] text-zinc-300">
-                {project.category}
-              </p>
+            <div className={`${project.featured ? "bottom-8 left-8 md:bottom-10 md:left-10" : "bottom-7 left-7"} absolute z-10 transition duration-700 ease-out group-hover:-translate-y-1`}>
+              <div className="mb-3 flex items-center gap-3">
+                {project.featured ? (
+                  <span className="rounded-full border border-white/[0.08] bg-black/30 px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-zinc-300 backdrop-blur-md">
+                    FEATURED
+                  </span>
+                ) : null}
+                <p className="text-xs uppercase tracking-[0.22em] text-zinc-300 md:text-sm">
+                  {project.category}
+                </p>
+              </div>
 
-              <h3 className={project.titleClassName}>
+              <h3 className={`${project.featured ? "max-w-3xl text-4xl md:text-5xl" : "max-w-xl text-3xl"} font-bold leading-tight text-zinc-50`}>
                 {project.title}
               </h3>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </motion.section>
