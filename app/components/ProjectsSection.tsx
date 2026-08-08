@@ -55,6 +55,7 @@ export default function ProjectsSection() {
         {projects.map((project, index) => (
           <motion.div
             key={project.title}
+            id={project.type ? "productos" : undefined}
             tabIndex={0}
             aria-label={`Proyecto: ${project.title}`}
             initial={{ opacity: 0, y: 30 }}

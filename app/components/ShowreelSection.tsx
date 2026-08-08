@@ -67,6 +67,7 @@ export default function ShowreelSection() {
               src="https://player.vimeo.com/video/575675039?h=647682d12b"
               className="h-full w-full rounded-[1rem] md:rounded-[1.5rem]"
               allow="autoplay; fullscreen"
+              loading="lazy"
               allowFullScreen
             />
           </div>

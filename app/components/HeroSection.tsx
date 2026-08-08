@@ -96,18 +96,18 @@ export default function HeroSection() {
 
         {/* Botones Call to Action */}
         <motion.div variants={itemVariants} className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-          <button className="group relative overflow-hidden rounded-full bg-zinc-100 px-8 py-4 text-sm font-semibold uppercase tracking-wider text-black shadow-[0_16px_50px_rgba(0,0,0,0.28),0_1px_0_rgba(255,255,255,0.35)_inset] transition duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-white active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/70 motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100">
+          <a href="#proyectos" className="group relative overflow-hidden rounded-full bg-zinc-100 px-8 py-4 text-sm font-semibold uppercase tracking-wider text-black shadow-[0_16px_50px_rgba(0,0,0,0.28),0_1px_0_rgba(255,255,255,0.35)_inset] transition duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-white active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/70 motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100">
             <span className="relative z-10 flex items-center gap-3">
               Ver Proyectos
               <svg className="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </span>
-          </button>
+          </a>
 
-          <button className="rounded-full border border-white/[0.1] bg-[rgba(8,10,18,0.42)] px-8 py-4 text-sm font-semibold uppercase tracking-wider text-white shadow-[0_16px_45px_rgba(0,0,0,0.24)] backdrop-blur-md transition duration-300 ease-out hover:-translate-y-0.5 hover:border-white/[0.18] hover:bg-white/[0.06] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/60 motion-reduce:hover:translate-y-0">
+          <a href="#contacto" className="rounded-full border border-white/[0.1] bg-[rgba(8,10,18,0.42)] px-8 py-4 text-sm font-semibold uppercase tracking-wider text-white shadow-[0_16px_45px_rgba(0,0,0,0.24)] backdrop-blur-md transition duration-300 ease-out hover:-translate-y-0.5 hover:border-white/[0.18] hover:bg-white/[0.06] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/60 motion-reduce:hover:translate-y-0">
             Trabajemos Juntos
-          </button>
+          </a>
         </motion.div>
 
         <motion.div
