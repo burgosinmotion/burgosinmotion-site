@@ -1,16 +1,20 @@
+import Image from "next/image";
+
 export default function BackgroundAtmosphere() {
   return (
     <div
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-[#05060A]"
     >
-      <div
-        className="absolute inset-0 bg-[url('/backgrounds/atmosphere-gradient.avif')] opacity-90"
-        style={{
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center top",
-          backgroundSize: "100% 100%",
-        }}
+      <Image
+        src="/backgrounds/atmosphere-gradient.avif"
+        alt=""
+        fill
+        unoptimized
+        loading="eager"
+        fetchPriority="high"
+        sizes="100vw"
+        className="absolute inset-0 object-fill object-top opacity-90"
       />
       <div
         className="absolute inset-0 opacity-50"

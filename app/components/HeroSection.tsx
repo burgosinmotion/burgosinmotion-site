@@ -2,17 +2,6 @@
 
 import { motion, type Variants } from "framer-motion";
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
-    },
-  },
-};
-
 const itemVariants: Variants = {
   hidden: { y: 30, opacity: 0 },
   show: {
@@ -61,32 +50,32 @@ export default function HeroSection() {
         </motion.div>
       ))}
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
-        className="z-10 max-w-6xl text-center"
-      >
+      <div className="z-10 max-w-6xl text-center">
         {/* Etiqueta superior */}
         <motion.p
           variants={itemVariants}
+          initial="hidden"
+          animate="show"
+          transition={{ delay: 0.1 }}
           className="mx-auto mb-5 max-w-[42rem] font-mono text-xs uppercase leading-6 tracking-[0.16em] text-zinc-300 sm:tracking-[0.18em] md:text-sm md:tracking-[0.2em]"
         >
           Motion Graphics • Aprendizaje Interactivo • Desarrollo Creativo
         </motion.p>
 
         {/* Título principal con toque editorial */}
-        <motion.h1
-          variants={itemVariants}
+        <h1
           className="mb-6 text-[3.75rem] font-bold leading-[0.92] tracking-tighter text-zinc-50 sm:text-7xl md:text-8xl lg:text-[8.5rem] xl:text-[9rem]"
         >
           Motion<br />
           <span className="inline-block max-w-full text-[3.25rem] font-serif font-light italic leading-[0.9] text-zinc-300 sm:text-6xl md:text-7xl lg:text-[7.75rem] xl:text-[8.4rem]">Interacción<br />que conecta.</span>
-        </motion.h1>
+        </h1>
 
         {/* Párrafo descriptivo */}
         <motion.p
           variants={itemVariants}
+          initial="hidden"
+          animate="show"
+          transition={{ delay: 0.2 }}
           className="mx-auto mb-9 max-w-[680px] text-base font-light leading-7 text-zinc-300 md:text-lg md:leading-8 lg:text-xl"
         >
           Diseño experiencias digitales que combinan motion graphics,
@@ -95,7 +84,13 @@ export default function HeroSection() {
         </motion.p>
 
         {/* Botones Call to Action */}
-        <motion.div variants={itemVariants} className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          animate="show"
+          transition={{ delay: 0.3 }}
+          className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
+        >
           <a href="#proyectos" className="group relative overflow-hidden rounded-full bg-zinc-100 px-8 py-4 text-sm font-semibold uppercase tracking-wider text-black shadow-[0_16px_50px_rgba(0,0,0,0.28),0_1px_0_rgba(255,255,255,0.35)_inset] transition duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-white active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/70 motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100">
             <span className="relative z-10 flex items-center gap-3">
               Ver Proyectos
@@ -112,6 +107,9 @@ export default function HeroSection() {
 
         <motion.div
           variants={itemVariants}
+          initial="hidden"
+          animate="show"
+          transition={{ delay: 0.4 }}
           className="mx-auto mt-8 grid w-full max-w-[720px] grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 2xl:hidden"
         >
           {heroPanels.map((panel) => (
@@ -129,7 +127,7 @@ export default function HeroSection() {
             </div>
           ))}
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }
