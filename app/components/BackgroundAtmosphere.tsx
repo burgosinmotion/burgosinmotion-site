@@ -1,4 +1,13 @@
+"use client";
+
+import ReactDOM from "react-dom";
+
 export default function BackgroundAtmosphere() {
+  ReactDOM.preload("/backgrounds/atmosphere-gradient.avif", {
+    as: "image",
+    fetchPriority: "high",
+  });
+
   return (
     <div
       aria-hidden="true"
