@@ -1,16 +1,13 @@
-"use client";
-
-import { motion } from "framer-motion";
+import RevealOnScroll from "./RevealOnScroll";
 
 export default function ContactSection() {
   return (
-    <motion.section
+    <RevealOnScroll
+      as="section"
       id="contacto"
-      initial={{ opacity: 0, y: 80 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.2 }}
-      viewport={{ once: true }}
       className="relative mx-auto max-w-7xl px-6 pb-20 pt-36 md:pb-24 md:pt-32 xl:pb-28 xl:pt-36"
+      duration={900}
+      y={80}
     >
       <div className="pointer-events-none absolute left-1/2 top-[30%] h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-cyan-500/[0.025] blur-[160px]" />
 
@@ -51,6 +48,6 @@ export default function ContactSection() {
           </a>
         </div>
       </div>
-    </motion.section>
+    </RevealOnScroll>
   );
 }
