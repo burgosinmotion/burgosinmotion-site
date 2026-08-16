@@ -1,6 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
+import RevealOnScroll from "./RevealOnScroll";
 
 const services = [
   {
@@ -23,13 +21,12 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <motion.section
+    <RevealOnScroll
+      as="section"
       id="servicios"
-      initial={{ opacity: 0, y: 80 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-      viewport={{ once: true, amount: 0.2 }}
       className="relative z-10 mx-auto max-w-7xl px-6 py-32"
+      duration={900}
+      y={80}
     >
       <div className="pointer-events-none absolute left-[-8%] top-[18%] h-96 w-96 rounded-full bg-cyan-500/[0.035] blur-[120px]" />
       <div className="mb-20 text-center">
@@ -41,12 +38,11 @@ export default function ServicesSection() {
         </h2>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
+      <RevealOnScroll
         className="grid gap-6 md:grid-cols-2 xl:grid-cols-4"
+        delay={120}
+        duration={800}
+        y={50}
       >
         {services.map((service) => (
           <div
@@ -59,7 +55,7 @@ export default function ServicesSection() {
             <p className="leading-7 text-zinc-300">{service.text}</p>
           </div>
         ))}
-      </motion.div>
-    </motion.section>
+      </RevealOnScroll>
+    </RevealOnScroll>
   );
 }
