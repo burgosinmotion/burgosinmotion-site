@@ -5,45 +5,17 @@ import { motion } from "framer-motion";
 import CountUp from "react-countup";
 
 const stats = [
-  {
-    value: 8,
-    label: "Años de Experiencia",
-  },
-  {
-    value: 100,
-    label: "Proyectos Formativos",
-  },
-  {
-    value: 50,
-    label: "Proyectos Creativos",
-  },
-  {
-    value: 5,
-    label: "Herramientas Digitales",
-  },
+  { value: 8, suffix: "+", label: "Años Exp.", color: "text-cyan-300" },
+  { value: 100, suffix: "+", label: "Proyectos E-Learning", color: "text-emerald-300" },
+  { value: 50, suffix: "+", label: "Videos Motion", color: "text-violet-300" },
 ];
 
-function StatsBlock({ className = "" }: { className?: string }) {
-  return (
-    <div className={`grid grid-cols-2 gap-x-6 gap-y-8 border-t border-white/[0.08] pt-8 md:grid-cols-4 ${className}`}>
-      {stats.map((stat) => (
-        <motion.div
-          key={stat.label}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true }}
-          className="border-l border-white/[0.08] pl-4 first:border-l-0 first:pl-0 md:first:border-l-0"
-        >
-          <h3 className="text-4xl font-bold leading-none text-zinc-50"><CountUp end={stat.value} duration={2} />+</h3>
-          <p className="mt-3 text-sm leading-5 text-zinc-400">
-            {stat.label}
-          </p>
-        </motion.div>
-      ))}
-    </div>
-  );
-}
+const stack = [
+  "After Effects",
+  "Articulate Storyline 360",
+  "Lottie / Rive",
+  "SCORM / xAPI",
+];
 
 export default function AboutSection() {
   return (
@@ -53,91 +25,83 @@ export default function AboutSection() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
       viewport={{ once: true, amount: 0.2 }}
-      className="relative z-10 mx-auto max-w-7xl px-6 py-32"
+      className="relative z-10 mx-auto max-w-7xl px-5 py-28 sm:px-6 md:py-32"
     >
       <div className="pointer-events-none absolute right-[-12%] top-[20%] h-[30rem] w-[30rem] rounded-full bg-cyan-500/[0.035] blur-[150px]" />
-      <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-20">
-        {/* LEFT COLUMN */}
-        <div className="lg:col-span-7">
-          <div className="mb-6 flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-zinc-400">
-            <span>01 / ABOUT</span>
-            <span className="h-px w-16 bg-white/[0.12]" />
-          </div>
-
-          <p className="mb-4 text-sm uppercase tracking-[0.3em] text-zinc-300">
-            SOBRE MÍ
-          </p>
-
-          <h2 className="mb-8 max-w-[720px] text-4xl font-bold leading-tight text-zinc-50 md:text-5xl">
-            Motion, interacción y narrativa con propósito.
-          </h2>
-
-          <div className="max-w-[680px]">
-            <p className="mb-6 text-xl leading-8 text-zinc-100">
-              Soy Diego Burgos, creador de Burgos in Motion.
-            </p>
-
-            <p className="mb-6 text-lg leading-8 text-zinc-300">
-              Diseño experiencias digitales que combinan motion graphics,
-              aprendizaje interactivo y desarrollo creativo.
-            </p>
-
-            <p className="text-lg leading-8 text-zinc-300">
-              Desde proyectos e-learning desarrollados en Storyline hasta
-              herramientas personalizadas para After Effects y experiencias
-              web interactivas, mi objetivo es crear productos que conecten
-              con las personas, faciliten el aprendizaje y generen impacto.
-            </p>
-          </div>
-
-          {/* Stats */}
-          <StatsBlock className="mt-12 hidden lg:grid" />
-        </div>
-
-        {/* RIGHT COLUMN */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+      <div className="grid items-center gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16">
+        <motion.aside
+          initial={{ opacity: 0, scale: 0.94 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="relative flex flex-col items-center lg:col-span-5"
+          className="flex min-h-[440px] flex-col items-center justify-center rounded-[1.5rem] border border-violet-300/[0.22] bg-[#111827]/72 p-8 text-center shadow-[0_30px_90px_rgba(0,0,0,0.28)] backdrop-blur-md"
         >
-          {/* Glow Background */}
-          <div className="absolute h-[500px] w-[500px] rounded-full bg-fuchsia-500/[0.08] blur-[220px]" />
-
-          <div className="absolute h-[350px] w-[350px] rounded-full bg-cyan-500/[0.08] blur-[220px]" />
-
-          {/* Image Container */}
-          <div className="relative aspect-[4/5] w-full max-w-[340px] overflow-hidden rounded-[2rem] border border-white/[0.06] shadow-[0_34px_100px_rgba(0,0,0,0.34)] sm:max-w-[380px] lg:aspect-auto lg:max-w-[420px]">
+          <div className="relative h-28 w-28 overflow-hidden rounded-full border-[4px] border-cyan-300 bg-[#05060A] shadow-[0_0_34px_rgba(34,211,238,0.20)]">
             <Image
               src="/diego.jpg"
               alt="Diego Burgos"
-              width={380}
-              height={500}
-              className="h-full w-full object-cover lg:h-[520px]"
+              fill
+              sizes="112px"
+              className="object-cover"
             />
+          </div>
+          <h3 className="mt-6 text-2xl font-black text-white">Diego Burgos</h3>
+          <p className="mt-1 font-mono text-xs font-bold text-cyan-300">
+            Burgos in Motion
+          </p>
+          <p className="mt-4 max-w-xs text-sm leading-6 text-zinc-400">
+            Diseñador Multimedia, especialista en E-Learning y Motion Graphics.
+          </p>
+        </motion.aside>
 
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+        <div>
+          <p className="mb-7 font-mono text-xs font-bold uppercase tracking-[0.34em] text-cyan-300">
+            SOBRE MÍ
+          </p>
+          <h2 className="max-w-3xl text-4xl font-black leading-[1.02] tracking-tight text-zinc-50 md:text-5xl">
+            Motion e interacción con propósito
+          </h2>
+          <p className="mt-8 max-w-3xl text-base leading-7 text-zinc-300 md:text-lg md:leading-8">
+            Con más de <strong className="text-white">8 años de experiencia</strong>, diseño soluciones que conectan la estética visual con la funcionalidad. Creo experiencias formativas inmersivas en Articulate Storyline y piezas de motion graphics que convierten ideas complejas en historias claras.
+          </p>
+
+          <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3">
+            {stats.map((stat) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+                viewport={{ once: true }}
+                className="rounded-xl border border-white/[0.07] bg-white/[0.045] p-5 text-center shadow-[0_20px_60px_rgba(0,0,0,0.18)]"
+              >
+                <h3 className={`text-3xl font-black leading-none md:text-4xl ${stat.color}`}>
+                  <CountUp end={stat.value} duration={2} />
+                  {stat.suffix}
+                </h3>
+                <p className="mt-3 font-mono text-xs leading-5 text-zinc-400">
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
           </div>
 
-          {/* Name & Titles */}
-          <div className="mt-5 w-full max-w-[340px] text-left sm:max-w-[380px] lg:mt-7 lg:max-w-[420px]">
-            <h3 className="text-2xl font-bold text-zinc-50">
-              Diego Burgos
-            </h3>
-
-            <div className="mt-4 flex flex-col gap-1 text-sm leading-6 text-white/60">
-              <span>Diseñador Motion</span>
-
-              <span>Desarrollador Creativo</span>
-
-              <span>Especialista en E-Learning</span>
+          <div className="mt-10">
+            <p className="mb-3 font-mono text-sm text-zinc-400">
+              Tech Stack & Software:
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {stack.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-md border border-white/[0.08] bg-white/[0.06] px-3 py-1.5 font-mono text-xs text-zinc-300"
+                >
+                  {item}
+                </span>
+              ))}
             </div>
           </div>
-        </motion.div>
-
-        <StatsBlock className="lg:hidden" />
+        </div>
       </div>
     </motion.section>
   );

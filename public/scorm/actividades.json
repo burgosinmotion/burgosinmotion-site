@@ -1,0 +1,16 @@
+[
+  {
+    "id": "actividad-demo-01",
+    "title": "Actividad Demo 01",
+    "details": "Encuentra el par correcto",
+    "poster": "/scorm/portadas/actividad-demo-01.png",
+    "src": "/scorm/actividad-demo-01/story.html"
+  },
+  {
+    "id": "actividad-demo-02",
+    "title": "Actividad Demo 02",
+    "details": "Ayuda a prevenir los delitos",
+    "poster": "/scorm/portadas/actividad-demo-02.png",
+    "src": "/scorm/actividad-demo-02/story.html"
+  }
+]

@@ -13,10 +13,6 @@ const services = [
     title: "Desarrollo Creativo",
     text: "Interfaces interactivas, experiencias web y soluciones digitales desarrolladas a medida.",
   },
-  {
-    title: "Productos Digitales",
-    text: "Herramientas y extensiones personalizadas para optimizar flujos de trabajo creativos y productivos.",
-  },
 ];
 
 export default function ServicesSection() {
@@ -39,7 +35,7 @@ export default function ServicesSection() {
       </div>
 
       <RevealOnScroll
-        className="grid gap-6 md:grid-cols-2 xl:grid-cols-4"
+        className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
         delay={120}
         duration={800}
         y={50}

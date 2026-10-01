@@ -3,12 +3,16 @@ import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import SmoothScroll from "./smooth-scroll";
+import HomeShell from "./components/HomeShell";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import SiteChrome from "./components/SiteChrome";
 
 const siteUrl = new URL("https://www.burgosinmotion.com");
 const siteTitle =
-  "Burgos in Motion | Motion Graphics, E-Learning y Desarrollo Creativo";
+  "Burgos in Motion | Motion Graphics y E-Learning Interactivo";
 const siteDescription =
-  "Motion graphics, e-learning interactivo y desarrollo creativo por Diego Burgos para experiencias digitales con narrativa, diseño y movimiento.";
+  "Motion graphics y e-learning interactivo por Diego Burgos: experiencias digitales con narrativa, diseño y movimiento.";
 const socialImage = "/og-image.jpg";
 
 export const metadata: Metadata = {
@@ -27,7 +31,6 @@ export const metadata: Metadata = {
     "desarrollo creativo",
     "diseño audiovisual",
     "Storyline",
-    "ScriptUI",
   ],
   authors: [{ name: "Diego Burgos" }],
   creator: "Diego Burgos",
@@ -88,7 +91,13 @@ export default function RootLayout({
       className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll>
+          <HomeShell>
+            <SiteChrome navbar={<Navbar />} footer={<Footer />}>
+              {children}
+            </SiteChrome>
+          </HomeShell>
+        </SmoothScroll>
       </body>
     </html>
   );
