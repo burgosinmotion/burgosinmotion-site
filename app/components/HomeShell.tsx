@@ -3,7 +3,7 @@ import BackgroundAtmosphere from "./BackgroundAtmosphere";
 
 export default function HomeShell({ children }: { children: ReactNode }) {
   return (
-    <main
+    <div
       className="
         relative
         isolate
@@ -16,6 +16,6 @@ export default function HomeShell({ children }: { children: ReactNode }) {
       <div className="relative z-10">
         {children}
       </div>
-    </main>
+    </div>
   );
 }

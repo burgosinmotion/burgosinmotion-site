@@ -9,5 +9,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     },
+    ...["servicios", "proyectos", "demos-interactivas", "sobre-mi", "contacto"].map((route) => ({
+      url: `${siteUrl}/${route}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
   ];
 }

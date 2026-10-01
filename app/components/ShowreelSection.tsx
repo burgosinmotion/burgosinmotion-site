@@ -25,9 +25,9 @@ export default function ShowreelSection() {
           SHOWREEL
         </p>
 
-        <h2 className="text-4xl font-bold leading-tight text-zinc-50 md:text-5xl">
+        <h1 className="text-4xl font-bold leading-tight text-zinc-50 md:text-5xl">
           Una recopilación de mis mejores trabajos
-        </h2>
+        </h1>
 
         <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-zinc-300">
           Motion graphics, e-learning y desarrollo creativo.
@@ -137,10 +137,6 @@ export default function ShowreelSection() {
             </div>
           )}
 
-          {/* Etiqueta inferior */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-white/[0.06] bg-black/60 px-5 py-2.5 text-xs text-zinc-300 backdrop-blur-xl md:bottom-6 md:px-6 md:py-3 md:text-sm">
-            🎬 Showreel video will be embedded here
-          </div>
         </div>
       </div>
 
