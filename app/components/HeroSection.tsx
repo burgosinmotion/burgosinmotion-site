@@ -10,6 +10,7 @@ import {
   heroProjects,
   type HeroCategory,
 } from "./heroProjectData";
+import { buttonGradientStyles, buttonOutlineStyles } from "./buttonStyles";
 
 const itemVariants: Variants = {
   hidden: { y: 24, opacity: 0 },
@@ -177,13 +178,13 @@ export default function HeroSection() {
         >
           <Link
             href="/proyectos"
-            className="button-outline pointer-events-auto min-w-36"
+            className={`${buttonOutlineStyles} pointer-events-auto min-w-36`}
           >
             Ver Proyectos
           </Link>
           <Link
             href="/contacto"
-            className="button-gradient pointer-events-auto min-w-36"
+            className={`${buttonGradientStyles} pointer-events-auto min-w-36`}
           >
             Hablemos
           </Link>

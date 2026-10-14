@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { buttonGradientStyles } from "./buttonStyles";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -101,7 +102,7 @@ export default function Navbar() {
           ))}
           <Link
             href="/contacto"
-            className="button-gradient navbar-contact"
+            className={`${buttonGradientStyles} navbar-contact min-h-[1.875rem] px-5 py-1.5 text-xs`}
           >
             Contacto
           </Link>
@@ -136,7 +137,7 @@ export default function Navbar() {
             <Link
               href="/contacto"
               onClick={() => setMenuOpen(false)}
-              className="button-gradient"
+              className={buttonGradientStyles}
             >
               Contacto
             </Link>

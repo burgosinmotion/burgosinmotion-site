@@ -2,6 +2,11 @@
 
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
+import {
+  buttonBaseStyles,
+  buttonGradientStyles,
+  buttonOutlineStyles,
+} from "./buttonStyles";
 
 const filters = ["Todos", "CEP Panels", "ScriptUI JSX", "Gratis / Freebies"];
 
@@ -166,13 +171,13 @@ export default function ToolsStoreSection() {
                 </div>
                 <a
                   href={tool.href}
-                  className={`mt-5 w-full ${
+                  className={
                     tool.accent === "emerald"
-                      ? "button-outline border-emerald-300/[0.22] bg-emerald-400/[0.14] text-emerald-200 hover:bg-emerald-400/[0.20] focus-visible:outline-emerald-200"
+                      ? `${buttonBaseStyles} mt-5 w-full border border-emerald-300/22 bg-emerald-400/14 text-emerald-200 hover:border-emerald-200 hover:bg-emerald-400/20 focus-visible:outline-emerald-200`
                       : tool.accent === "cyan"
-                        ? "button-outline"
-                        : "button-gradient"
-                  }`}
+                        ? `${buttonOutlineStyles} mt-5 w-full`
+                        : `${buttonGradientStyles} mt-5 w-full`
+                  }
                 >
                   {tool.action}
                 </a>
