@@ -17,12 +17,19 @@ type InteractiveProjectCardProps = {
   entryOffsetY: number;
   enterDuration: number;
   exitDuration: number;
+  enterScale: number;
+  exitScale: number;
+  initialRotationFactor: number;
+  hoverScale: number;
   delay: number;
   zIndex: number;
+  isExiting: boolean;
   highlighted: boolean;
   onActivate: (categoryId: PortfolioCategory["id"]) => void;
   onFocus: (categoryId: PortfolioCategory["id"]) => void;
   onBlur: () => void;
+  onPointerEnter: () => void;
+  onPointerLeave: () => void;
 };
 
 export default function InteractiveProjectCard({
@@ -33,12 +40,19 @@ export default function InteractiveProjectCard({
   entryOffsetY,
   enterDuration,
   exitDuration,
+  enterScale,
+  exitScale,
+  initialRotationFactor,
+  hoverScale,
   delay,
   zIndex,
+  isExiting,
   highlighted,
   onActivate,
   onFocus,
   onBlur,
+  onPointerEnter,
+  onPointerLeave,
 }: InteractiveProjectCardProps) {
   const reduceMotion = useReducedMotion();
 
@@ -49,46 +63,35 @@ export default function InteractiveProjectCard({
       onClick={() => onActivate(category.id)}
       onFocus={() => onFocus(category.id)}
       onBlur={onBlur}
+      onPointerEnter={onPointerEnter}
+      onPointerLeave={onPointerLeave}
       initial={
         reduceMotion
           ? { opacity: 1, scale: 1, rotate: rotation }
           : {
               opacity: 0,
-              scale: 0.82,
-              rotate: rotation * 1.3,
+              scale: enterScale,
+              rotate: rotation * initialRotationFactor,
               x: entryOffsetX,
               y: entryOffsetY,
             }
       }
       animate={{
-        opacity: 1,
-        scale: highlighted ? 1.035 : 1,
-        rotate: highlighted ? rotation * 0.5 : rotation,
+        opacity: isExiting ? 0 : 1,
+        scale: isExiting ? exitScale : highlighted ? hoverScale : 1,
+        rotate: highlighted && !isExiting ? rotation * 0.5 : rotation,
         y: 0,
         x: 0,
       }}
-      exit={
-        reduceMotion
-          ? { opacity: 0 }
-          : {
-              opacity: 0,
-              scale: 0.94,
-              rotate: rotation * 0.5,
-              transition: {
-                duration: exitDuration,
-                ease: [0.22, 1, 0.36, 1],
-              },
-            }
-      }
       whileHover={
-        reduceMotion
+        reduceMotion || isExiting
           ? undefined
-          : { scale: 1.035, rotate: rotation * 0.5 }
+          : { scale: hoverScale, rotate: rotation * 0.5 }
       }
       transition={{
-        duration: reduceMotion ? 0 : enterDuration,
+        duration: reduceMotion ? 0 : isExiting ? exitDuration : enterDuration,
         delay: reduceMotion ? 0 : delay,
-        ease: [0.22, 1, 0.36, 1],
+        ease: isExiting ? [0.4, 0, 1, 1] : [0.22, 1, 0.36, 1],
       }}
       className="hero-project-card pointer-events-auto absolute overflow-hidden rounded-[1.1rem] border border-white/[0.18] bg-[#17191c] text-left outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
       style={{

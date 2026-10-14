@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   useCallback,
   useEffect,
@@ -27,15 +27,26 @@ type SpawnedCard = {
   rotation: number;
   entryOffsetX: number;
   entryOffsetY: number;
+  animationDelay: number;
+  isExiting: boolean;
+};
+
+type TrailTimer = {
+  timeout: ReturnType<typeof setTimeout> | null;
+  phase: "lifetime" | "exit";
+  expiresAt: number;
+  remaining: number;
 };
 
 const TRAIL_CONFIG = {
-  distanceFactor: 0.9,
-  minDistance: 140,
-  maxDistance: 170,
-  rotationPattern: [-3, 2, -1, 4, -2, 2],
-  rotationMin: -5,
-  rotationMax: 5,
+  cardLifetime: 3000,
+  maxItems: 12,
+  distanceFactor: 0.68,
+  minDistance: 120,
+  maxDistance: 155,
+  rotationPattern: [-2.8, 1.7, -3.4, 2.2, -1.6, 3.1],
+  rotationMin: -4,
+  rotationMax: 4,
   offsetX: 20,
   offsetY: 15,
   offsetPattern: [
@@ -46,11 +57,14 @@ const TRAIL_CONFIG = {
     { x: -0.5, y: -0.5 },
     { x: 0.2, y: 0.45 },
   ],
-  maxItems: 12,
-  enterDuration: 0.45,
-  exitDuration: 0.18,
+  enterDuration: 0.4,
+  exitDuration: 0.35,
+  enterScale: 0.86,
+  exitScale: 0.94,
+  initialRotationFactor: 1.25,
+  hoverScale: 1.035,
   interpolatedStagger: 0.025,
-  maxInterpolatedStagger: 0.04,
+  maxInterpolatedStagger: 0.035,
   cardWidthMin: 150,
   cardWidthMax: 220,
   cardWidthViewportFactor: 0.13,
@@ -126,6 +140,7 @@ export default function HeroSection() {
   const nextCategoryIndexRef = useRef(0);
   const [spawnedCards, setSpawnedCards] = useState<SpawnedCard[]>([]);
   const spawnedCardsRef = useRef<SpawnedCard[]>([]);
+  const cardTimersRef = useRef(new Map<number, TrailTimer>());
   const [activeCategory, setActiveCategory] = useState<CategoryId | null>(null);
   const [canExploreWithPointer, setCanExploreWithPointer] = useState(false);
   const reduceMotion = useReducedMotion();
@@ -145,14 +160,121 @@ export default function HeroSection() {
     };
   }, []);
 
+  const clearCardTimer = useCallback((id: number) => {
+    const timer = cardTimersRef.current.get(id);
+    if (timer?.timeout !== null && timer?.timeout !== undefined) {
+      clearTimeout(timer.timeout);
+    }
+    cardTimersRef.current.delete(id);
+  }, []);
+
+  const removeTrailCard = useCallback(
+    (id: number) => {
+      if (!spawnedCardsRef.current.some((card) => card.id === id)) return;
+      clearCardTimer(id);
+      const nextCards = spawnedCardsRef.current.filter((card) => card.id !== id);
+      spawnedCardsRef.current = nextCards;
+      setSpawnedCards(nextCards);
+    },
+    [clearCardTimer],
+  );
+
+  const beginTrailCardExit = useCallback(
+    (id: number) => {
+      const card = spawnedCardsRef.current.find((item) => item.id === id);
+      if (!card || card.isExiting) return;
+
+      clearCardTimer(id);
+      const nextCards = spawnedCardsRef.current.map((item) =>
+        item.id === id ? { ...item, isExiting: true } : item,
+      );
+      spawnedCardsRef.current = nextCards;
+      setSpawnedCards(nextCards);
+
+      const delay = TRAIL_CONFIG.exitDuration * 1000;
+      const timeout = setTimeout(() => removeTrailCard(id), delay);
+      cardTimersRef.current.set(id, {
+        timeout,
+        phase: "exit",
+        expiresAt: Date.now() + delay,
+        remaining: delay,
+      });
+    },
+    [clearCardTimer, removeTrailCard],
+  );
+
+  const scheduleCardLifetime = useCallback(
+    (id: number, delay: number) => {
+      const expiresAt = Date.now() + delay;
+      const timeout = setTimeout(() => {
+        const timer = cardTimersRef.current.get(id);
+        if (timer?.phase !== "lifetime") return;
+        cardTimersRef.current.delete(id);
+        beginTrailCardExit(id);
+      }, delay);
+      cardTimersRef.current.set(id, {
+        timeout,
+        phase: "lifetime",
+        expiresAt,
+        remaining: delay,
+      });
+    },
+    [beginTrailCardExit],
+  );
+
+  const pauseCardLifetime = useCallback((id: number) => {
+    const timer = cardTimersRef.current.get(id);
+    if (!timer || timer.phase !== "lifetime" || timer.timeout === null) return;
+
+    clearTimeout(timer.timeout);
+    timer.remaining = Math.max(0, timer.expiresAt - Date.now());
+    timer.timeout = null;
+  }, []);
+
+  const resumeCardLifetime = useCallback(
+    (id: number) => {
+      const timer = cardTimersRef.current.get(id);
+      if (!timer || timer.phase !== "lifetime" || timer.timeout !== null) return;
+      scheduleCardLifetime(id, timer.remaining);
+    },
+    [scheduleCardLifetime],
+  );
+
+  const clearTrail = useCallback(() => {
+    if (frameRef.current !== null) {
+      cancelAnimationFrame(frameRef.current);
+      frameRef.current = null;
+    }
+    cardTimersRef.current.forEach((timer) => {
+      if (timer.timeout !== null) clearTimeout(timer.timeout);
+    });
+    cardTimersRef.current.clear();
+    pointerRef.current = null;
+    previousPointerRef.current = null;
+    lastSpawnRef.current = null;
+    distanceSinceSpawnRef.current = 0;
+    if (spawnedCardsRef.current.length > 0) {
+      spawnedCardsRef.current = [];
+      setSpawnedCards([]);
+    }
+  }, []);
+
   useEffect(
     () => () => {
       if (frameRef.current !== null) {
         cancelAnimationFrame(frameRef.current);
       }
+      cardTimersRef.current.forEach((timer) => {
+        if (timer.timeout !== null) clearTimeout(timer.timeout);
+      });
+      cardTimersRef.current.clear();
     },
     [],
   );
+
+  useEffect(() => {
+    if (!canExploreWithPointer || reduceMotion) clearTrail();
+  }, [canExploreWithPointer, clearTrail, reduceMotion]);
 
   const placeNextCards = useCallback(() => {
     frameRef.current = null;
@@ -185,6 +307,7 @@ export default function HeroSection() {
     );
     const nextCards = [...spawnedCardsRef.current];
     let didSpawn = false;
+    let batchSpawnIndex = 0;
 
     for (const point of points) {
       const id = nextCardIdRef.current;
@@ -225,18 +348,68 @@ export default function HeroSection() {
         TRAIL_CONFIG.rotationMin,
         TRAIL_CONFIG.rotationMax,
       );
+
       const category = portfolioCategories[nextCategoryIndexRef.current];
+      const delay = Math.min(
+        batchSpawnIndex * TRAIL_CONFIG.interpolatedStagger * 1000,
+        TRAIL_CONFIG.maxInterpolatedStagger * 1000,
+      );
+      if (
+        nextCards.filter((card) => !card.isExiting).length >=
+        TRAIL_CONFIG.maxItems
+      ) {
+        const exitingCards = nextCards
+          .filter((card) => card.isExiting)
+          .sort((a, b) => a.id - b.id);
+        exitingCards.forEach((card) => {
+          clearCardTimer(card.id);
+          const index = nextCards.findIndex((item) => item.id === card.id);
+          if (index !== -1) nextCards.splice(index, 1);
+        });
+
+        const oldestCard = nextCards
+          .filter((card) => !card.isExiting)
+          .sort((a, b) => a.id - b.id)[0];
+        if (oldestCard) {
+          clearCardTimer(oldestCard.id);
+          const oldestIndex = nextCards.findIndex(
+            (card) => card.id === oldestCard.id,
+          );
+          nextCards[oldestIndex] = { ...oldestCard, isExiting: true };
+          const exitDelay = TRAIL_CONFIG.exitDuration * 1000;
+          const exitTimeout = setTimeout(
+            () => removeTrailCard(oldestCard.id),
+            exitDelay,
+          );
+          cardTimersRef.current.set(oldestCard.id, {
+            timeout: exitTimeout,
+            phase: "exit",
+            expiresAt: Date.now() + exitDelay,
+            remaining: exitDelay,
+          });
+        }
+      }
+
       nextCards.push({
         id,
         category,
         position: { x, y },
         rotation,
+        animationDelay: delay / 1000,
         entryOffsetX:
           -Math.sign(directionX) * TRAIL_CONFIG.entryOffset,
         entryOffsetY:
           -Math.sign(directionY) * TRAIL_CONFIG.entryOffset,
+        isExiting: false,
       });
+      scheduleCardLifetime(
+        id,
+        delay +
+          TRAIL_CONFIG.enterDuration * 1000 +
+          TRAIL_CONFIG.cardLifetime,
+      );
       didSpawn = true;
+      batchSpawnIndex += 1;
       nextCardIdRef.current += 1;
       nextCategoryIndexRef.current =
         (nextCategoryIndexRef.current + 1) % portfolioCategories.length;
@@ -245,23 +418,18 @@ export default function HeroSection() {
     previousPointerRef.current = currentPointer;
     distanceSinceSpawnRef.current = distanceSinceSpawn;
     if (didSpawn) {
-      const limitedCards = nextCards.slice(-TRAIL_CONFIG.maxItems);
-      spawnedCardsRef.current = limitedCards;
-      setSpawnedCards(limitedCards);
+      spawnedCardsRef.current = nextCards;
+      setSpawnedCards(nextCards);
     }
-  }, []);
+  }, [clearCardTimer, removeTrailCard, scheduleCardLifetime]);
 
   useEffect(() => {
     const clearCards = () => {
-      previousPointerRef.current = null;
-      lastSpawnRef.current = null;
-      distanceSinceSpawnRef.current = 0;
-      spawnedCardsRef.current = [];
-      setSpawnedCards([]);
+      clearTrail();
     };
     window.addEventListener("resize", clearCards);
     return () => window.removeEventListener("resize", clearCards);
-  }, []);
+  }, [clearTrail]);
 
   const handlePointerMove = (event: PointerEvent<HTMLElement>) => {
     if (
@@ -302,8 +470,7 @@ export default function HeroSection() {
           aria-label="Categorías que aparecen al explorar el área con el cursor"
           className="pointer-events-none absolute inset-0 z-0 hidden lg:block"
         >
-          <AnimatePresence initial={false}>
-            {spawnedCards.map(
+          {spawnedCards.map(
               (
                 {
                   id,
@@ -312,8 +479,9 @@ export default function HeroSection() {
                   rotation,
                   entryOffsetX,
                   entryOffsetY,
+                  animationDelay,
+                  isExiting,
                 },
-                index,
               ) => (
               <InteractiveProjectCard
                 key={id}
@@ -324,21 +492,30 @@ export default function HeroSection() {
                 entryOffsetY={entryOffsetY}
                 enterDuration={TRAIL_CONFIG.enterDuration}
                 exitDuration={TRAIL_CONFIG.exitDuration}
-                delay={Math.min(
-                  index * TRAIL_CONFIG.interpolatedStagger,
-                  TRAIL_CONFIG.maxInterpolatedStagger,
-                )}
+                enterScale={TRAIL_CONFIG.enterScale}
+                exitScale={TRAIL_CONFIG.exitScale}
+                initialRotationFactor={TRAIL_CONFIG.initialRotationFactor}
+                hoverScale={TRAIL_CONFIG.hoverScale}
+                delay={animationDelay}
                 zIndex={id + 1}
+                isExiting={isExiting}
                 highlighted={activeCategory === category.id}
                 onActivate={(categoryId) =>
                   scrollToCategory(categoryId, Boolean(reduceMotion))
                 }
                 onFocus={setActiveCategory}
                 onBlur={() => setActiveCategory(null)}
+                onPointerEnter={() => {
+                  setActiveCategory(category.id);
+                  pauseCardLifetime(id);
+                }}
+                onPointerLeave={() => {
+                  setActiveCategory(null);
+                  resumeCardLifetime(id);
+                }}
               />
               ),
             )}
-          </AnimatePresence>
         </div>
       ) : null}
 
