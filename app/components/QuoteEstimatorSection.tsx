@@ -49,7 +49,7 @@ export default function QuoteEstimatorSection() {
         </p>
       </div>
 
-      <div className="mx-auto max-w-5xl rounded-[1.5rem] border border-white/[0.08] bg-[#121212]/72 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.28)] backdrop-blur-md md:p-10">
+      <div className="mx-auto max-w-5xl rounded-[1.5rem] border border-white/[0.08] bg-[#121212]/72 p-5 backdrop-blur-md md:p-10">
         <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.24em] text-cyan-300">
           1. Tipo de servicio principal
         </p>

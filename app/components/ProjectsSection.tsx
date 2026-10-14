@@ -74,7 +74,7 @@ export default function ProjectsSection() {
             onClick={() => setActiveFilter(filter)}
             className={`rounded-xl border px-5 py-3 text-sm font-bold transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200 ${
               activeFilter === filter
-                ? "border-cyan-300/50 bg-cyan-500 text-white shadow-[0_12px_30px_rgba(6,182,212,0.22)]"
+                ? "border-cyan-300/50 bg-cyan-500 text-white"
                 : "border-white/[0.08] bg-white/[0.045] text-zinc-400 hover:border-white/[0.16] hover:text-zinc-100"
             }`}
           >
@@ -92,7 +92,7 @@ export default function ProjectsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true, amount: 0.2 }}
-            className={`group relative overflow-hidden rounded-[1.5rem] border bg-[#121212]/86 shadow-[0_28px_85px_rgba(0,0,0,0.26)] outline-none transition duration-700 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#121212] motion-reduce:hover:translate-y-0 ${
+            className={`group relative overflow-hidden rounded-[1.5rem] border bg-[#121212]/86 outline-none transition duration-700 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#121212] motion-reduce:hover:translate-y-0 ${
               project.accent === "cyan"
                 ? "border-cyan-300/[0.14] hover:border-cyan-200/[0.25]"
                 : project.accent === "violet"

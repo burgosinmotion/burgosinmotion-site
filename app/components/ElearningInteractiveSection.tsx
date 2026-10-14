@@ -137,7 +137,7 @@ export default function ElearningInteractiveSection() {
               <span>{activeActivity.details}</span>
             </div>
 
-            <div className="h-[68vh] min-h-[520px] max-h-[900px] overflow-hidden rounded-xl border border-cyan-300/[0.18] bg-[#121212] shadow-[0_30px_90px_rgba(0,0,0,0.3)] md:h-[74vh] md:min-h-[640px]">
+            <div className="h-[68vh] min-h-[520px] max-h-[900px] overflow-hidden rounded-xl border border-cyan-300/[0.18] bg-[#121212] md:h-[74vh] md:min-h-[640px]">
               {playingActivityId === activeActivity.id ? (
                 <iframe
                   key={activeActivity.src}
@@ -163,7 +163,7 @@ export default function ElearningInteractiveSection() {
                     className="group absolute inset-0 flex flex-col items-center justify-center gap-4 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200"
                     aria-label={`Reproducir ${activeActivity.title}`}
                   >
-                    <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/35 bg-white/15 pl-1 shadow-[0_12px_40px_rgba(0,0,0,0.35)] transition group-hover:scale-105 group-hover:border-cyan-200/75 group-hover:bg-cyan-400/85">
+                    <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/35 bg-white/15 pl-1 transition group-hover:scale-105 group-hover:border-cyan-200/75 group-hover:bg-cyan-400/85">
                       <FaPlay aria-hidden="true" className="h-5 w-5" />
                     </span>
                     <span className="text-sm font-bold uppercase tracking-[0.16em]">

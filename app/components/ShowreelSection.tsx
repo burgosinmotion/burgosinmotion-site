@@ -43,7 +43,6 @@ export default function ShowreelSection() {
           border border-white/[0.06]
           bg-[rgba(8,10,18,0.46)]
           p-2
-          shadow-[0_30px_90px_rgba(0,0,0,0.28),0_10px_30px_rgba(0,0,0,0.18)]
           backdrop-blur-sm
           md:rounded-[2rem]
           md:p-3
@@ -116,7 +115,6 @@ export default function ShowreelSection() {
                     text-sm
                     font-medium
                     text-white
-                    shadow-[0_18px_50px_rgba(0,0,0,0.28)]
                     backdrop-blur-xl
                     transition
                     duration-500

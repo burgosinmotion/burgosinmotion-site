@@ -45,7 +45,6 @@ button:not(:disabled):not([aria-disabled="true"]),
   transition:
     border-color 180ms ease,
     background-color 180ms ease,
-    box-shadow 180ms ease,
     transform 180ms ease;
 }
 
@@ -71,7 +70,6 @@ button:not(:disabled):not([aria-disabled="true"]),
 }
 
 .button-gradient:hover {
-  box-shadow: 0 0.75rem 2rem rgb(6 182 212 / 22%);
   transform: translateY(-1px);
 }
 
@@ -105,7 +103,6 @@ button:not(:disabled):not([aria-disabled="true"]),
 
 .hero-project-card {
   border: 1px solid rgb(255 255 255 / 10%);
-  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 14%);
   touch-action: manipulation;
 }
 
@@ -131,10 +128,6 @@ button:not(:disabled):not([aria-disabled="true"]),
 
   .atmosphere-glow {
     animation: none;
-  }
-
-  .hero-project-card {
-    box-shadow: none;
   }
 
   .button-outline,
