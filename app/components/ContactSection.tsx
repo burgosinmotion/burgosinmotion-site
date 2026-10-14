@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { FaBehance, FaLinkedinIn, FaVimeoV } from "react-icons/fa6";
 import { FormEvent, useState } from "react";
+import { buttonGradientStyles } from "./buttonStyles";
 
 const email = "hola@burgosinmotion.com";
 
@@ -149,7 +150,7 @@ export default function ContactSection() {
 
           <button
             type="submit"
-            className="button-gradient mt-6 w-full"
+            className={`${buttonGradientStyles} mt-6 w-full`}
           >
             <span aria-hidden="true">✈</span>
             Enviar Mensaje

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
+import { buttonGradientStyles } from "./buttonStyles";
 
 const serviceTypes = [
   { name: "Motion Graphics", detail: "Video explainer, branding animado", min: 700, max: 1500, icon: "▣" },
@@ -102,7 +103,7 @@ export default function QuoteEstimatorSection() {
           </div>
           <a
             href={`mailto:hola@burgosinmotion.com?subject=Cotización%20${encodeURIComponent(serviceTypes[selectedService].name)}&body=${encodeURIComponent(`Hola Diego,\n\nQuiero cotizar un proyecto de ${serviceTypes[selectedService].name}.\nRango estimado: $${estimate.min} - $${estimate.max} USD.\n`)}`}
-            className="button-gradient"
+            className={buttonGradientStyles}
           >
             ✈ Solicitar Cotización Oficial
           </a>
