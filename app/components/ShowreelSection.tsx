@@ -18,7 +18,7 @@ export default function ShowreelSection() {
       viewport={{ once: true }}
       className="relative z-10 mx-auto max-w-7xl px-6 py-32"
     >
-      <div className="pointer-events-none absolute right-[-10%] top-[22%] h-[28rem] w-[28rem] rounded-full bg-fuchsia-500/[0.025] blur-[140px]" />
+      <div className="pointer-events-none absolute right-[-10%] top-[22%] h-[28rem] w-[28rem] rounded-full bg-cyan-500/[0.025] blur-[140px]" />
       {/* Título */}
       <div className="mx-auto mb-14 max-w-4xl text-center">
         <p className="mb-5 text-xs uppercase tracking-[0.34em] text-zinc-300">
@@ -89,11 +89,11 @@ export default function ShowreelSection() {
                 items-center
                 justify-center
                 rounded-[1rem]
-                bg-[linear-gradient(135deg,rgba(22,13,42,0.92),rgba(5,8,16,0.98)_46%,rgba(5,20,35,0.9))]
+                bg-[linear-gradient(135deg,rgba(18,18,18,0.92),rgba(6,34,39,0.98)_46%,rgba(18,18,18,0.9))]
                 md:rounded-[1.5rem]
               "
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_32%_22%,rgba(217,70,239,0.16),transparent_34%),radial-gradient(circle_at_74%_62%,rgba(34,211,238,0.12),transparent_32%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_32%_22%,rgba(6,182,212,0.16),transparent_34%),radial-gradient(circle_at_74%_62%,rgba(34,211,238,0.12),transparent_32%)]" />
               <div className="relative flex flex-col items-center gap-5 text-center">
                 <p className="text-xs uppercase tracking-[0.36em] text-white/45">
                   SHOWREEL

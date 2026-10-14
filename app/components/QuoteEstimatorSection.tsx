@@ -48,7 +48,7 @@ export default function QuoteEstimatorSection() {
         </p>
       </div>
 
-      <div className="mx-auto max-w-5xl rounded-[1.5rem] border border-white/[0.08] bg-[#111827]/72 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.28)] backdrop-blur-md md:p-10">
+      <div className="mx-auto max-w-5xl rounded-[1.5rem] border border-white/[0.08] bg-[#121212]/72 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.28)] backdrop-blur-md md:p-10">
         <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.24em] text-cyan-300">
           1. Tipo de servicio principal
         </p>
@@ -61,7 +61,7 @@ export default function QuoteEstimatorSection() {
               className={`rounded-xl border p-5 text-left transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200 ${
                 selectedService === index
                   ? "border-cyan-300/40 bg-cyan-300/[0.08]"
-                  : "border-white/[0.08] bg-[#05060A]/62 hover:border-white/[0.16]"
+                  : "border-white/[0.08] bg-[#121212]/62 hover:border-white/[0.16]"
               }`}
             >
               <span className="font-mono text-xl text-cyan-300">{service.icon}</span>
@@ -78,7 +78,7 @@ export default function QuoteEstimatorSection() {
           <select
             value={selectedScope}
             onChange={(event) => setSelectedScope(Number(event.target.value))}
-            className="rounded-xl border border-white/[0.08] bg-[#05060A]/72 px-5 py-4 text-base font-bold text-zinc-100 outline-none focus:border-cyan-300/40"
+            className="rounded-xl border border-white/[0.08] bg-[#121212]/72 px-5 py-4 text-base font-bold text-zinc-100 outline-none focus:border-cyan-300/40"
           >
             {scopes.map((scope, index) => (
               <option key={scope.label} value={index}>
@@ -88,7 +88,7 @@ export default function QuoteEstimatorSection() {
           </select>
         </label>
 
-        <div className="mt-8 flex flex-col gap-6 rounded-xl border border-violet-300/[0.18] bg-violet-400/[0.035] p-6 md:flex-row md:items-center md:justify-between">
+        <div className="mt-8 flex flex-col gap-6 rounded-xl border border-cyan-300/[0.18] bg-cyan-400/[0.035] p-6 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.24em] text-zinc-500">
               Rango estimado de inversión
@@ -102,7 +102,7 @@ export default function QuoteEstimatorSection() {
           </div>
           <a
             href={`mailto:hola@burgosinmotion.com?subject=Cotización%20${encodeURIComponent(serviceTypes[selectedService].name)}&body=${encodeURIComponent(`Hola Diego,\n\nQuiero cotizar un proyecto de ${serviceTypes[selectedService].name}.\nRango estimado: $${estimate.min} - $${estimate.max} USD.\n`)}`}
-            className="inline-flex items-center justify-center gap-3 rounded-xl bg-violet-500 px-6 py-4 font-bold text-white shadow-[0_16px_40px_rgba(99,102,241,0.28)] transition hover:-translate-y-0.5 hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-200 motion-reduce:hover:translate-y-0"
+            className="button-gradient"
           >
             ✈ Solicitar Cotización Oficial
           </a>

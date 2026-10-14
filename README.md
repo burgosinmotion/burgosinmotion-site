@@ -20,6 +20,14 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Hero project cards
+
+The Home hero's interactive project cards and their category links are configured in `app/components/heroProjectData.ts`. Add or edit entries there; card rendering, hover/focus reveals and cursor parallax live in `app/components/InteractiveProjectCard.tsx`.
+
+Put project media under `public/projects/` and reference it from the data with a root-relative URL such as `/projects/my-project.webp`. The current image entries reuse local project-preview images already in that folder as placeholders. Replace each `media`, `mediaAlt`, `title`, `type` and `projectUrl` with the final project details. For a video, set `mediaType` to `"video"` and point `media` at a local `.mp4` or `.webm`; it is only mounted when its card is revealed or matched by an expertise link, and plays muted in a loop.
+
+Each card's `categories` array controls which expertise links highlight it. `depth` sets the maximum desktop parallax in pixels, and `position` sets its side and percentage offsets around the hero.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

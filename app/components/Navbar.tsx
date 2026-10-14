@@ -2,32 +2,50 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const navItems = [
-  { label: "Inicio", href: "/" },
-  { label: "Showreel", href: "/#showreel" },
-  { label: "Servicios", href: "/servicios" },
-  { label: "Proyectos", href: "/proyectos" },
-  { label: "Demos Interactivas", href: "/demos-interactivas" },
+  { label: "Home", href: "/" },
   { label: "Sobre mí", href: "/sobre-mi" },
-  { label: "Contacto", href: "/contacto" },
+  { label: "Portfolio", href: "/proyectos" },
+  { label: "Servicios", href: "/servicios" },
+  { label: "Demos", href: "/demos-interactivas" },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [santiagoTime, setSantiagoTime] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
+    const updateSantiagoTime = () => {
+      const formattedTime = new Intl.DateTimeFormat("es-CL", {
+        weekday: "long",
+        hour: "2-digit",
+        minute: "2-digit",
+        hourCycle: "h23",
+        timeZone: "America/Santiago",
+      }).format(new Date());
+
+      setSantiagoTime(
+        formattedTime.charAt(0).toLocaleUpperCase("es-CL") +
+          formattedTime.slice(1),
+      );
+    };
 
     handleScroll();
+    updateSantiagoTime();
     window.addEventListener("scroll", handleScroll, { passive: true });
+    const timeInterval = window.setInterval(updateSantiagoTime, 60_000);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.clearInterval(timeInterval);
     };
   }, []);
 
@@ -35,8 +53,8 @@ export default function Navbar() {
     <header
       className={`fixed top-0 z-50 w-full border-b transition-all duration-500 ease-out ${
         scrolled
-          ? "border-white/[0.07] bg-[rgba(8,10,18,0.74)] py-1 shadow-[0_22px_80px_rgba(0,0,0,0.28)] backdrop-blur-[22px]"
-          : "border-white/[0.08] bg-[#0b1020]/72 py-2 backdrop-blur-xl"
+        ? "border-white/[0.07] bg-[rgba(18,18,18,0.3)] py-1 shadow-[0_22px_80px_rgba(0,0,0,0.28)] backdrop-blur-[22px]"
+        : "border-white/[0.08] bg-[#121212]/30 py-2 backdrop-blur-xl"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 lg:px-6">
@@ -45,29 +63,48 @@ export default function Navbar() {
           aria-label="Ir al inicio"
           className="flex min-w-0 items-center gap-3 rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200/70"
         >
-          <span className="min-w-0">
-            <Image
-              src="/logo_burgosinmotion.svg"
-              alt="Burgos in Motion"
-              width={180}
-              height={70}
-              priority
-              className="h-auto w-44"
-            />
-          </span>
+          <Image
+            src="/brand/icon-header-burgosinmotion-white.png"
+            alt="Burgos in Motion"
+            width={48}
+            height={48}
+            priority
+            className="h-11 w-11 object-contain"
+          />
         </Link>
 
-        <nav className="hidden items-center gap-4 text-sm font-semibold text-zinc-200/85 lg:flex xl:gap-6">
+        <div className="ml-4 mr-auto hidden flex-col text-xs font-medium leading-tight text-zinc-300 sm:flex lg:ml-8">
+          <span>Concepción, Chile</span>
+          <time
+            aria-label={
+              santiagoTime
+                ? `Hora de Chile: ${santiagoTime}`
+                : "Hora local de Chile"
+            }
+            className="min-h-4"
+          >
+            {santiagoTime}
+          </time>
+        </div>
+
+        <nav className="hidden items-center gap-5 text-xs font-semibold text-zinc-100 lg:flex xl:gap-8">
           {navItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className="group relative inline-flex items-center rounded-sm transition duration-300 ease-out hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/50"
+              className={`group relative inline-flex items-center rounded-sm transition duration-300 ease-out hover:text-cyan-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-400 ${
+                item.href === "/" && pathname === "/" ? "text-cyan-400" : ""
+              }`}
             >
               <span>{item.label}</span>
-              <span className="absolute -bottom-2 left-0 h-px w-full origin-left scale-x-0 bg-white/35 transition-transform duration-300 ease-out group-hover:scale-x-100 group-focus-visible:scale-x-100" />
             </Link>
           ))}
+          <Link
+            href="/contacto"
+            className="button-gradient navbar-contact"
+          >
+            Contacto
+          </Link>
         </nav>
 
         <button
@@ -75,7 +112,7 @@ export default function Navbar() {
           aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((value) => !value)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.10] bg-white/[0.04] text-white lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.10] bg-white/[0.04] text-white transition hover:border-cyan-400 hover:text-cyan-400 lg:hidden"
         >
           <span aria-hidden="true" className="text-xl">
             {menuOpen ? "×" : "☰"}
@@ -84,18 +121,25 @@ export default function Navbar() {
       </div>
 
       {menuOpen ? (
-        <div className="border-t border-white/[0.08] bg-[#0b1020]/94 px-5 py-4 backdrop-blur-xl lg:hidden">
+        <div className="border-t border-white/[0.08] bg-[#121212]/94 px-5 py-4 backdrop-blur-xl lg:hidden">
           <nav className="mx-auto grid max-w-7xl gap-2">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className="rounded-xl border border-white/[0.07] bg-white/[0.03] px-4 py-3 text-sm font-semibold text-zinc-100"
+                className="rounded-full border border-white/[0.07] bg-white/[0.03] px-4 py-3 text-sm font-semibold text-zinc-100 transition hover:border-cyan-400 hover:text-cyan-400"
               >
                 {item.label}
               </Link>
             ))}
+            <Link
+              href="/contacto"
+              onClick={() => setMenuOpen(false)}
+              className="button-gradient"
+            >
+              Contacto
+            </Link>
           </nav>
         </div>
       ) : null}

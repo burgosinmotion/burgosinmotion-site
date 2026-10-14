@@ -137,7 +137,7 @@ export default function ElearningInteractiveSection() {
               <span>{activeActivity.details}</span>
             </div>
 
-            <div className="h-[68vh] min-h-[520px] max-h-[900px] overflow-hidden rounded-xl border border-cyan-300/[0.18] bg-[#101827] shadow-[0_30px_90px_rgba(0,0,0,0.3)] md:h-[74vh] md:min-h-[640px]">
+            <div className="h-[68vh] min-h-[520px] max-h-[900px] overflow-hidden rounded-xl border border-cyan-300/[0.18] bg-[#121212] shadow-[0_30px_90px_rgba(0,0,0,0.3)] md:h-[74vh] md:min-h-[640px]">
               {playingActivityId === activeActivity.id ? (
                 <iframe
                   key={activeActivity.src}

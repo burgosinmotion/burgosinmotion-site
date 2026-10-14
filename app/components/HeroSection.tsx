@@ -1,9 +1,18 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { motion, type Variants, useMotionValue, useReducedMotion } from "framer-motion";
+import { useState, type PointerEvent } from "react";
+import InteractiveProjectCard from "./InteractiveProjectCard";
+import {
+  heroExpertise,
+  heroProjects,
+  type HeroCategory,
+} from "./heroProjectData";
 
 const itemVariants: Variants = {
-  hidden: { y: 30, opacity: 0 },
+  hidden: { y: 24, opacity: 0 },
   show: {
     y: 0,
     opacity: 1,
@@ -11,106 +20,173 @@ const itemVariants: Variants = {
   },
 };
 
-const capabilities = [
-  "Motion Graphics",
-  "Articulate Storyline 360",
-  "Lottie & Web Animation",
-];
-
 export default function HeroSection() {
+  const [activeCategories, setActiveCategories] = useState<HeroCategory[] | null>(
+    null,
+  );
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const reduceMotion = useReducedMotion();
+  const currentItemVariants = reduceMotion
+    ? {
+        hidden: { opacity: 0 },
+        show: { opacity: 1, transition: { duration: 0.12 } },
+      }
+    : itemVariants;
+
+  const trackPointer = (event: PointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "mouse" || reduceMotion) {
+      return;
+    }
+
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const scale = window.innerWidth < 1024 ? 0.4 : 1;
+    const normalizedX = (event.clientX - bounds.left) / bounds.width;
+    const normalizedY = (event.clientY - bounds.top) / bounds.height;
+
+    pointerX.set((normalizedX * 2 - 1) * scale);
+    pointerY.set((normalizedY * 2 - 1) * scale);
+  };
+
+  const resetPointer = () => {
+    pointerX.set(0);
+    pointerY.set(0);
+  };
+
+  const handleExpertiseEnter = (
+    event: PointerEvent<HTMLButtonElement>,
+    categories: HeroCategory[],
+  ) => {
+    if (event.pointerType === "mouse") {
+      setActiveCategories(categories);
+    }
+  };
+
   return (
     <section
       id="inicio"
-      className="relative flex min-h-screen items-center justify-center px-5 pb-16 pt-32 sm:px-6 sm:pb-20 sm:pt-34 lg:pt-30"
+      onPointerMove={trackPointer}
+      onPointerLeave={resetPointer}
+      className="relative flex min-h-screen items-center justify-center overflow-hidden px-5 pb-16 pt-28 sm:px-6 sm:pb-20"
     >
-      <div className="z-10 mx-auto max-w-7xl text-center">
-        <motion.div
-          variants={itemVariants}
-          initial="hidden"
-          animate="show"
-          transition={{ delay: 0.05 }}
-          className="mx-auto mb-9 inline-flex max-w-full items-center gap-2 rounded-full border border-white/[0.09] bg-white/[0.045] px-4 py-2 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-zinc-300 shadow-[0_16px_40px_rgba(0,0,0,0.22)] backdrop-blur-xl sm:text-xs"
-        >
-          <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_16px_rgba(52,211,153,0.8)]" />
-          Disponible para nuevos proyectos 2026
-        </motion.div>
+      <div
+        role="group"
+        aria-label="Proyectos destacados"
+        className="pointer-events-none absolute inset-0 z-1"
+      >
+        {heroProjects.map((project) => (
+          <InteractiveProjectCard
+            key={project.id}
+            project={project}
+            pointerX={pointerX}
+            pointerY={pointerY}
+            activeCategories={activeCategories}
+            onCategoryFocus={(category) => setActiveCategories([category])}
+            onCategoryBlur={() => setActiveCategories(null)}
+          />
+        ))}
+      </div>
 
-        <h1 className="mx-auto max-w-[1180px] text-[3rem] font-black leading-[0.95] tracking-tight text-zinc-50 sm:text-[3.6rem] md:text-[4.35rem] lg:text-[5.75rem] xl:text-[6.55rem]">
-          Motion Design & Aprendizaje Interactivo
-          <br />
-          <span className="bg-gradient-to-r from-zinc-100 via-violet-200 to-cyan-300 bg-clip-text text-transparent">
-            Historias que conectan
-          </span>
+      <div className="pointer-events-none relative z-10 mx-auto w-full max-w-5xl text-center">
+        <h1 className="sr-only">
+          Diseñador Multimedia · Burgos in Motion
         </h1>
-
         <motion.p
-          variants={itemVariants}
+          variants={currentItemVariants}
           initial="hidden"
           animate="show"
-          transition={{ delay: 0.18 }}
-          className="mx-auto mt-7 max-w-[790px] text-base leading-7 text-zinc-300 sm:text-lg md:text-xl md:leading-8"
+          className="mb-4 text-sm font-bold tracking-[0.02em] text-cyan-400 sm:text-base"
         >
-          Diseño experiencias digitales memorables combinando{" "}
-          <strong className="font-semibold text-white">Motion Graphics</strong>{" "}
-          de alto nivel,{" "}
-          <strong className="font-semibold text-white">
-            E-Learning Gamificado con Storyline
-          </strong>{" "}
-          y animación web para comunicar ideas con claridad y emoción.
+          Diseñador Multimedia
         </motion.p>
 
         <motion.div
-          variants={itemVariants}
+          variants={currentItemVariants}
           initial="hidden"
           animate="show"
-          transition={{ delay: 0.28 }}
-          className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
+          transition={{ delay: 0.08 }}
+          className="mx-auto w-full max-w-162.5"
         >
-          <a
-            href="#showreel"
-            className="group inline-flex items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-violet-500 to-cyan-400 px-6 py-4 text-sm font-bold text-white shadow-[0_16px_45px_rgba(34,211,238,0.18),0_14px_35px_rgba(99,102,241,0.26)] transition duration-300 ease-out hover:-translate-y-0.5 hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200 motion-reduce:hover:translate-y-0"
-          >
-            <span aria-hidden="true">⊙</span>
-            Ver Showreel 2026
-          </a>
-          <a
-            href="/proyectos"
-            className="inline-flex items-center justify-center gap-3 rounded-xl border border-violet-300/[0.35] bg-violet-400/[0.08] px-6 py-4 text-sm font-bold text-violet-100 shadow-[0_16px_45px_rgba(0,0,0,0.22)] backdrop-blur-md transition duration-300 ease-out hover:-translate-y-0.5 hover:border-violet-200/55 hover:bg-violet-300/[0.12] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-200 motion-reduce:hover:translate-y-0"
-          >
-            <span aria-hidden="true">✣</span>
-            Explorar proyectos
-          </a>
-          <a
-            href="/contacto"
-            className="inline-flex items-center justify-center gap-3 rounded-xl border border-cyan-200/[0.22] bg-[#0b1020]/70 px-6 py-4 text-sm font-bold text-zinc-100 shadow-[0_16px_45px_rgba(0,0,0,0.22)] backdrop-blur-md transition duration-300 ease-out hover:-translate-y-0.5 hover:border-cyan-200/40 hover:bg-white/[0.055] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200 motion-reduce:hover:translate-y-0"
-          >
-            <span aria-hidden="true">▣</span>
-            Hablemos de tu proyecto
-          </a>
+          <Image
+            src="/brand/logo-burgosinmotion-white.png"
+            alt=""
+            width={1850}
+            height={245}
+            priority
+            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 76vw, 650px"
+            className="h-auto w-full"
+          />
         </motion.div>
 
-        <motion.div
-          variants={itemVariants}
+        <motion.p
+          variants={currentItemVariants}
           initial="hidden"
           animate="show"
-          transition={{ delay: 0.38 }}
-          className="mx-auto mt-16 grid max-w-[900px] grid-cols-1 gap-x-9 gap-y-5 border-t border-white/[0.08] pt-8 text-left font-mono text-xs uppercase tracking-[0.18em] text-zinc-400 sm:grid-cols-2 lg:grid-cols-3 lg:text-center"
+          transition={{ delay: 0.16 }}
+          className="mx-auto mt-4 max-w-172.5 text-base leading-7 text-zinc-100 sm:text-lg sm:leading-7"
         >
-          {capabilities.map((capability, index) => (
-            <div key={capability} className="flex items-center justify-center gap-3">
-              <span
-                className={`flex h-3.5 w-3.5 items-center justify-center rounded-full border ${
-                  index % 2 === 0
-                    ? "border-cyan-300 text-cyan-300"
-                    : "border-violet-300 text-violet-300"
-                }`}
-                aria-hidden="true"
+          Combino Motion Graphics, E-Learning y Gamificación para transformar
+          ideas en experiencias visuales e interactivas que comunican, enseñan y
+          conectan.
+        </motion.p>
+
+        <div
+          role="group"
+          aria-label="Especialidades"
+          className="mt-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-[0.7rem] font-semibold text-zinc-100 sm:gap-x-1.5 sm:text-xs"
+        >
+          {heroExpertise.map((expertise, index) => (
+            <span key={expertise.label} className="contents">
+              {index > 0 ? (
+                <span aria-hidden="true" className="text-cyan-400/70">
+                  ·
+                </span>
+              ) : null}
+              <button
+                type="button"
+                aria-pressed={
+                  activeCategories?.some((category) =>
+                    expertise.categories.includes(category),
+                  ) ?? false
+                }
+                onPointerEnter={(event) =>
+                  handleExpertiseEnter(event, expertise.categories)
+                }
+                onPointerLeave={(event) => {
+                  if (event.pointerType === "mouse") {
+                    setActiveCategories(null);
+                  }
+                }}
+                onFocus={() => setActiveCategories(expertise.categories)}
+                onBlur={() => setActiveCategories(null)}
+                onClick={() => setActiveCategories(expertise.categories)}
+                className="pointer-events-auto rounded-sm transition-colors duration-200 hover:text-cyan-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 aria-pressed:text-cyan-300"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-current" />
-              </span>
-              {capability}
-            </div>
+                {expertise.label}
+              </button>
+            </span>
           ))}
+        </div>
+
+        <motion.div
+          variants={currentItemVariants}
+          initial="hidden"
+          animate="show"
+          transition={{ delay: 0.24 }}
+          className="mt-14 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
+        >
+          <Link
+            href="/proyectos"
+            className="button-outline pointer-events-auto min-w-36"
+          >
+            Ver Proyectos
+          </Link>
+          <Link
+            href="/contacto"
+            className="button-gradient pointer-events-auto min-w-36"
+          >
+            Hablemos
+          </Link>
         </motion.div>
       </div>
     </section>
