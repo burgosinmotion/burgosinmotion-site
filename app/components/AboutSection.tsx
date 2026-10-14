@@ -34,9 +34,9 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="flex min-h-[440px] flex-col items-center justify-center rounded-[1.5rem] border border-white/[0.10] bg-[#121212]/72 p-8 text-center shadow-[0_30px_90px_rgba(0,0,0,0.28)] backdrop-blur-md"
+          className="flex min-h-[440px] flex-col items-center justify-center rounded-[1.5rem] border border-white/[0.10] bg-[#121212]/72 p-8 text-center backdrop-blur-md"
         >
-          <div className="relative h-28 w-28 overflow-hidden rounded-full border-[4px] border-cyan-300 bg-[#121212] shadow-[0_0_34px_rgba(34,211,238,0.20)]">
+          <div className="relative h-28 w-28 overflow-hidden rounded-full border-[4px] border-cyan-300 bg-[#121212]">
             <Image
               src="/diego.jpg"
               alt="Diego Burgos"
@@ -73,7 +73,7 @@ export default function AboutSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true }}
-                className="rounded-xl border border-white/[0.07] bg-white/[0.045] p-5 text-center shadow-[0_20px_60px_rgba(0,0,0,0.18)]"
+                className="rounded-xl border border-white/[0.07] bg-white/[0.045] p-5 text-center"
               >
                 <h3 className={`text-3xl font-black leading-none md:text-4xl ${stat.color}`}>
                   <CountUp end={stat.value} duration={2} />

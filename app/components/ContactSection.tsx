@@ -55,7 +55,7 @@ export default function ContactSection() {
             Convirtámoslo en una experiencia digital inolvidable. Escríbeme para conversar sobre tu próximo proyecto de motion graphics o e-learning.
           </p>
 
-          <div className="mt-12 flex max-w-xl items-center justify-between gap-4 rounded-xl border border-white/[0.08] bg-[#121212]/76 p-4 shadow-[0_22px_70px_rgba(0,0,0,0.24)]">
+          <div className="mt-12 flex max-w-xl items-center justify-between gap-4 rounded-xl border border-white/[0.08] bg-[#121212]/76 p-4">
             <div className="flex items-center gap-4">
               <span className="text-2xl text-cyan-300" aria-hidden="true">✉</span>
               <div>
@@ -101,7 +101,7 @@ export default function ContactSection() {
 
         <form
           onSubmit={submitForm}
-          className="rounded-[1.5rem] border border-white/[0.08] bg-[#121212]/78 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.28)] backdrop-blur-md md:p-8"
+          className="rounded-[1.5rem] border border-white/[0.08] bg-[#121212]/78 p-5 backdrop-blur-md md:p-8"
         >
           <div className="grid gap-5 md:grid-cols-2">
             <label className="grid gap-2 font-mono text-xs font-bold text-zinc-400">

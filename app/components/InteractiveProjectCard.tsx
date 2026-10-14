@@ -143,7 +143,7 @@ export default function InteractiveProjectCard({
             handleRevealEnd();
             onCategoryBlur();
           }}
-          className="hero-project-card group pointer-events-auto relative block aspect-[1.28] w-14 overflow-hidden rounded-[0.55rem] border border-white/10 shadow-[0_0.5rem_1.5rem_rgba(0,0,0,0.14)] outline-none focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-cyan-300/90 motion-reduce:shadow-none sm:w-[clamp(5rem,11vw,9rem)] lg:w-[clamp(7rem,12vw,10rem)]"
+          className="hero-project-card group pointer-events-auto relative block aspect-[1.28] w-14 overflow-hidden rounded-[0.55rem] border border-white/10 outline-none focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-cyan-300/90 sm:w-[clamp(5rem,11vw,9rem)] lg:w-[clamp(7rem,12vw,10rem)]"
           style={{ backgroundColor: color }}
         >
           <AnimatePresence initial={false}>

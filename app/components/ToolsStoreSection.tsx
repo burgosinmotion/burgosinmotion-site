@@ -88,7 +88,7 @@ export default function ToolsStoreSection() {
               onClick={() => setActiveFilter(filter)}
               className={`flex-1 rounded-lg px-4 py-2.5 text-xs font-bold transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200 sm:flex-none ${
                 activeFilter === filter
-                  ? "bg-cyan-500 text-white shadow-[0_10px_24px_rgba(6,182,212,0.24)]"
+                  ? "bg-cyan-500 text-white"
                   : "text-zinc-400 hover:text-zinc-100"
               }`}
             >
@@ -106,7 +106,7 @@ export default function ToolsStoreSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true, amount: 0.2 }}
-            className={`group overflow-hidden rounded-2xl border bg-[#121212]/82 shadow-[0_30px_90px_rgba(0,0,0,0.28)] backdrop-blur-md transition duration-700 hover:-translate-y-1 motion-reduce:hover:translate-y-0 ${
+            className={`group overflow-hidden rounded-2xl border bg-[#121212]/82 backdrop-blur-md transition duration-700 hover:-translate-y-1 motion-reduce:hover:translate-y-0 ${
               tool.accent === "cyan"
                 ? "border-cyan-300/[0.14] hover:border-cyan-200/[0.26]"
                 : tool.accent === "emerald"
