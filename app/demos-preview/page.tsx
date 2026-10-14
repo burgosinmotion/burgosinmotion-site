@@ -33,12 +33,12 @@ export default function InteractiveDemosPreviewPage() {
               className="h-auto w-24 object-contain sm:w-40"
             />
           </Link>
-          <Link
+          <a
             href="/contacto"
             className={`${buttonGradientStyles} navbar-contact justify-self-end`}
           >
             Contacto
-          </Link>
+          </a>
         </div>
       </header>
       <main>
