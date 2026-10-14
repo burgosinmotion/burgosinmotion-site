@@ -1,19 +1,10 @@
+import Link from "next/link";
 import RevealOnScroll from "./RevealOnScroll";
+import { portfolioCategories } from "./categoryData";
 
-const services = [
-  {
-    title: "Motion Graphics",
-    text: "Narrativa visual, sistemas de animación y experiencias de marca impulsadas por motion graphics.",
-  },
-  {
-    title: "Aprendizaje Interactivo",
-    text: "Experiencias e-learning inmersivas desarrolladas con Storyline, interacción y gamificación.",
-  },
-  {
-    title: "Desarrollo Creativo",
-    text: "Interfaces interactivas, experiencias web y soluciones digitales desarrolladas a medida.",
-  },
-];
+const services = portfolioCategories.filter(
+  ({ id }) => id === "motion" || id === "elearning" || id === "interactive",
+);
 
 export default function ServicesSection() {
   return (
@@ -24,7 +15,6 @@ export default function ServicesSection() {
       duration={900}
       y={80}
     >
-      <div className="pointer-events-none absolute left-[-8%] top-[18%] h-96 w-96 rounded-full bg-cyan-500/[0.035] blur-[120px]" />
       <div className="mb-20 text-center">
         <p className="mb-4 text-sm uppercase tracking-[0.3em] text-zinc-300">
           SERVICIOS
@@ -41,15 +31,19 @@ export default function ServicesSection() {
         y={50}
       >
         {services.map((service) => (
-          <div
+          <Link
             key={service.title}
-            className="group rounded-3xl border border-white/[0.07] bg-[rgba(8,10,18,0.36)] p-8 backdrop-blur-md transition hover:-translate-y-2 hover:border-white/[0.12] hover:bg-[rgba(12,15,28,0.5)] motion-reduce:hover:translate-y-0"
+            href={service.slug}
+            className="group rounded-3xl border border-white/[0.07] bg-[rgba(8,10,18,0.36)] p-8 transition hover:-translate-y-1 hover:border-white/[0.14] hover:bg-[rgba(12,15,28,0.5)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200 motion-reduce:hover:translate-y-0"
           >
             <h3 className="mb-4 text-2xl font-semibold text-zinc-50">
               {service.title}
             </h3>
-            <p className="leading-7 text-zinc-300">{service.text}</p>
-          </div>
+            <p className="leading-7 text-zinc-300">{service.description}</p>
+            <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-cyan-200">
+              Explorar área <span aria-hidden="true">↗</span>
+            </span>
+          </Link>
         ))}
       </RevealOnScroll>
     </RevealOnScroll>

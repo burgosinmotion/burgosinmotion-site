@@ -27,7 +27,6 @@ export default function AboutSection() {
       viewport={{ once: true, amount: 0.2 }}
       className="relative z-10 mx-auto max-w-7xl px-5 py-28 sm:px-6 md:py-32"
     >
-      <div className="pointer-events-none absolute right-[-12%] top-[20%] h-[30rem] w-[30rem] rounded-full bg-cyan-500/[0.035] blur-[150px]" />
       <div className="grid items-center gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16">
         <motion.aside
           initial={{ opacity: 0, scale: 0.94 }}

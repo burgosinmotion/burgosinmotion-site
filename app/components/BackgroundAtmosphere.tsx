@@ -16,21 +16,21 @@ export default function BackgroundAtmosphere() {
           reduceMotion
             ? undefined
             : {
-                x: ["-1.2vw", "1.2vw"],
-                y: ["0vh", "-1vh"],
-                scale: [0.98, 1.02],
+                x: ["-0.7vw", "0.7vw"],
+                y: ["0vh", "-0.6vh"],
+                scale: [0.99, 1.01],
               }
         }
         transition={{
-          duration: 20,
+          duration: 34,
           ease: "easeInOut",
           repeat: Infinity,
           repeatType: "reverse",
         }}
-        className="fixed left-1/2 top-1/2 h-[min(74vw,72rem)] w-[min(74vw,72rem)] -translate-x-1/2 -translate-y-1/2 rounded-full"
+        className="absolute inset-[-14%]"
         style={{
           backgroundImage:
-            "radial-gradient(circle farthest-side, rgb(6 182 212 / 30%) 0%, rgb(6 182 212 / 24%) 12%, rgb(6 182 212 / 14%) 32%, rgb(6 182 212 / 7%) 54%, rgb(6 182 212 / 2%) 78%, rgb(18 18 18 / 0%) 100%)",
+            "radial-gradient(ellipse 58% 48% at 50% 28%, rgb(6 182 212 / 12%) 0%, rgb(6 182 212 / 8%) 34%, rgb(6 182 212 / 3%) 66%, rgb(18 18 18 / 0%) 100%), radial-gradient(ellipse 44% 40% at 76% 76%, rgb(217 70 239 / 3.5%) 0%, rgb(217 70 239 / 1.5%) 45%, rgb(18 18 18 / 0%) 100%)",
           willChange: reduceMotion ? undefined : "transform",
         }}
       />

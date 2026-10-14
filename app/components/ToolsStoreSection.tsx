@@ -64,8 +64,6 @@ export default function ToolsStoreSection() {
       viewport={{ once: true, amount: 0.18 }}
       className="relative z-10 mx-auto max-w-7xl px-5 py-28 sm:px-6 md:py-32"
     >
-      <div className="pointer-events-none absolute left-[-14%] top-[20%] h-[30rem] w-[30rem] rounded-full bg-cyan-500/[0.032] blur-[150px]" />
-
       <div className="mb-14 flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
         <div className="max-w-3xl">
           <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.34em] text-cyan-300">

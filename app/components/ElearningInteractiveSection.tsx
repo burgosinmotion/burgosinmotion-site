@@ -80,8 +80,6 @@ export default function ElearningInteractiveSection() {
       viewport={{ once: true, amount: 0.18 }}
       className="relative z-10 mx-auto max-w-7xl px-5 py-28 sm:px-6 md:py-32"
     >
-      <div className="pointer-events-none absolute right-[-10%] top-[16%] h-[28rem] w-[28rem] rounded-full bg-cyan-500/[0.028] blur-[150px]" />
-
       <div className="mx-auto mb-12 max-w-4xl text-center">
         <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.34em] text-cyan-300">
           EXPERIENCIAS INTERACTIVAS

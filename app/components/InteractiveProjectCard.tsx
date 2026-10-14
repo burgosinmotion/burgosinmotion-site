@@ -1,216 +1,125 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import {
-  AnimatePresence,
-  motion,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-  useTransform,
-  type MotionValue,
-} from "framer-motion";
-import {
-  useEffect,
-  useRef,
-  useState,
-  type MouseEvent,
-  type PointerEvent,
-} from "react";
-import type { HeroCategory, HeroProject } from "./heroProjectData";
+import { motion, useReducedMotion } from "framer-motion";
+import type { PortfolioCategory } from "./categoryData";
 
-const projectColors = {
-  cyan: "#06b6d4",
-  magenta: "#d946ef",
-  white: "#f5f5f5",
-  gray: "#a1a1aa",
-} satisfies Record<HeroProject["color"], string>;
+export type HeroCardPosition = {
+  x: number;
+  y: number;
+};
 
 type InteractiveProjectCardProps = {
-  project: HeroProject;
-  pointerX: MotionValue<number>;
-  pointerY: MotionValue<number>;
-  activeCategories: HeroCategory[] | null;
-  onCategoryFocus: (category: HeroCategory) => void;
-  onCategoryBlur: () => void;
+  category: PortfolioCategory;
+  position: HeroCardPosition;
+  rotation: number;
+  entryOffsetX: number;
+  entryOffsetY: number;
+  enterDuration: number;
+  exitDuration: number;
+  delay: number;
+  zIndex: number;
+  highlighted: boolean;
+  onActivate: (categoryId: PortfolioCategory["id"]) => void;
+  onFocus: (categoryId: PortfolioCategory["id"]) => void;
+  onBlur: () => void;
 };
 
 export default function InteractiveProjectCard({
-  project,
-  pointerX,
-  pointerY,
-  activeCategories,
-  onCategoryFocus,
-  onCategoryBlur,
+  category,
+  position,
+  rotation,
+  entryOffsetX,
+  entryOffsetY,
+  enterDuration,
+  exitDuration,
+  delay,
+  zIndex,
+  highlighted,
+  onActivate,
+  onFocus,
+  onBlur,
 }: InteractiveProjectCardProps) {
-  const [isRevealed, setIsRevealed] = useState(false);
-  const pendingTouchReveal = useRef(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const reduceMotion = useReducedMotion();
-  const parallaxFactor = useMotionValue(1);
-
-  const rawX = useTransform(
-    [pointerX, parallaxFactor],
-    ([position, factor]) => Number(position) * project.depth * Number(factor),
-  );
-  const rawY = useTransform(
-    [pointerY, parallaxFactor],
-    ([position, factor]) => Number(position) * project.depth * Number(factor),
-  );
-  const x = useSpring(rawX, { stiffness: 110, damping: 24, mass: 0.45 });
-  const y = useSpring(rawY, { stiffness: 110, damping: 24, mass: 0.45 });
-
-  const isHighlighted =
-    activeCategories?.some((category) =>
-      project.categories.includes(category),
-    ) ?? false;
-  const isDimmed = activeCategories !== null && !isHighlighted;
-  const color = projectColors[project.color];
-  const revealDuration = reduceMotion ? 0.12 : 0.34;
-  const horizontalOffset =
-    project.position.side === "left"
-      ? `${project.position.offset}%`
-      : undefined;
-  const horizontalRight =
-    project.position.side === "right"
-      ? `${project.position.offset}%`
-      : undefined;
-
-  const handlePointerDown = (event: PointerEvent<HTMLAnchorElement>) => {
-    pendingTouchReveal.current =
-      event.pointerType === "touch" && !isRevealed;
-  };
-
-  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (pendingTouchReveal.current) {
-      event.preventDefault();
-      pendingTouchReveal.current = false;
-      setIsRevealed(true);
-    }
-  };
-
-  const handleRevealStart = () => {
-    setIsRevealed(true);
-    parallaxFactor.set(0.2);
-  };
-
-  const handleRevealEnd = () => {
-    setIsRevealed(false);
-    parallaxFactor.set(1);
-  };
-
-  useEffect(() => {
-    if (!isRevealed) {
-      videoRef.current?.pause();
-    }
-  }, [isRevealed]);
 
   return (
-    <motion.div
-      initial={false}
+    <motion.button
+      type="button"
+      aria-label={`Ir a la categoría ${category.title}`}
+      onClick={() => onActivate(category.id)}
+      onFocus={() => onFocus(category.id)}
+      onBlur={onBlur}
+      initial={
+        reduceMotion
+          ? { opacity: 1, scale: 1, rotate: rotation }
+          : {
+              opacity: 0,
+              scale: 0.82,
+              rotate: rotation * 1.3,
+              x: entryOffsetX,
+              y: entryOffsetY,
+            }
+      }
       animate={{
-        opacity: isDimmed ? 0.66 : 1,
-        scale: reduceMotion ? 1 : isRevealed ? 1.04 : isHighlighted ? 1.025 : 1,
+        opacity: 1,
+        scale: highlighted ? 1.035 : 1,
+        rotate: highlighted ? rotation * 0.5 : rotation,
+        y: 0,
+        x: 0,
       }}
-      transition={{ duration: reduceMotion ? 0.12 : 0.3, ease: "easeOut" }}
-      className="absolute"
+      exit={
+        reduceMotion
+          ? { opacity: 0 }
+          : {
+              opacity: 0,
+              scale: 0.94,
+              rotate: rotation * 0.5,
+              transition: {
+                duration: exitDuration,
+                ease: [0.22, 1, 0.36, 1],
+              },
+            }
+      }
+      whileHover={
+        reduceMotion
+          ? undefined
+          : { scale: 1.035, rotate: rotation * 0.5 }
+      }
+      transition={{
+        duration: reduceMotion ? 0 : enterDuration,
+        delay: reduceMotion ? 0 : delay,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="hero-project-card pointer-events-auto absolute overflow-hidden rounded-[1.1rem] border border-white/[0.18] bg-[#17191c] text-left outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
       style={{
-        left: horizontalOffset,
-        right: horizontalRight,
-        top: `${project.position.top}%`,
-        x,
-        y,
+        left: position.x,
+        top: position.y,
+        width: `clamp(150px, 13vw, 220px)`,
+        aspectRatio: "16 / 10",
+        zIndex,
       }}
     >
-      <motion.div className="h-full w-full">
-        <Link
-          href={project.projectUrl}
-          aria-label={`Ver ${project.title}, ${project.type}`}
-          onPointerDown={handlePointerDown}
-          onPointerEnter={(event) => {
-            if (event.pointerType === "mouse") {
-              handleRevealStart();
-            }
-          }}
-          onMouseLeave={handleRevealEnd}
-          onClick={handleClick}
-          onFocus={() => {
-            handleRevealStart();
-            onCategoryFocus(project.categories[0]);
-          }}
-          onBlur={() => {
-            handleRevealEnd();
-            onCategoryBlur();
-          }}
-          className="hero-project-card group pointer-events-auto relative block aspect-[1.28] w-14 overflow-hidden rounded-[0.55rem] border border-white/10 outline-none focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-cyan-300/90 sm:w-[clamp(5rem,11vw,9rem)] lg:w-[clamp(7rem,12vw,10rem)]"
-          style={{ backgroundColor: color }}
-        >
-          <AnimatePresence initial={false}>
-            {isRevealed || isHighlighted ? (
-              <motion.div
-                key={`${project.id}-media`}
-                initial={{ opacity: 0, scale: 1.035 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.02 }}
-                transition={{ duration: revealDuration, ease: "easeOut" }}
-                className="absolute inset-0"
-              >
-                {project.mediaType === "video" ? (
-                  <video
-                    ref={videoRef}
-                    src={project.media}
-                    autoPlay={isRevealed && !reduceMotion}
-                    muted
-                    playsInline
-                    loop
-                    preload="none"
-                    className="h-full w-full object-cover"
-                  />
-                ) : (
-                  <Image
-                    src={project.media}
-                    alt={project.mediaAlt}
-                    fill
-                    sizes="(min-width: 1024px) 160px, (min-width: 640px) 144px, 56px"
-                    quality={72}
-                    loading="lazy"
-                    className="object-cover"
-                  />
-                )}
-                <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/5 to-transparent" />
-                <div className="absolute inset-x-2 bottom-2 flex flex-col items-start gap-0.5 text-left text-white sm:inset-x-3 sm:bottom-3">
-                  <span className="font-mono text-[0.55rem] font-semibold tracking-[0.12em] sm:text-[0.62rem]">
-                    {project.number} · {project.type}
-                  </span>
-                  <span className="flex max-w-full items-center gap-1 text-[0.62rem] font-semibold leading-tight sm:text-xs">
-                    <span className="truncate">{project.title}</span>
-                    <span aria-hidden="true">↗</span>
-                  </span>
-                </div>
-              </motion.div>
-            ) : null}
-          </AnimatePresence>
-
-          <motion.span
-            aria-hidden="true"
-            className="absolute inset-0"
-            initial={false}
-            animate={{
-              clipPath: isRevealed
-                ? "inset(0 0 100% 0)"
-                : isHighlighted
-                  ? "inset(0 0 76% 0)"
-                  : "inset(0 0 0 0)",
-            }}
-            transition={{ duration: revealDuration, ease: "easeInOut" }}
-            style={{ backgroundColor: color }}
-          />
-          <span className="sr-only">
-            {project.description ?? `${project.type}: ${project.title}`}
+      <Image
+        src={category.media}
+        alt=""
+        fill
+        sizes="224px"
+        quality={75}
+        loading="lazy"
+        className="object-cover"
+      />
+      <span className="absolute inset-0 bg-linear-to-t from-[#090a0c]/85 via-[#090a0c]/10 to-transparent" />
+      <span className="absolute inset-x-3 bottom-3 flex flex-col gap-1">
+        <span className="font-mono text-[0.58rem] font-bold uppercase tracking-[0.16em] text-white/70">
+          {category.number} / 06 · {category.shortTitle}
+        </span>
+        <span className="flex items-end justify-between gap-2 text-sm font-bold leading-tight text-white">
+          <span>{category.title}</span>
+          <span aria-hidden="true" className="shrink-0 text-cyan-200">
+            ↗
           </span>
-        </Link>
-      </motion.div>
-    </motion.div>
+        </span>
+      </span>
+    </motion.button>
   );
 }

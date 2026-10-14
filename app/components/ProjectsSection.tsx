@@ -3,30 +3,29 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
+import { portfolioCategories } from "./categoryData";
 
 const filters = ["Todos", "Motion Graphics", "E-Learning / Storyline"];
 
 const projects = [
   {
-    category: "Motion Graphics",
+    category: portfolioCategories[0],
     filter: "Motion Graphics",
     title: "Fintech Brand Identity Motion",
     text: "Sistema completo de animación, video explainer 2D y microinteracciones Lottie para aplicación bancaria...",
     meta: "After Effects • Lottie",
     src: "/projects/motion-graphics-project.png",
     alt: "Proyecto de motion design con estética tecnológica",
-    href: "/contacto",
     accent: "cyan",
   },
   {
-    category: "E-Learning Storyline",
+    category: portfolioCategories[1],
     filter: "E-Learning / Storyline",
     title: "Onboarding Gamificado Corp",
     text: "Módulo interactivo desarrollado en Articulate Storyline 360 con sistema de medallas, avatares y exportación SCORM...",
     meta: "Storyline • JS • xAPI",
     src: "/projects/storyline-project.png",
     alt: "Proyecto e-learning gamificado",
-    href: "/contacto",
     accent: "cyan",
   },
 ];
@@ -50,9 +49,6 @@ export default function ProjectsSection() {
       viewport={{ once: true, amount: 0.18 }}
       className="relative z-10 mx-auto max-w-7xl px-5 py-28 sm:px-6 md:py-32"
     >
-      <span id="portfolio-motion" className="absolute -top-24" aria-hidden="true" />
-      <div className="pointer-events-none absolute left-[-14%] top-[28%] h-[28rem] w-[28rem] rounded-full bg-cyan-500/[0.03] blur-[150px]" />
-
       <div className="mx-auto mb-12 max-w-4xl text-center md:mb-16">
         <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.34em] text-cyan-300">
           PORTAFOLIO SELECCIONADO
@@ -87,7 +83,7 @@ export default function ProjectsSection() {
         {visibleProjects.map((project, index) => (
           <motion.a
             key={project.title}
-            href={project.href}
+            href={project.category.slug}
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
@@ -116,7 +112,7 @@ export default function ProjectsSection() {
                     : "border-cyan-200/[0.16] bg-cyan-300/[0.16] text-cyan-100"
                 }`}
               >
-                {project.category}
+                {project.category.title}
               </span>
             </div>
 

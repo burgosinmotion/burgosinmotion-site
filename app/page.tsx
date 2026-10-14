@@ -1,3 +1,4 @@
+import CategoryShowcase from "./components/CategoryShowcase";
 import ServicesSection from "./components/ServicesSection";
 import HeroSection from "./components/HeroSection";
 import ShowreelSection from "./components/ShowreelSection";
@@ -9,6 +10,7 @@ export default function Home() {
   return (
     <main>
       <HeroSection />
+      <CategoryShowcase />
       <ShowreelSection />
       <ServicesSection />
       <ProjectsSection />

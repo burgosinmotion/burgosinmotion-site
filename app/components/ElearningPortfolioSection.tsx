@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import { portfolioCategories } from "./categoryData";
 import { motion } from "framer-motion";
 
 const elearningProjects = [
   {
+    categoryData: portfolioCategories[2],
     category: "Storyline 360",
     title: "Onboarding gamificado",
     text: "Módulos con toma de decisiones, progreso visual y feedback inmediato para equipos que necesitan aprender haciendo.",
@@ -12,6 +14,7 @@ const elearningProjects = [
     alt: "Proyecto e-learning gamificado en Storyline",
   },
   {
+    categoryData: portfolioCategories[3],
     category: "SCORM / xAPI",
     title: "Simulaciones formativas",
     text: "Experiencias interactivas con escenarios, seguimiento de avance y diseño instruccional integrado a la narrativa.",
@@ -19,6 +22,7 @@ const elearningProjects = [
     alt: "Simulación formativa interactiva",
   },
   {
+    categoryData: portfolioCategories[0],
     category: "Motion Learning",
     title: "Microlearning animado",
     text: "Cápsulas visuales breves que combinan claridad pedagógica, motion graphics y una interfaz simple de recorrer.",
@@ -37,8 +41,6 @@ export default function ElearningPortfolioSection() {
       viewport={{ once: true, amount: 0.18 }}
       className="relative z-10 mx-auto max-w-7xl px-6 py-32"
     >
-      <div className="pointer-events-none absolute right-[-12%] top-[24%] h-[30rem] w-[30rem] rounded-full bg-cyan-500/[0.032] blur-[150px]" />
-
       <div className="mb-16 max-w-4xl md:mb-20">
         <p className="mb-4 text-sm uppercase tracking-[0.3em] text-cyan-200/80">
           PORTFOLIO — E-LEARNING
@@ -57,7 +59,7 @@ export default function ElearningPortfolioSection() {
         {elearningProjects.map((project, index) => (
           <motion.a
             key={project.title}
-            href="#contacto"
+            href={project.categoryData.slug}
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}

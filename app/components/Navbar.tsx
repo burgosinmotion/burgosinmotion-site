@@ -2,51 +2,30 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { buttonGradientStyles } from "./buttonStyles";
 
 const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Sobre mí", href: "/sobre-mi" },
+  { label: "Home", href: "/#hero" },
+  { label: "Sobre mí", href: "/#sobre-mi" },
   { label: "Portfolio", href: "/proyectos" },
   { label: "Servicios", href: "/servicios" },
   { label: "Demos", href: "/demos-interactivas" },
 ];
 
 export default function Navbar() {
-  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [santiagoTime, setSantiagoTime] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    const updateSantiagoTime = () => {
-      const formattedTime = new Intl.DateTimeFormat("es-CL", {
-        weekday: "long",
-        hour: "2-digit",
-        minute: "2-digit",
-        hourCycle: "h23",
-        timeZone: "America/Santiago",
-      }).format(new Date());
-
-      setSantiagoTime(
-        formattedTime.charAt(0).toLocaleUpperCase("es-CL") +
-          formattedTime.slice(1),
-      );
-    };
-
     handleScroll();
-    updateSantiagoTime();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    const timeInterval = window.setInterval(updateSantiagoTime, 60_000);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.clearInterval(timeInterval);
     };
   }, []);
 
@@ -60,13 +39,13 @@ export default function Navbar() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 lg:px-6">
         <Link
-          href="/"
+          href="/#hero"
           aria-label="Ir al inicio"
           className="flex min-w-0 items-center gap-3 rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200/70"
         >
           <Image
             src="/brand/icon-header-burgosinmotion-white.png"
-            alt="Burgos in Motion"
+            alt=""
             width={48}
             height={48}
             priority
@@ -74,28 +53,12 @@ export default function Navbar() {
           />
         </Link>
 
-        <div className="ml-4 mr-auto hidden flex-col text-xs font-medium leading-tight text-zinc-300 sm:flex lg:ml-8">
-          <span>Concepción, Chile</span>
-          <time
-            aria-label={
-              santiagoTime
-                ? `Hora de Chile: ${santiagoTime}`
-                : "Hora local de Chile"
-            }
-            className="min-h-4"
-          >
-            {santiagoTime}
-          </time>
-        </div>
-
         <nav className="hidden items-center gap-5 text-xs font-semibold text-zinc-100 lg:flex xl:gap-8">
           {navItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className={`group relative inline-flex items-center rounded-sm transition duration-300 ease-out hover:text-cyan-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-400 ${
-                item.href === "/" && pathname === "/" ? "text-cyan-400" : ""
-              }`}
+              className="group relative inline-flex items-center rounded-sm transition duration-300 ease-out hover:text-cyan-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-400"
             >
               <span>{item.label}</span>
             </Link>
