@@ -62,7 +62,7 @@ export default function ElearningPortfolioSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true, amount: 0.2 }}
-            className="group relative overflow-hidden rounded-[2rem] border border-white/[0.06] bg-[rgba(8,10,18,0.34)] shadow-[0_28px_85px_rgba(0,0,0,0.24)] outline-none transition duration-700 ease-out hover:-translate-y-1 hover:border-white/[0.10] focus-visible:border-white/[0.12] focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05060A] motion-reduce:hover:translate-y-0"
+            className="group relative overflow-hidden rounded-[2rem] border border-white/[0.06] bg-[rgba(18,18,18,0.64)] shadow-[0_28px_85px_rgba(0,0,0,0.24)] outline-none transition duration-700 ease-out hover:-translate-y-1 hover:border-white/[0.10] focus-visible:border-white/[0.12] focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#121212] motion-reduce:hover:translate-y-0"
           >
             <div className="relative aspect-[16/11] overflow-hidden border-b border-white/[0.06]">
               <Image
@@ -72,7 +72,7 @@ export default function ElearningPortfolioSection() {
                 sizes="(min-width: 768px) 33vw, 100vw"
                 className="object-cover transition duration-700 ease-out group-hover:scale-[1.025] group-focus-visible:scale-[1.025]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#05060A]/72 via-[#05060A]/18 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#121212]/72 via-[#121212]/18 to-transparent" />
             </div>
 
             <div className="relative p-7 pr-12">

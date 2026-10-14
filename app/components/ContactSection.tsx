@@ -54,7 +54,7 @@ export default function ContactSection() {
             Convirtámoslo en una experiencia digital inolvidable. Escríbeme para conversar sobre tu próximo proyecto de motion graphics o e-learning.
           </p>
 
-          <div className="mt-12 flex max-w-xl items-center justify-between gap-4 rounded-xl border border-white/[0.08] bg-[#05060A]/76 p-4 shadow-[0_22px_70px_rgba(0,0,0,0.24)]">
+          <div className="mt-12 flex max-w-xl items-center justify-between gap-4 rounded-xl border border-white/[0.08] bg-[#121212]/76 p-4 shadow-[0_22px_70px_rgba(0,0,0,0.24)]">
             <div className="flex items-center gap-4">
               <span className="text-2xl text-cyan-300" aria-hidden="true">✉</span>
               <div>
@@ -72,7 +72,7 @@ export default function ContactSection() {
             <button
               type="button"
               onClick={copyEmail}
-              className="rounded-lg bg-white/[0.07] px-4 py-2 font-mono text-xs font-bold text-zinc-100 transition hover:bg-white/[0.12] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200"
+              className="rounded-full bg-white/[0.07] px-4 py-2 font-mono text-xs font-bold text-zinc-100 transition hover:bg-white/[0.12] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200"
             >
               {copied ? "Copiado" : "Copiar"}
             </button>
@@ -90,7 +90,7 @@ export default function ContactSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.06] bg-white/[0.055] text-xs font-bold text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.06] bg-white/[0.055] text-xs font-bold text-zinc-400 transition hover:border-cyan-300 hover:text-cyan-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200"
               >
                 <social.icon aria-hidden="true" className="h-5 w-5" />
               </a>
@@ -100,7 +100,7 @@ export default function ContactSection() {
 
         <form
           onSubmit={submitForm}
-          className="rounded-[1.5rem] border border-white/[0.08] bg-[#111827]/78 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.28)] backdrop-blur-md md:p-8"
+          className="rounded-[1.5rem] border border-white/[0.08] bg-[#121212]/78 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.28)] backdrop-blur-md md:p-8"
         >
           <div className="grid gap-5 md:grid-cols-2">
             <label className="grid gap-2 font-mono text-xs font-bold text-zinc-400">
@@ -109,7 +109,7 @@ export default function ContactSection() {
                 name="name"
                 required
                 placeholder="Tu nombre"
-                className="rounded-xl border border-white/[0.08] bg-[#05060A]/78 px-4 py-3 font-sans text-base font-medium text-zinc-100 outline-none transition placeholder:text-zinc-500 focus:border-cyan-200/40"
+                className="rounded-xl border border-white/[0.08] bg-[#121212]/78 px-4 py-3 font-sans text-base font-medium text-zinc-100 outline-none transition placeholder:text-zinc-500 focus:border-cyan-200/40"
               />
             </label>
             <label className="grid gap-2 font-mono text-xs font-bold text-zinc-400">
@@ -119,7 +119,7 @@ export default function ContactSection() {
                 type="email"
                 required
                 placeholder="tu@email.com"
-                className="rounded-xl border border-white/[0.08] bg-[#05060A]/78 px-4 py-3 font-sans text-base font-medium text-zinc-100 outline-none transition placeholder:text-zinc-500 focus:border-cyan-200/40"
+                className="rounded-xl border border-white/[0.08] bg-[#121212]/78 px-4 py-3 font-sans text-base font-medium text-zinc-100 outline-none transition placeholder:text-zinc-500 focus:border-cyan-200/40"
               />
             </label>
           </div>
@@ -128,7 +128,7 @@ export default function ContactSection() {
             Asunto
             <select
               name="subject"
-              className="rounded-xl border border-white/[0.08] bg-[#05060A]/78 px-4 py-3 font-sans text-base font-bold text-zinc-100 outline-none transition focus:border-cyan-200/40"
+              className="rounded-xl border border-white/[0.08] bg-[#121212]/78 px-4 py-3 font-sans text-base font-bold text-zinc-100 outline-none transition focus:border-cyan-200/40"
             >
               <option>Proyecto Motion Graphics</option>
               <option>E-Learning Storyline</option>
@@ -143,13 +143,13 @@ export default function ContactSection() {
               required
               rows={5}
               placeholder="Cuéntame sobre los detalles de tu proyecto o requerimiento..."
-              className="resize-y rounded-xl border border-white/[0.08] bg-[#05060A]/78 px-4 py-3 font-sans text-base font-medium text-zinc-100 outline-none transition placeholder:text-zinc-500 focus:border-cyan-200/40"
+              className="resize-y rounded-xl border border-white/[0.08] bg-[#121212]/78 px-4 py-3 font-sans text-base font-medium text-zinc-100 outline-none transition placeholder:text-zinc-500 focus:border-cyan-200/40"
             />
           </label>
 
           <button
             type="submit"
-            className="mt-6 inline-flex w-full items-center justify-center gap-3 rounded-xl bg-violet-500 px-6 py-4 font-bold text-white shadow-[0_16px_40px_rgba(99,102,241,0.28)] transition hover:-translate-y-0.5 hover:bg-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-200 motion-reduce:hover:translate-y-0"
+            className="button-gradient mt-6 w-full"
           >
             <span aria-hidden="true">✈</span>
             Enviar Mensaje

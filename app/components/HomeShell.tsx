@@ -8,7 +8,7 @@ export default function HomeShell({ children }: { children: ReactNode }) {
         relative
         isolate
         overflow-hidden
-        bg-[#05060A]
+        bg-[#121212]
         text-white
       "
     >

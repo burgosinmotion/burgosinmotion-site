@@ -16,7 +16,7 @@ const projects = [
     src: "/projects/motion-graphics-project.png",
     alt: "Proyecto de motion design con estética tecnológica",
     href: "/contacto",
-    accent: "violet",
+    accent: "cyan",
   },
   {
     category: "E-Learning Storyline",
@@ -51,7 +51,7 @@ export default function ProjectsSection() {
       className="relative z-10 mx-auto max-w-7xl px-5 py-28 sm:px-6 md:py-32"
     >
       <span id="portfolio-motion" className="absolute -top-24" aria-hidden="true" />
-      <div className="pointer-events-none absolute left-[-14%] top-[28%] h-[28rem] w-[28rem] rounded-full bg-violet-500/[0.03] blur-[150px]" />
+      <div className="pointer-events-none absolute left-[-14%] top-[28%] h-[28rem] w-[28rem] rounded-full bg-cyan-500/[0.03] blur-[150px]" />
 
       <div className="mx-auto mb-12 max-w-4xl text-center md:mb-16">
         <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.34em] text-cyan-300">
@@ -74,7 +74,7 @@ export default function ProjectsSection() {
             onClick={() => setActiveFilter(filter)}
             className={`rounded-xl border px-5 py-3 text-sm font-bold transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200 ${
               activeFilter === filter
-                ? "border-violet-300/50 bg-violet-500 text-white shadow-[0_12px_30px_rgba(99,102,241,0.26)]"
+                ? "border-cyan-300/50 bg-cyan-500 text-white shadow-[0_12px_30px_rgba(6,182,212,0.22)]"
                 : "border-white/[0.08] bg-white/[0.045] text-zinc-400 hover:border-white/[0.16] hover:text-zinc-100"
             }`}
           >
@@ -92,15 +92,15 @@ export default function ProjectsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true, amount: 0.2 }}
-            className={`group relative overflow-hidden rounded-[1.5rem] border bg-[#101728]/86 shadow-[0_28px_85px_rgba(0,0,0,0.26)] outline-none transition duration-700 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05060A] motion-reduce:hover:translate-y-0 ${
+            className={`group relative overflow-hidden rounded-[1.5rem] border bg-[#121212]/86 shadow-[0_28px_85px_rgba(0,0,0,0.26)] outline-none transition duration-700 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#121212] motion-reduce:hover:translate-y-0 ${
               project.accent === "cyan"
                 ? "border-cyan-300/[0.14] hover:border-cyan-200/[0.25]"
                 : project.accent === "violet"
-                  ? "border-violet-300/[0.14] hover:border-violet-200/[0.25]"
-                  : "border-blue-300/[0.14] hover:border-blue-200/[0.25]"
+                  ? "border-cyan-300/[0.14] hover:border-cyan-200/[0.25]"
+                  : "border-cyan-300/[0.14] hover:border-cyan-200/[0.25]"
             }`}
           >
-            <div className="relative aspect-[16/9] overflow-hidden border-b border-white/[0.06] bg-[#07101f]">
+            <div className="relative aspect-[16/9] overflow-hidden border-b border-white/[0.06] bg-[#121212]">
               <Image
                 src={project.src}
                 alt={project.alt}
@@ -108,12 +108,12 @@ export default function ProjectsSection() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover transition duration-700 ease-out group-hover:scale-[1.025]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#05060A]/82 via-[#05060A]/22 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#121212]/82 via-[#121212]/22 to-transparent" />
               <span
                 className={`absolute left-5 top-5 rounded-md border px-3 py-1.5 font-mono text-[0.68rem] font-bold ${
                   project.accent === "cyan"
                     ? "border-cyan-200/[0.14] bg-cyan-300/[0.12] text-cyan-100"
-                    : "border-violet-200/[0.16] bg-violet-300/[0.16] text-violet-100"
+                    : "border-cyan-200/[0.16] bg-cyan-300/[0.16] text-cyan-100"
                 }`}
               >
                 {project.category}

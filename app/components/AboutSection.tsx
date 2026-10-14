@@ -7,7 +7,7 @@ import CountUp from "react-countup";
 const stats = [
   { value: 8, suffix: "+", label: "Años Exp.", color: "text-cyan-300" },
   { value: 100, suffix: "+", label: "Proyectos E-Learning", color: "text-emerald-300" },
-  { value: 50, suffix: "+", label: "Videos Motion", color: "text-violet-300" },
+  { value: 50, suffix: "+", label: "Videos Motion", color: "text-cyan-300" },
 ];
 
 const stack = [
@@ -34,9 +34,9 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="flex min-h-[440px] flex-col items-center justify-center rounded-[1.5rem] border border-violet-300/[0.22] bg-[#111827]/72 p-8 text-center shadow-[0_30px_90px_rgba(0,0,0,0.28)] backdrop-blur-md"
+          className="flex min-h-[440px] flex-col items-center justify-center rounded-[1.5rem] border border-white/[0.10] bg-[#121212]/72 p-8 text-center shadow-[0_30px_90px_rgba(0,0,0,0.28)] backdrop-blur-md"
         >
-          <div className="relative h-28 w-28 overflow-hidden rounded-full border-[4px] border-cyan-300 bg-[#05060A] shadow-[0_0_34px_rgba(34,211,238,0.20)]">
+          <div className="relative h-28 w-28 overflow-hidden rounded-full border-[4px] border-cyan-300 bg-[#121212] shadow-[0_0_34px_rgba(34,211,238,0.20)]">
             <Image
               src="/diego.jpg"
               alt="Diego Burgos"
