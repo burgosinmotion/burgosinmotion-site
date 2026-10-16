@@ -87,11 +87,7 @@ export default function CategoryShowcase() {
           <motion.article
             key={category.id}
             id={`category-${category.id}`}
-            initial={
-              reduceMotion
-                ? { y: 0 }
-                : { y: 64 }
-            }
+            initial={{ y: 64 }}
             whileInView={{ y: 0 }}
             transition={{
               duration: reduceMotion ? 0 : 0.75,
@@ -116,15 +112,6 @@ export default function CategoryShowcase() {
               </div>
 
               <div className="my-auto py-10">
-                <p
-                  className={`mb-4 font-mono text-xs font-bold uppercase tracking-[0.24em] ${
-                    category.accent === "cyan"
-                      ? "text-cyan-300"
-                      : "text-fuchsia-300"
-                  }`}
-                >
-                  {category.shortTitle}
-                </p>
                 <h3 className="max-w-xl text-4xl font-black leading-[0.98] tracking-tight text-zinc-50 sm:text-5xl xl:text-6xl">
                   {category.title}
                 </h3>
@@ -135,7 +122,7 @@ export default function CategoryShowcase() {
                   {category.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full border border-white/[0.12] bg-black/20 px-3 py-1.5 text-[0.68rem] font-medium text-zinc-300 sm:text-xs"
+                      className="rounded-full border border-white/[0.12] bg-black/20 px-3 py-1.5 text-[0.68rem] font-medium text-zinc-300 transition-colors duration-300 group-hover:border-white/[0.20] group-hover:text-zinc-100 motion-reduce:transition-none sm:text-xs"
                     >
                       {tag}
                     </span>
@@ -154,7 +141,7 @@ export default function CategoryShowcase() {
                 Explorar proyectos
                 <span
                   aria-hidden="true"
-                  className="transition-transform duration-200 group-hover/link:translate-x-1"
+                  className="transition-transform duration-300 group-hover/link:translate-x-[3px] group-hover/link:-translate-y-[3px] motion-reduce:transition-none"
                 >
                   ↗
                 </span>
@@ -173,7 +160,7 @@ export default function CategoryShowcase() {
                 sizes="(min-width: 1024px) 60vw, 100vw"
                 quality={75}
                 loading="lazy"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025] motion-reduce:transition-none"
+                className="object-cover transition-transform duration-400 ease-out group-hover:scale-[1.02] motion-reduce:transition-none"
               />
               <div className="absolute inset-0 bg-linear-to-t from-[#090a0c]/80 via-[#090a0c]/10 to-transparent lg:bg-linear-to-r lg:from-[#090a0c]/10 lg:via-transparent lg:to-transparent" />
               <span className="absolute bottom-5 left-5 rounded-full border border-white/[0.16] bg-[#121212]/55 px-3 py-1.5 font-mono text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-white/75 backdrop-blur-sm sm:bottom-7 sm:left-7">

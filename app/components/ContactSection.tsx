@@ -36,13 +36,14 @@ export default function ContactSection() {
 
   return (
     <motion.section
-      id="contacto"
+      id="contact"
       initial={{ opacity: 0, y: 80 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
       viewport={{ once: true, amount: 0.18 }}
       className="relative z-10 mx-auto max-w-7xl px-5 pb-20 pt-28 sm:px-6 md:pb-24 md:pt-32"
     >
+      <span id="contacto" className="absolute -top-28" aria-hidden="true" />
       <div className="grid gap-12 lg:grid-cols-[0.78fr_1.12fr] lg:items-start">
         <div className="pt-2">
           <p className="mb-8 font-mono text-xs font-bold uppercase tracking-[0.34em] text-cyan-300">

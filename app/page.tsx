@@ -11,8 +11,8 @@ export default function Home() {
     <main>
       <HeroSection />
       <CategoryShowcase />
-      <ShowreelSection />
       <ServicesSection />
+      <ShowreelSection />
       <ProjectsSection />
       <AboutSection />
       <ContactSection />

@@ -1,35 +1,27 @@
 "use client";
 
 import Image from "next/image";
-import { portfolioCategories } from "./categoryData";
+import { getCategoryById, portfolioCategories } from "./categoryData";
 import { motion } from "framer-motion";
+import { portfolioProjects } from "./projectData";
 
-const elearningProjects = [
-  {
-    categoryData: portfolioCategories[2],
-    category: "Storyline 360",
-    title: "Onboarding gamificado",
-    text: "Módulos con toma de decisiones, progreso visual y feedback inmediato para equipos que necesitan aprender haciendo.",
-    src: "/projects/storyline-project.png",
-    alt: "Proyecto e-learning gamificado en Storyline",
-  },
-  {
-    categoryData: portfolioCategories[3],
-    category: "SCORM / xAPI",
-    title: "Simulaciones formativas",
-    text: "Experiencias interactivas con escenarios, seguimiento de avance y diseño instruccional integrado a la narrativa.",
-    src: "/projects/storyline-project.png",
-    alt: "Simulación formativa interactiva",
-  },
-  {
-    categoryData: portfolioCategories[0],
-    category: "Motion Learning",
-    title: "Microlearning animado",
-    text: "Cápsulas visuales breves que combinan claridad pedagógica, motion graphics y una interfaz simple de recorrer.",
-    src: "/projects/motion-graphics-project.png",
-    alt: "Microlearning animado con motion graphics",
-  },
-];
+const elearningProjects = portfolioProjects
+  .filter((project) => project.categories.some((categoryId) => categoryId === "elearning" || categoryId === "storyline" || categoryId === "gamification" || categoryId === "interactive"))
+  .map((project) => {
+    const categoryId = project.categories.find(
+      (category) => category === "elearning" || category === "storyline" || category === "gamification" || category === "interactive",
+    ) ?? "elearning";
+    const categoryData = getCategoryById(categoryId) ?? portfolioCategories[1];
+
+    return {
+      categoryData,
+      category: categoryData.title,
+      title: project.title,
+      text: project.summary ?? "Proyecto real del portafolio.",
+      src: project.thumbnail,
+      alt: project.thumbnailAlt,
+    };
+  });
 
 export default function ElearningPortfolioSection() {
   return (

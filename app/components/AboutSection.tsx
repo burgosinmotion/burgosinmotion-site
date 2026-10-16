@@ -13,8 +13,9 @@ const stats = [
 const stack = [
   "After Effects",
   "Articulate Storyline 360",
-  "Lottie / Rive",
+  "JavaScript",
   "SCORM / xAPI",
+  "Lottie / Rive",
 ];
 
 export default function AboutSection() {
@@ -87,7 +88,7 @@ export default function AboutSection() {
 
           <div className="mt-10">
             <p className="mb-3 font-mono text-sm text-zinc-400">
-              Tech Stack & Software:
+              Herramientas y tecnologías:
             </p>
             <div className="flex flex-wrap gap-2">
               {stack.map((item) => (
@@ -99,6 +100,10 @@ export default function AboutSection() {
                 </span>
               ))}
             </div>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-zinc-500">
+              JavaScript aplicado como capacidad complementaria a experiencias
+              multimedia e-learning.
+            </p>
           </div>
         </div>
       </div>

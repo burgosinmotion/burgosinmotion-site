@@ -3,32 +3,29 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
-import { portfolioCategories } from "./categoryData";
+import { getCategoryById, portfolioCategories } from "./categoryData";
+import { portfolioProjects } from "./projectData";
 
 const filters = ["Todos", "Motion Graphics", "E-Learning / Storyline"];
 
-const projects = [
-  {
-    category: portfolioCategories[0],
-    filter: "Motion Graphics",
-    title: "Fintech Brand Identity Motion",
-    text: "Sistema completo de animación, video explainer 2D y microinteracciones Lottie para aplicación bancaria...",
-    meta: "After Effects • Lottie",
-    src: "/projects/motion-graphics-project.png",
-    alt: "Proyecto de motion design con estética tecnológica",
-    accent: "cyan",
-  },
-  {
-    category: portfolioCategories[1],
-    filter: "E-Learning / Storyline",
-    title: "Onboarding Gamificado Corp",
-    text: "Módulo interactivo desarrollado en Articulate Storyline 360 con sistema de medallas, avatares y exportación SCORM...",
-    meta: "Storyline • JS • xAPI",
-    src: "/projects/storyline-project.png",
-    alt: "Proyecto e-learning gamificado",
-    accent: "cyan",
-  },
-];
+const projects = portfolioProjects
+  .filter((project) => project.featured)
+  .map((project) => {
+    const categoryId = project.categories[0] ?? "motion";
+    const category = getCategoryById(categoryId) ?? portfolioCategories[0];
+
+    return {
+      category,
+      filter: category.id === "motion" ? "Motion Graphics" : "E-Learning / Storyline",
+      title: project.title,
+      text: project.summary ?? "Proyecto real del portafolio.",
+      meta: [project.client, category.title].filter(Boolean).join(" • "),
+      src: project.thumbnail,
+      alt: project.thumbnailAlt,
+      accent: category.accent,
+      slug: project.slug,
+    };
+  });
 
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState("Todos");
@@ -83,18 +80,12 @@ export default function ProjectsSection() {
         {visibleProjects.map((project, index) => (
           <motion.a
             key={project.title}
-            href={project.category.slug}
+            href={project.slug ?? project.category.slug}
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true, amount: 0.2 }}
-            className={`group relative overflow-hidden rounded-[1.5rem] border bg-[#121212]/86 outline-none transition duration-700 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#121212] motion-reduce:hover:translate-y-0 ${
-              project.accent === "cyan"
-                ? "border-cyan-300/[0.14] hover:border-cyan-200/[0.25]"
-                : project.accent === "violet"
-                  ? "border-cyan-300/[0.14] hover:border-cyan-200/[0.25]"
-                  : "border-cyan-300/[0.14] hover:border-cyan-200/[0.25]"
-            }`}
+            className={`group relative overflow-hidden rounded-[1.5rem] border bg-[#121212]/86 outline-none transition duration-700 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#121212] motion-reduce:hover:translate-y-0 border-cyan-300/[0.14] hover:border-cyan-200/[0.25]`}
           >
             <div className="relative aspect-[16/9] overflow-hidden border-b border-white/[0.06] bg-[#121212]">
               <Image

@@ -8,8 +8,10 @@ export const portfolioCategories = [
     description:
       "Animación, narrativa visual y sistemas gráficos diseñados para comunicar ideas a través del movimiento.",
     slug: "/motion-graphics",
-    media: "/projects/motion-graphics-project.png",
-    mediaAlt: "Composición de motion graphics creada en After Effects",
+    media: "/projects/essbio-delitos-ambientales/posters/essbio-01.webp",
+    mediaAlt:
+      "Ilustración de delitos ambientales con un personaje y símbolos jurídicos sobre un mapa de Chile",
+    mediaCaption: "ESSBIO / Delitos Ambientales",
     tags: ["After Effects", "2D Motion", "Animation", "Visual Storytelling"],
     accent: "cyan",
     relatedHref: "/proyectos",
@@ -26,7 +28,7 @@ export const portfolioCategories = [
     slug: "/e-learning",
     media: "/scorm/portadas/actividad-demo-01.png",
     mediaAlt: "Vista de referencia de una experiencia de aprendizaje interactiva",
-    tags: ["E-Learning", "Interactive Learning", "SCORM", "Instructional Design"],
+    tags: ["Interactive Learning", "SCORM", "Instructional Design"],
     accent: "magenta",
     relatedHref: "/demos-interactivas",
     relatedLabel: "Ver demos de aprendizaje interactivo",

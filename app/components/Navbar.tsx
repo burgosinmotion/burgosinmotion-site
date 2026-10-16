@@ -8,8 +8,8 @@ import { buttonGradientStyles } from "./buttonStyles";
 const navItems = [
   { label: "Home", href: "/#hero" },
   { label: "Sobre mí", href: "/#sobre-mi" },
-  { label: "Portfolio", href: "/proyectos" },
-  { label: "Servicios", href: "/servicios" },
+  { label: "Portfolio", href: "/#proyectos" },
+  { label: "Servicios", href: "/#servicios" },
   { label: "Demos", href: "/demos-interactivas" },
 ];
 
@@ -64,7 +64,7 @@ export default function Navbar() {
             </Link>
           ))}
           <Link
-            href="/contacto"
+            href="/#contact"
             className={`${buttonGradientStyles} navbar-contact min-h-[1.875rem] px-5 py-1.5 text-xs`}
           >
             Contacto
@@ -98,7 +98,7 @@ export default function Navbar() {
               </Link>
             ))}
             <Link
-              href="/contacto"
+              href="/#contact"
               onClick={() => setMenuOpen(false)}
               className={buttonGradientStyles}
             >

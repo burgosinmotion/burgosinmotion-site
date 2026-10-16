@@ -1,9 +1,19 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function BackgroundAtmosphere() {
-  const reduceMotion = useReducedMotion();
+  const [reduceMotion, setReduceMotion] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setReduceMotion(mediaQuery.matches);
+
+    updatePreference();
+    mediaQuery.addEventListener("change", updatePreference);
+    return () => mediaQuery.removeEventListener("change", updatePreference);
+  }, []);
 
   return (
     <div
@@ -13,13 +23,13 @@ export default function BackgroundAtmosphere() {
       <motion.div
         aria-hidden="true"
         animate={
-          reduceMotion
-            ? undefined
-            : {
+          reduceMotion === false
+            ? {
                 x: ["-0.7vw", "0.7vw"],
                 y: ["0vh", "-0.6vh"],
                 scale: [0.99, 1.01],
               }
+            : undefined
         }
         transition={{
           duration: 34,
@@ -31,7 +41,7 @@ export default function BackgroundAtmosphere() {
         style={{
           backgroundImage:
             "radial-gradient(ellipse 58% 48% at 50% 28%, rgb(6 182 212 / 12%) 0%, rgb(6 182 212 / 8%) 34%, rgb(6 182 212 / 3%) 66%, rgb(18 18 18 / 0%) 100%), radial-gradient(ellipse 44% 40% at 76% 76%, rgb(217 70 239 / 3.5%) 0%, rgb(217 70 239 / 1.5%) 45%, rgb(18 18 18 / 0%) 100%)",
-          willChange: reduceMotion ? undefined : "transform",
+          willChange: reduceMotion === false ? "transform" : undefined,
         }}
       />
       <div
