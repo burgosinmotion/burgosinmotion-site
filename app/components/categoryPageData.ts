@@ -101,7 +101,7 @@ export const categoryPageData: Record<CategoryId, CategoryPageConfig> = {
         eyebrow: "EXPERIENCIA DESTACADA",
         title: "Aprendizaje en acción.",
         description:
-          "Un espacio para presentar un curso real, su objetivo y su contexto de publicación cuando esa información esté disponible.",
+          "FINNING y Prevención de delitos reúnen experiencias formativas interactivas con mecánicas de juego y escenarios de aprendizaje.",
         slots: slots("elearning", [
           ["Preview del curso o experiencia", "wide", "landscape"],
         ]),
@@ -162,9 +162,9 @@ export const categoryPageData: Record<CategoryId, CategoryPageConfig> = {
         eyebrow: "PLAYGROUND",
         title: "Un espacio para jugar y aprender.",
         description:
-          "La demo interactiva se incorporará aquí cuando esté lista para publicarse. No hay un juego ficticio simulando un proyecto real.",
+          "FINNING propone encontrar pares en una actividad de aprendizaje; Prevención de delitos combina una misión con exploración, pistas y preguntas.",
         slots: slots("gamification", [
-          ["Slot para demo interactiva", "wide", "landscape"],
+          ["FINNING · Encuentra el par correcto", "wide", "landscape"],
         ]),
       },
       {
@@ -202,13 +202,29 @@ export const categoryPageData: Record<CategoryId, CategoryPageConfig> = {
         ],
       },
       {
-        type: "projects",
-        eyebrow: "MINI-JUEGOS",
-        title: "Formatos por explorar.",
-        slots: slots("gamification", [
-          ["Slot para demo de cartas o quiz", "medium", "square"],
-          ["Slot para demo de desafío", "medium", "square"],
-        ], 2),
+        type: "cards",
+        eyebrow: "MECÁNICAS EN LOS PROYECTOS",
+        title: "Interacción y progreso.",
+        description:
+          "Dos experiencias aplican dinámicas distintas para guiar la participación.",
+        layout: "grid",
+        items: [
+          {
+            title: "Asociar pares",
+            description:
+              "FINNING presenta tarjetas que se giran y se revisan para encontrar pares.",
+          },
+          {
+            title: "Explorar una misión",
+            description:
+              "Prevención de delitos propone recorrer una oficina, reunir pistas y responder preguntas.",
+          },
+          {
+            title: "Seguir el avance",
+            description:
+              "Las experiencias muestran indicadores como tiempo, vidas, preguntas y puntaje de investigación.",
+          },
+        ],
       },
       {
         type: "process",
@@ -231,9 +247,9 @@ export const categoryPageData: Record<CategoryId, CategoryPageConfig> = {
         eyebrow: "STORYLINE EXPERIENCE",
         title: "Interacción construida con intención.",
         description:
-          "El espacio para una experiencia real de Storyline, pendiente de incorporar su preview y contexto.",
+          "FINNING y Prevención de delitos muestran experiencias interactivas de aprendizaje desarrolladas en Articulate Storyline.",
         slots: slots("storyline", [
-          ["Slot para experiencia de Storyline", "wide", "landscape"],
+          ["Experiencias interactivas en Storyline", "wide", "landscape"],
         ]),
       },
       {
@@ -322,11 +338,9 @@ export const categoryPageData: Record<CategoryId, CategoryPageConfig> = {
         eyebrow: "SELECCIÓN VISUAL",
         title: "Composición en distintos formatos.",
         description:
-          "La galería está preparada para piezas verticales, cuadradas y apaisadas; se completará con trabajos finales.",
+          "ESSBIO combina ilustración, texto en pantalla y elementos jurídicos en tres piezas audiovisuales de Motion Graphics.",
         slots: slots("multimedia", [
-          ["Slot para composición vertical", "medium", "portrait"],
-          ["Slot para composición cuadrada", "medium", "square"],
-          ["Slot para composición apaisada", "wide", "landscape"],
+          ["ESSBIO · Delitos Ambientales", "wide", "landscape"],
         ]),
       },
       {
@@ -364,19 +378,10 @@ export const categoryPageData: Record<CategoryId, CategoryPageConfig> = {
         eyebrow: "EXPERIENCIA DESTACADA",
         title: "Diseño que responde.",
         description:
-          "Un espacio preparado para una experiencia interactiva real, con media y descripción cuando el proyecto esté listo.",
+          "Prevención de delitos combina una misión guiada, exploración de una oficina, pistas y preguntas en una experiencia interactiva.",
         slots: slots("interactive", [
-          ["Slot para experiencia interactiva", "wide", "landscape"],
+          ["Prevención de delitos · Estrategia contra la corrupción", "wide", "landscape"],
         ]),
-      },
-      {
-        type: "projects",
-        eyebrow: "EXPERIMENTS / TOOLS",
-        title: "Prototipos y herramientas.",
-        slots: slots("interactive", [
-          ["Slot para prototipo o interfaz", "large", "landscape"],
-          ["Slot para experimento o utility", "medium", "square"],
-        ], 2),
       },
       {
         type: "statement",
