@@ -114,7 +114,7 @@ export default function Navbar() {
         </button>
       </div>
       {areasOpen ? (
-        <div className="absolute left-1/2 top-full hidden w-[min(960px,calc(100vw-3rem))] -translate-x-1/2 pt-2 lg:block">
+        <div className="absolute right-[clamp(2rem,4vw,5rem)] top-full hidden w-[min(60rem,calc(100%-clamp(5rem,9vw,11rem)-clamp(2rem,4vw,5rem)))] pt-2 lg:block">
           <nav ref={panelRef} id="areas-desktop" aria-label="Áreas de trabajo" className="areas-menu grid w-full max-h-[calc(100dvh-7rem)] grid-cols-[1.15fr_1fr] gap-3 overflow-y-auto overscroll-contain rounded-2xl border border-white/[0.12] bg-[#101214]/98 p-3 shadow-[0_30px_90px_#0009] backdrop-blur-2xl">
             <div className="min-w-0">
               <p className="px-4 pb-3 pt-2 font-mono text-[10px] uppercase tracking-[0.25em] text-zinc-500">Seis áreas. Una mirada.</p>
