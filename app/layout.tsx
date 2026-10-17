@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
-import SmoothScroll from "./smooth-scroll";
+import { Suspense } from "react";
+import NavigationScroll from "./navigation-scroll";
 import HomeShell from "./components/HomeShell";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -88,13 +89,14 @@ export default function RootLayout({
       className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <SmoothScroll>
-          <HomeShell>
-            <SiteChrome navbar={<Navbar />} footer={<Footer />}>
-              {children}
-            </SiteChrome>
-          </HomeShell>
-        </SmoothScroll>
+        <Suspense fallback={null}>
+          <NavigationScroll />
+        </Suspense>
+        <HomeShell>
+          <SiteChrome navbar={<Navbar />} footer={<Footer />}>
+            {children}
+          </SiteChrome>
+        </HomeShell>
       </body>
     </html>
   );

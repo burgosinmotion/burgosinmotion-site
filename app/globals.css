@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  scroll-padding-top: 6rem;
 }
 
 :root {
@@ -83,6 +84,15 @@ button:not(:disabled):not([aria-disabled="true"]),
   touch-action: manipulation;
 }
 
+@keyframes areas-menu-enter {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.areas-menu {
+  animation: areas-menu-enter 160ms ease-out both;
+}
+
 .hero-project-card:focus-visible {
   outline: 2px solid rgb(103 232 249 / 90%);
   outline-offset: 4px;
@@ -111,4 +121,6 @@ button:not(:disabled):not([aria-disabled="true"]),
   .button-gradient {
     transition: none;
   }
+
+  .areas-menu { animation: none; }
 }
