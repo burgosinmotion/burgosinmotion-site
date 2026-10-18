@@ -1,12 +1,10 @@
 import type { CategoryId } from "./categoryData";
-import type { ProjectSlot } from "./projectData";
 
 type ProjectSection = {
   type: "projects";
   eyebrow: string;
   title: string;
   description?: string;
-  slots: ProjectSlot[];
 };
 
 type CardsSection = {
@@ -43,22 +41,6 @@ type CategoryPageConfig = {
   sections: CategoryPageSection[];
 };
 
-const slots = (
-  category: string,
-  entries: [string, ProjectSlot["size"], ProjectSlot["aspect"]][],
-  firstAsset = 1,
-): ProjectSlot[] =>
-  entries.map(([label, size, aspect], index) => {
-    const assetNumber = firstAsset + index;
-    return {
-      id: `${category}-slot-${assetNumber}`,
-      label,
-      assetPath: `/projects/${category}/project-${String(assetNumber).padStart(2, "0")}.webp`,
-      size,
-      aspect,
-    };
-  });
-
 export const categoryPageData: Record<CategoryId, CategoryPageConfig> = {
   motion: {
     sections: [
@@ -68,9 +50,6 @@ export const categoryPageData: Record<CategoryId, CategoryPageConfig> = {
         title: "Delitos Ambientales.",
         description:
           "Tres piezas audiovisuales de Motion Graphics para ESSBIO sobre contenidos relacionados con delitos ambientales.",
-        slots: slots("motion", [
-          ["ESSBIO · Delitos Ambientales", "wide", "landscape"],
-        ]),
       },
       {
         type: "cards",
@@ -102,9 +81,6 @@ export const categoryPageData: Record<CategoryId, CategoryPageConfig> = {
         title: "Aprendizaje en acción.",
         description:
           "FINNING y Prevención de delitos reúnen experiencias formativas interactivas con mecánicas de juego y escenarios de aprendizaje.",
-        slots: slots("elearning", [
-          ["Preview del curso o experiencia", "wide", "landscape"],
-        ]),
       },
       {
         type: "cards",
@@ -163,9 +139,6 @@ export const categoryPageData: Record<CategoryId, CategoryPageConfig> = {
         title: "Un espacio para jugar y aprender.",
         description:
           "FINNING propone encontrar pares en una actividad de aprendizaje; Prevención de delitos combina una misión con exploración, pistas y preguntas.",
-        slots: slots("gamification", [
-          ["FINNING · Encuentra el par correcto", "wide", "landscape"],
-        ]),
       },
       {
         type: "cards",
@@ -248,9 +221,6 @@ export const categoryPageData: Record<CategoryId, CategoryPageConfig> = {
         title: "Interacción construida con intención.",
         description:
           "FINNING y Prevención de delitos muestran experiencias interactivas de aprendizaje desarrolladas en Articulate Storyline.",
-        slots: slots("storyline", [
-          ["Experiencias interactivas en Storyline", "wide", "landscape"],
-        ]),
       },
       {
         type: "cards",
@@ -339,9 +309,6 @@ export const categoryPageData: Record<CategoryId, CategoryPageConfig> = {
         title: "Composición en distintos formatos.",
         description:
           "ESSBIO combina ilustración, texto en pantalla y elementos jurídicos en tres piezas audiovisuales de Motion Graphics.",
-        slots: slots("multimedia", [
-          ["ESSBIO · Delitos Ambientales", "wide", "landscape"],
-        ]),
       },
       {
         type: "cards",
@@ -379,9 +346,6 @@ export const categoryPageData: Record<CategoryId, CategoryPageConfig> = {
         title: "Diseño que responde.",
         description:
           "Prevención de delitos combina una misión guiada, exploración de una oficina, pistas y preguntas en una experiencia interactiva.",
-        slots: slots("interactive", [
-          ["Prevención de delitos · Estrategia contra la corrupción", "wide", "landscape"],
-        ]),
       },
       {
         type: "statement",

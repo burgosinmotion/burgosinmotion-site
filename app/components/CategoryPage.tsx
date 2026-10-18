@@ -96,19 +96,6 @@ export default function CategoryPage({
           const delay = Math.min(sectionIndex * 45, 135);
 
           if (section.type === "projects") {
-            const cardCount = Math.max(section.slots.length, projects.length);
-            const cards = Array.from({ length: cardCount }, (_, index) => {
-              const slot = section.slots[index] ?? {
-                id: `${category.id}-project-${index + 1}`,
-                label: "Proyecto real",
-                assetPath: projects[index]?.thumbnail ?? "",
-                size: projects[index]?.size ?? "medium",
-                aspect: "landscape" as const,
-              };
-
-              return { slot, project: projects[index] };
-            });
-
             return (
               <RevealOnScroll
                 key={`${section.type}-${sectionIndex}`}
@@ -131,17 +118,23 @@ export default function CategoryPage({
                     </p>
                   ) : null}
                 </div>
-                <div className="grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-12 md:gap-y-10">
-                  {cards.map(({ slot, project }, index) => (
+                {projects.length > 0 ? <div className="grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-12 md:gap-y-10">
+                  {projects.map((project, index) => (
                     <ProjectCard
-                      key={slot.id}
+                      key={project.id}
                       category={category}
-                      slot={slot}
+                      slot={{
+                        id: project.id,
+                        label: project.title,
+                        assetPath: project.thumbnail,
+                        size: project.size ?? "medium",
+                        aspect: "landscape",
+                      }}
                       project={project}
                       index={index}
                     />
                   ))}
-                </div>
+                </div> : <p className="text-sm leading-7 text-zinc-400">Portafolio en preparación.</p>}
               </RevealOnScroll>
             );
           }
