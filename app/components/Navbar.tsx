@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
-import { buttonGradientStyles } from "./buttonStyles";
+import { buttonContactStyles } from "./buttonStyles";
 import { portfolioCategories, type CategoryId } from "./categoryData";
 
 const navItems = [
@@ -189,7 +189,7 @@ export default function Navbar() {
             Áreas <span aria-hidden="true" className={`text-[10px] transition-transform motion-reduce:transition-none ${areasOpen ? "rotate-180" : ""}`}>⌄</span>
           </button>
           {navItems.map((item) => <Link key={item.label} href={item.href} onClick={closeMenus} className={navLinkClass}>{item.label}</Link>)}
-          <Link href="/#contact" onClick={closeMenus} className={`${buttonGradientStyles} navbar-contact min-h-[1.875rem] px-5 py-1.5 text-xs`}>Contacto</Link>
+          <Link href="/#contact" onClick={closeMenus} className={`${buttonContactStyles} navbar-contact min-h-[1.875rem] px-5 py-1.5 text-xs`}>Contacto</Link>
         </nav>
         <button ref={mobileTriggerRef} type="button" aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"} aria-expanded={menuOpen} aria-controls="navigation-mobile" onClick={() => { setMenuOpen(!menuOpen); setMobileAreasOpen(false); }} className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.10] bg-white/[0.04] text-white transition-colors hover:border-cyan-300 focus-visible:outline-2 focus-visible:outline-cyan-200 lg:hidden">
           <span aria-hidden="true" className="text-xl">{menuOpen ? "×" : "☰"}</span>
@@ -228,7 +228,7 @@ export default function Navbar() {
               </div>
             ) : null}
             {navItems.map((item) => <Link key={item.label} href={item.href} onClick={closeMenus} className={mobileLinkClass}>{item.label}</Link>)}
-            <Link href="/#contact" onClick={closeMenus} className={`${buttonGradientStyles} mt-2`}>Contacto</Link>
+            <Link href="/#contact" onClick={closeMenus} className={`${buttonContactStyles} mt-2`}>Contacto</Link>
           </div>
         </nav>
       ) : null}
