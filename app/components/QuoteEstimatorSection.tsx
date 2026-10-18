@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { buttonGradientStyles } from "./buttonStyles";
+import ContactButton from "./ContactMethods";
 
 const serviceTypes = [
   { name: "Motion Graphics", detail: "Video explainer, branding animado", min: 700, max: 1500, icon: "▣" },
@@ -101,12 +102,13 @@ export default function QuoteEstimatorSection() {
               Sujeto a confirmación de requerimientos técnicos
             </p>
           </div>
-          <a
-            href={`mailto:hola@burgosinmotion.com?subject=Cotización%20${encodeURIComponent(serviceTypes[selectedService].name)}&body=${encodeURIComponent(`Hola Diego,\n\nQuiero cotizar un proyecto de ${serviceTypes[selectedService].name}.\nRango estimado: $${estimate.min} - $${estimate.max} USD.\n`)}`}
+          <ContactButton
+            subject={`Cotización ${serviceTypes[selectedService].name}`}
+            body={`Hola Diego,\n\nQuiero cotizar un proyecto de ${serviceTypes[selectedService].name}.\nRango estimado: $${estimate.min} - $${estimate.max} USD.\n`}
             className={buttonGradientStyles}
           >
             ✈ Solicitar Cotización Oficial
-          </a>
+          </ContactButton>
         </div>
       </div>
     </motion.section>

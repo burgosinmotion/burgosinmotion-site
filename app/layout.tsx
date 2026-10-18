@@ -8,6 +8,7 @@ import HomeShell from "./components/HomeShell";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SiteChrome from "./components/SiteChrome";
+import { ContactMethodsProvider } from "./components/ContactMethods";
 
 const siteUrl = new URL("https://www.burgosinmotion.com");
 const siteTitle =
@@ -92,11 +93,13 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <NavigationScroll />
         </Suspense>
-        <HomeShell>
-          <SiteChrome navbar={<Navbar />} footer={<Footer />}>
-            {children}
-          </SiteChrome>
-        </HomeShell>
+        <ContactMethodsProvider>
+          <HomeShell>
+            <SiteChrome navbar={<Navbar />} footer={<Footer />}>
+              {children}
+            </SiteChrome>
+          </HomeShell>
+        </ContactMethodsProvider>
       </body>
     </html>
   );

@@ -18,7 +18,7 @@ import {
   type CategoryId,
   type PortfolioCategory,
 } from "./categoryData";
-import { buttonGradientStyles, buttonOutlineStyles } from "./buttonStyles";
+import { buttonContactStyles, buttonOutlineStyles } from "./buttonStyles";
 
 type SpawnedCard = {
   id: number;
@@ -612,9 +612,8 @@ export default function HeroSection() {
           >
             Explorar áreas
           </Link>
-          <Link
-            href="/contacto"
-            className={`${buttonGradientStyles} min-w-36`}
+          <Link href="/#contact"
+            className={`${buttonContactStyles} min-w-36`}
           >
             Hablemos
           </Link>

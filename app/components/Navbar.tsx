@@ -8,9 +8,9 @@ import { buttonGradientStyles } from "./buttonStyles";
 import { portfolioCategories, type CategoryId } from "./categoryData";
 
 const navItems = [
-  { label: "Sobre mí", href: "/#sobre-mi" },
-  { label: "Portfolio", href: "/#proyectos" },
   { label: "Servicios", href: "/#servicios" },
+  { label: "Portfolio", href: "/#proyectos" },
+  { label: "Sobre mí", href: "/#sobre-mi" },
   { label: "Demos", href: "/demos-interactivas" },
 ];
 

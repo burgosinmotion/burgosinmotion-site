@@ -85,9 +85,9 @@ export default function ProjectsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true, amount: 0.2 }}
-            className={`group relative overflow-hidden rounded-[1.5rem] border bg-[#121212]/86 outline-none transition duration-700 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#121212] motion-reduce:hover:translate-y-0 border-cyan-300/[0.14] hover:border-cyan-200/[0.25]`}
+            className={`group relative flex min-w-0 flex-col overflow-hidden rounded-[1.5rem] border bg-[#121212]/86 outline-none transition duration-700 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#121212] motion-reduce:hover:translate-y-0 border-cyan-300/[0.14] hover:border-cyan-200/[0.25]`}
           >
-            <div className="relative aspect-[16/9] overflow-hidden border-b border-white/[0.06] bg-[#121212]">
+            <div className="relative aspect-[16/9] shrink-0 overflow-hidden border-b border-white/[0.06] bg-[#121212]">
               <Image
                 src={project.src}
                 alt={project.alt}
@@ -107,16 +107,16 @@ export default function ProjectsSection() {
               </span>
             </div>
 
-            <div className="p-6 sm:p-7">
+            <div className="flex flex-1 flex-col p-6 sm:p-7">
               <h3 className="text-2xl font-black leading-tight text-zinc-50">
                 {project.title}
               </h3>
-              <p className="mt-4 text-sm leading-6 text-zinc-400">
+              <p className="mb-7 mt-4 text-sm leading-6 text-zinc-400">
                 {project.text}
               </p>
-              <div className="mt-7 flex items-center justify-between border-t border-white/[0.08] pt-6">
+              <div className="mt-auto flex items-center justify-between gap-4 border-t border-white/[0.08] pt-6">
                 <span className="font-mono text-xs text-zinc-500">{project.meta}</span>
-                <span className="font-mono text-xs font-bold text-cyan-300 transition duration-500 group-hover:translate-x-1 group-hover:-translate-y-1">
+                <span className="shrink-0 font-mono text-xs font-bold text-cyan-300 transition duration-500 group-hover:translate-x-1 group-hover:-translate-y-1">
                   Ver Caso ↗
                 </span>
               </div>

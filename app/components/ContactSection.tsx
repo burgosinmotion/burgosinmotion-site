@@ -2,36 +2,24 @@
 
 import { motion } from "framer-motion";
 import { FaBehance, FaLinkedinIn, FaVimeoV } from "react-icons/fa6";
-import { FormEvent, useState } from "react";
-import { buttonGradientStyles } from "./buttonStyles";
-
-const email = "hola@burgosinmotion.com";
+import { useEffect, useRef, useState } from "react";
+import ContactButton, { contactEmail as email } from "./ContactMethods";
+import ContactForm from "./ContactForm";
 
 export default function ContactSection() {
-  const [copied, setCopied] = useState(false);
+  const [copyFeedback, setCopyFeedback] = useState("");
+  const copyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (copyTimer.current) clearTimeout(copyTimer.current); }, []);
 
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(email);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1600);
+      setCopyFeedback("Correo copiado");
     } catch {
-      window.location.href = `mailto:${email}`;
+      setCopyFeedback("Selecciona el correo y cópialo manualmente.");
     }
-  };
-
-  const submitForm = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const name = String(formData.get("name") ?? "");
-    const sender = String(formData.get("email") ?? "");
-    const subject = String(formData.get("subject") ?? "Proyecto Burgos in Motion");
-    const message = String(formData.get("message") ?? "");
-    const body = encodeURIComponent(
-      `Nombre: ${name}\nCorreo: ${sender}\n\n${message}`,
-    );
-
-    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${body}`;
+    if (copyTimer.current) clearTimeout(copyTimer.current);
+    copyTimer.current = setTimeout(() => setCopyFeedback(""), 4000);
   };
 
   return (
@@ -56,19 +44,18 @@ export default function ContactSection() {
             Convirtámoslo en una experiencia digital inolvidable. Escríbeme para conversar sobre tu próximo proyecto de motion graphics o e-learning.
           </p>
 
-          <div className="mt-12 flex max-w-xl items-center justify-between gap-4 rounded-xl border border-white/[0.08] bg-[#121212]/76 p-4">
-            <div className="flex items-center gap-4">
+          <div className="mt-12 flex max-w-xl flex-wrap items-center justify-between gap-4 rounded-xl border border-white/[0.08] bg-[#121212]/76 p-4">
+            <div className="flex min-w-0 items-center gap-4">
               <span className="text-2xl text-cyan-300" aria-hidden="true">✉</span>
-              <div>
+              <div className="min-w-0">
                 <p className="font-mono text-[0.68rem] uppercase tracking-[0.2em] text-zinc-500">
                   Email Directo
                 </p>
-                <a
-                  href={`mailto:${email}`}
-                  className="font-bold text-zinc-50 transition hover:text-cyan-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200"
+                <ContactButton
+                  className="break-all text-left font-bold text-zinc-50 transition-colors hover:text-cyan-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200"
                 >
                   {email}
-                </a>
+                </ContactButton>
               </div>
             </div>
             <button
@@ -76,8 +63,9 @@ export default function ContactSection() {
               onClick={copyEmail}
               className="rounded-full bg-white/[0.07] px-4 py-2 font-mono text-xs font-bold text-zinc-100 transition hover:bg-white/[0.12] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200"
             >
-              {copied ? "Copiado" : "Copiar"}
+              Copiar
             </button>
+            <p role="status" className="w-full text-sm text-cyan-200 empty:hidden">{copyFeedback}</p>
           </div>
 
           <div className="mt-6 flex gap-4">
@@ -100,63 +88,7 @@ export default function ContactSection() {
           </div>
         </div>
 
-        <form
-          onSubmit={submitForm}
-          className="rounded-[1.5rem] border border-white/[0.08] bg-[#121212]/78 p-5 backdrop-blur-md md:p-8"
-        >
-          <div className="grid gap-5 md:grid-cols-2">
-            <label className="grid gap-2 font-mono text-xs font-bold text-zinc-400">
-              Nombre Completo
-              <input
-                name="name"
-                required
-                placeholder="Tu nombre"
-                className="rounded-xl border border-white/[0.08] bg-[#121212]/78 px-4 py-3 font-sans text-base font-medium text-zinc-100 outline-none transition placeholder:text-zinc-500 focus:border-cyan-200/40"
-              />
-            </label>
-            <label className="grid gap-2 font-mono text-xs font-bold text-zinc-400">
-              Correo Electrónico
-              <input
-                name="email"
-                type="email"
-                required
-                placeholder="tu@email.com"
-                className="rounded-xl border border-white/[0.08] bg-[#121212]/78 px-4 py-3 font-sans text-base font-medium text-zinc-100 outline-none transition placeholder:text-zinc-500 focus:border-cyan-200/40"
-              />
-            </label>
-          </div>
-
-          <label className="mt-5 grid gap-2 font-mono text-xs font-bold text-zinc-400">
-            Asunto
-            <select
-              name="subject"
-              className="rounded-xl border border-white/[0.08] bg-[#121212]/78 px-4 py-3 font-sans text-base font-bold text-zinc-100 outline-none transition focus:border-cyan-200/40"
-            >
-              <option>Proyecto Motion Graphics</option>
-              <option>E-Learning Storyline</option>
-              <option>Consulta general</option>
-            </select>
-          </label>
-
-          <label className="mt-5 grid gap-2 font-mono text-xs font-bold text-zinc-400">
-            Mensaje
-            <textarea
-              name="message"
-              required
-              rows={5}
-              placeholder="Cuéntame sobre los detalles de tu proyecto o requerimiento..."
-              className="resize-y rounded-xl border border-white/[0.08] bg-[#121212]/78 px-4 py-3 font-sans text-base font-medium text-zinc-100 outline-none transition placeholder:text-zinc-500 focus:border-cyan-200/40"
-            />
-          </label>
-
-          <button
-            type="submit"
-            className={`${buttonGradientStyles} mt-6 w-full`}
-          >
-            <span aria-hidden="true">✈</span>
-            Enviar Mensaje
-          </button>
-        </form>
+        <ContactForm />
       </div>
     </motion.section>
   );
